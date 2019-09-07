@@ -118,38 +118,98 @@ class _HomeState extends State<Home> {
           ],
         ),
       ),
-      body: SizedBox(
-        width: double.infinity,
-        height: 250,
-        child: Stack(
-          children: <Widget>[
-            Center(
-              child: CarouselSlider(
-                autoPlay: true,
-                pauseAutoPlayOnTouch: Duration(seconds: 10),
-                height: 250.0,
-                viewportFraction: 1.0,
-                items: imgList.map((i) {
-                  return Builder(
-                    builder: (BuildContext context) {
-                      return Container(
-                          width: MediaQuery.of(context).size.width,
-                          child: CachedNetworkImage(
-                            fit: BoxFit.cover,
-                            imageUrl: i,
-                            placeholder: (context, url) => Center(
-                                child: CircularProgressIndicator()
-                            ),
-                            errorWidget: (context, url, error) => new Icon(Icons.error),
-                          )
+      body: Column(
+        children: <Widget>[
+          SizedBox(
+            width: double.infinity,
+            height: 250,
+            child: Stack(
+              children: <Widget>[
+                Center(
+                  child: CarouselSlider(
+                    autoPlay: true,
+                    pauseAutoPlayOnTouch: Duration(seconds: 10),
+                    height: 250.0,
+                    viewportFraction: 1.0,
+                    items: imgList.map((i) {
+                      return Builder(
+                        builder: (BuildContext context) {
+                          return Container(
+                              width: MediaQuery.of(context).size.width,
+                              child: CachedNetworkImage(
+                                fit: BoxFit.cover,
+                                imageUrl: i,
+                                placeholder: (context, url) => Center(
+                                    child: CircularProgressIndicator()
+                                ),
+                                errorWidget: (context, url, error) => new Icon(Icons.error),
+                              )
+                          );
+                        },
                       );
-                    },
-                  );
-                }).toList(),
-              ),
+                    }).toList(),
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text('New Arrivals'),
+              Container(
+                margin: EdgeInsets.symmetric(vertical: 20.0),
+                height: 250.0,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: imgList.map((i) {
+                    return Builder(
+                      builder: (BuildContext context) {
+                        return Container(
+                          width: 140.0,
+                          child: Card(
+                            clipBehavior: Clip.antiAlias,
+                            child: InkWell(
+                              splashColor: Colors.blue.withAlpha(30),
+                              onTap: () {
+                                print('Card tapped.');
+                              },
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  SizedBox(
+                                    height: 160,
+                                    child: CachedNetworkImage(
+                                      fit: BoxFit.cover,
+                                      imageUrl: i,
+                                      placeholder: (context, url) => Center(
+                                          child: CircularProgressIndicator()
+                                      ),
+                                      errorWidget: (context, url, error) => new Icon(Icons.error),
+                                    ),
+                                  ),
+                                  ListTile(
+                                    title: Text(
+                                      'Two Gold Rings',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                        fontSize: 13
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    );
+                  }).toList(),
+                ),
+              ),
+            ],
+          )
+        ],
       ),
     );
   }
