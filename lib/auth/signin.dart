@@ -21,6 +21,12 @@ class _SignInState extends State<SignIn> {
               Padding(
                 padding: const EdgeInsets.only(bottom: 12.0),
                 child: TextFormField(
+                  validator: (value) {
+                    if (value.isEmpty) {
+                      return 'Please enter Email or Username';
+                    }
+                    return null;
+                  },
                   decoration: InputDecoration(
                     hintText: 'Enter Username Or Email',
                     labelText: 'Email',
@@ -28,6 +34,12 @@ class _SignInState extends State<SignIn> {
                 ),
               ),
               TextFormField(
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Please enter Password';
+                  }
+                  return null;
+                },
                 decoration: InputDecoration(
                   hintText: 'Enter Password',
                   labelText: 'Password',
@@ -44,7 +56,10 @@ class _SignInState extends State<SignIn> {
                     textColor: Colors.white,
                     child: Text('Sign In'),
                     onPressed: (){
-
+                      if (_formKey.currentState.validate()) {
+                        // If the form is valid, display a snackbar. In the real world,
+                        // you'd often call a server or save the information in a database.
+                      }
                     },
                   ),
                 ),
