@@ -1,4 +1,4 @@
-# flutter_scaffold
+# Flutter E-Commerce UI KIT
 
 A new Flutter application.
 
