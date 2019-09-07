@@ -23,7 +23,7 @@ class _SignInState extends State<SignIn> {
                 child: TextFormField(
                   validator: (value) {
                     if (value.isEmpty) {
-                      return 'Please enter Email or Username';
+                      return 'Please Enter Email or Username';
                     }
                     return null;
                   },
@@ -36,7 +36,7 @@ class _SignInState extends State<SignIn> {
               TextFormField(
                 validator: (value) {
                   if (value.isEmpty) {
-                    return 'Please enter Password';
+                    return 'Please Enter Password';
                   }
                   return null;
                 },

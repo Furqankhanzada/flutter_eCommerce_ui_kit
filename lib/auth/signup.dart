@@ -23,7 +23,7 @@ class _SignUpState extends State<SignUp> {
                 child: TextFormField(
                   validator: (value) {
                     if (value.isEmpty) {
-                      return 'Please enter Username';
+                      return 'Please Enter Username';
                     }
                     return null;
                   },
@@ -38,7 +38,7 @@ class _SignUpState extends State<SignUp> {
                 child: TextFormField(
                   validator: (value) {
                     if (value.isEmpty) {
-                      return 'Please enter Email Address';
+                      return 'Please Enter Email Address';
                     }
                     return null;
                   },
@@ -53,7 +53,7 @@ class _SignUpState extends State<SignUp> {
                 child: TextFormField(
                     validator: (value) {
                       if (value.isEmpty) {
-                        return 'Please enter Password';
+                        return 'Please Enter Password';
                       }
                       return null;
                     },
@@ -67,7 +67,7 @@ class _SignUpState extends State<SignUp> {
               TextFormField(
                 validator: (value) {
                   if (value.isEmpty) {
-                    return 'Please enter Confirm Password';
+                    return 'Please Enter Confirm Password';
                   }
                   return null;
                 },
