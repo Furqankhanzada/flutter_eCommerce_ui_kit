@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:transparent_image/transparent_image.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+
+import 'drawer.dart';
+import 'slider.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -21,195 +22,184 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.shopping_cart),
-            onPressed: () {
-
-            },
-          )
-        ],
-      ),
       drawer: Drawer(
-        child: Column(
-          children: <Widget>[
-            Stack(
-              children: <Widget>[
-                Image(
-                  image: NetworkImage('https://image.freepik.com/free-photo/yellow-blue-pink-background_23-2147704125.jpg'),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 60, left: 20),
-                  child: CircleAvatar(
-                    radius: 30,
-                    backgroundImage: NetworkImage('https://avatars2.githubusercontent.com/u/2400215?s=120&v=4'),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 130, left: 20),
-                  child: Text('Muhammad Furqan', style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold
-                  )),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 155, left: 20),
-                  child: Text('furqan.khanzada@gmail.com', style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.white
-                  )),
-                )
-              ],
-            ),
-            ListView(
-              shrinkWrap: true,
-              children: <Widget>[
-                ListTile(
-                  leading: Icon(Icons.home),
-                  title: Text('Home'),
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                ),
-                ListTile(
-                  leading: Icon(Icons.shopping_basket),
-                  title: Text('Shop'),
-                  onTap: () {
-                    Navigator.pop(context);
-                    Navigator.pushNamed(context, '/products');
-                  },
-                ),
-                ListTile(
-                  leading: Icon(Icons.category),
-                  title: Text('Categorise'),
-                  onTap: () {
-                    Navigator.pop(context);
-                    Navigator.pushNamed(context, '/products');
-                  },
-                ),
-                ListTile(
-                  leading: Icon(Icons.favorite),
-                  title: Text('My Wishlist'),
-                  onTap: () {
-                    Navigator.pop(context);
-                    Navigator.pushNamed(context, '/products');
-                  },
-                ),
-                ListTile(
-                  leading: Icon(Icons.shopping_cart),
-                  title: Text('My Cart'),
-                  onTap: () {
-                    Navigator.pop(context);
-                    Navigator.pushNamed(context, '/products');
-                  },
-                ),
-                ListTile(
-                  leading: Icon(Icons.lock),
-                  title: Text('Login'),
-                  onTap: () {
-                    Navigator.pop(context);
-                    Navigator.pushNamed(context, '/auth');
-                  },
-                )
-              ],
-            )
-          ],
-        ),
+        child: AppDrawer(),
       ),
-      body: Column(
-        children: <Widget>[
-          SizedBox(
-            width: double.infinity,
-            height: 250,
-            child: Stack(
-              children: <Widget>[
-                Center(
-                  child: CarouselSlider(
-                    autoPlay: true,
-                    pauseAutoPlayOnTouch: Duration(seconds: 10),
-                    height: 250.0,
-                    viewportFraction: 1.0,
-                    items: imgList.map((i) {
-                      return Builder(
-                        builder: (BuildContext context) {
-                          return Container(
-                              width: MediaQuery.of(context).size.width,
-                              child: CachedNetworkImage(
-                                fit: BoxFit.cover,
-                                imageUrl: i,
-                                placeholder: (context, url) => Center(
-                                    child: CircularProgressIndicator()
-                                ),
-                                errorWidget: (context, url, error) => new Icon(Icons.error),
-                              )
-                          );
-                        },
-                      );
-                    }).toList(),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text('New Arrivals'),
-              Container(
-                margin: EdgeInsets.symmetric(vertical: 20.0),
-                height: 250.0,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: imgList.map((i) {
-                    return Builder(
-                      builder: (BuildContext context) {
-                        return Container(
-                          width: 140.0,
-                          child: Card(
-                            clipBehavior: Clip.antiAlias,
-                            child: InkWell(
-                              splashColor: Colors.blue.withAlpha(30),
-                              onTap: () {
-                                print('Card tapped.');
-                              },
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  SizedBox(
-                                    height: 160,
-                                    child: CachedNetworkImage(
-                                      fit: BoxFit.cover,
-                                      imageUrl: i,
-                                      placeholder: (context, url) => Center(
-                                          child: CircularProgressIndicator()
+      body: SafeArea(
+        top: false,
+        child: CustomScrollView(
+          // Add the app bar and list of items as slivers in the next steps.
+            slivers: <Widget>[
+              SliverAppBar(
+                // Provide a standard title.
+                // title: Text('asdas'),
+                // pinned: true,
+                actions: <Widget>[
+                  IconButton(
+                    icon: Icon(Icons.shopping_cart),
+                    onPressed: () {
+
+                    },
+                  )
+                ],
+                // Allows the user to reveal the app bar if they begin scrolling
+                // back up the list of items.
+                // floating: true,
+                // Display a placeholder widget to visualize the shrinking size.
+                flexibleSpace: HomeSlider(),
+                // Make the initial height of the SliverAppBar larger than normal.
+                expandedHeight: 300,
+              ),
+              SliverList(
+                // Use a delegate to build items as they're scrolled on screen.
+                delegate: SliverChildBuilderDelegate(
+                  // The builder function returns a ListTile with a title that
+                  // displays the index of the current item.
+                      (context, index) =>  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Padding(
+                        padding: EdgeInsets.only(top: 14.0, left: 8.0),
+                        child: Text('New Arrivals', style: TextStyle(
+                            color: Theme.of(context).accentColor,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold
+                        )),
+                      ),
+                      Container(
+                        margin: EdgeInsets.symmetric(vertical: 8.0),
+                        height: 240.0,
+                        child: ListView(
+                          scrollDirection: Axis.horizontal,
+                          children: imgList.map((i) {
+                            return Builder(
+                              builder: (BuildContext context) {
+                                return Container(
+                                  width: 140.0,
+                                  child: Card(
+                                    clipBehavior: Clip.antiAlias,
+                                    child: InkWell(
+                                      onTap: () {
+                                        print('Card tapped.');
+                                      },
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          SizedBox(
+                                            height: 160,
+                                            child: CachedNetworkImage(
+                                              fit: BoxFit.cover,
+                                              imageUrl: i,
+                                              placeholder: (context, url) => Center(
+                                                  child: CircularProgressIndicator()
+                                              ),
+                                              errorWidget: (context, url, error) => new Icon(Icons.error),
+                                            ),
+                                          ),
+                                          ListTile(
+                                            title: Text(
+                                              'Two Gold Rings',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 13
+                                              ),
+                                            ),
+                                            subtitle: Text('\$200', style: TextStyle(
+                                                color: Theme.of(context).accentColor,
+                                                fontWeight: FontWeight.bold
+                                            )),
+                                          )
+                                        ],
                                       ),
-                                      errorWidget: (context, url, error) => new Icon(Icons.error),
                                     ),
                                   ),
-                                  ListTile(
-                                    title: Text(
-                                      'Two Gold Rings',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                        fontSize: 13
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
+                                );
+                              },
+                            );
+                          }).toList(),
+                        ),
+                      ),
+                      Container(
+                        child: Padding(
+                          padding: EdgeInsets.only(top: 6.0, left: 8.0, right: 8.0),
+                          child: Image(
+                            fit: BoxFit.cover,
+                            image: AssetImage('assets/images/banner-1.png'),
                           ),
-                        );
-                      },
-                    );
-                  }).toList(),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(top: 14.0, left: 8.0),
+                        child: Text('Shop By Category', style: TextStyle(
+                            color: Theme.of(context).accentColor,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold
+                        )),
+                      ),
+                      Container(
+                        child: GridView.count(
+                          shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                          crossAxisSpacing: 0.0,
+                          crossAxisCount: 2,
+                          padding: EdgeInsets.only(top: 8, left: 6, right: 6, bottom: 12),
+                          // Generate 100 widgets that display their index in the List.
+                          children: List.generate(4, (index) {
+                            return Container(
+                              child: Card(
+                                clipBehavior: Clip.antiAlias,
+                                child: InkWell(
+                                  onTap: () {
+                                    print('Card tapped.');
+                                  },
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      SizedBox(
+                                        height: 137,
+                                        child: CachedNetworkImage(
+                                          fit: BoxFit.cover,
+                                          imageUrl: imgList[index],
+                                          placeholder: (context, url) => Center(
+                                              child: CircularProgressIndicator()
+                                          ),
+                                          errorWidget: (context, url, error) => new Icon(Icons.error),
+                                        ),
+                                      ),
+                                      ListTile(
+                                          title: Text(
+                                            'Two Gold Rings',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 16
+                                            ),
+                                          )
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            );
+                          }),
+                        ),
+                      ),
+                      Container(
+                        child: Padding(
+                          padding: EdgeInsets.only(top: 6.0, left: 8.0, right: 8.0),
+                          child: Image(
+                            fit: BoxFit.cover,
+                            image: AssetImage('assets/images/banner-2.png'),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                  // Builds 1000 ListTiles
+                  childCount: 1,
                 ),
-              ),
-            ],
-          )
-        ],
+              )
+            ]
+        ),
       ),
     );
   }

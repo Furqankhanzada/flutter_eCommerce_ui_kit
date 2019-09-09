@@ -8,8 +8,8 @@ void main() {
       MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          primaryColor: Colors.red,
-          accentColor: Colors.red
+          primaryColor: Colors.deepOrange[500],
+          accentColor: Colors.lightBlue[900]
         ),
         initialRoute: '/',
         routes: <String, WidgetBuilder>{
