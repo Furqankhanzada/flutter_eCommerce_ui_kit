@@ -186,7 +186,7 @@ class _HomeState extends State<Home> {
                       ),
                       Container(
                         child: Padding(
-                          padding: EdgeInsets.only(top: 6.0, left: 8.0, right: 8.0),
+                          padding: EdgeInsets.only(top: 6.0, left: 8.0, right: 8.0, bottom: 10),
                           child: Image(
                             fit: BoxFit.cover,
                             image: AssetImage('assets/images/banner-2.png'),
