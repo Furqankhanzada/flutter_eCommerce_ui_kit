@@ -130,13 +130,29 @@ class _HomeState extends State<Home> {
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(top: 14.0, left: 8.0),
-                        child: Text('Shop By Category', style: TextStyle(
-                            color: Theme.of(context).accentColor,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold
-                        )),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Padding(
+                            padding: EdgeInsets.only(top: 8.0, left: 8.0),
+                            child: Text('Shop By Category', style: TextStyle(
+                                color: Theme.of(context).accentColor,
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold
+                            )),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 8.0, top: 8.0),
+                            child: RaisedButton(
+                              color: Theme.of(context).primaryColor,
+                                child: Text('View All',
+                                  style: TextStyle(
+                                      color: Colors.white
+                                )),
+                                onPressed: () {}
+                                ),
+                          )
+                        ],
                       ),
                       Container(
                         child: GridView.count(
