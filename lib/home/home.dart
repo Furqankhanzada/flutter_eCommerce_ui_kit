@@ -140,10 +140,8 @@ class _HomeState extends State<Home> {
                         child: GridView.count(
                           shrinkWrap: true,
                           physics: NeverScrollableScrollPhysics(),
-                          crossAxisSpacing: 0.0,
                           crossAxisCount: 2,
                           padding: EdgeInsets.only(top: 8, left: 6, right: 6, bottom: 12),
-                          // Generate 100 widgets that display their index in the List.
                           children: List.generate(4, (index) {
                             return Container(
                               child: Card(
@@ -156,7 +154,8 @@ class _HomeState extends State<Home> {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: <Widget>[
                                       SizedBox(
-                                        height: 137,
+                                        height: (80.0 / 100) * (MediaQuery.of(context).size.width / 2) - 29,
+                                        width: double.infinity,
                                         child: CachedNetworkImage(
                                           fit: BoxFit.cover,
                                           imageUrl: imgList[index],

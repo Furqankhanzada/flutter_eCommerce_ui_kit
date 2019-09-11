@@ -49,6 +49,7 @@ flutter:
   #  - images/a_dot_ham.jpegslide2.jpg
   #summer-slider.png
   assets:
+   - assets/images/drawer-header.jpg
    - assets/images/banner-1.png
    - assets/images/banner-2.png
   # An image asset can refer to one or more resolution-specific "variants", see
