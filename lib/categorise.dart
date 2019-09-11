@@ -24,12 +24,10 @@ class _CategoriseState extends State<Categorise> {
         title: Text('Categorise'),
       ),
       body:  Container(
-        child: GridView.count(
+        child: ListView(
           shrinkWrap: true,
-          physics: NeverScrollableScrollPhysics(),
-          crossAxisCount: 1,
-          padding: EdgeInsets.only(top: 8, left: 6, right: 6, bottom: 12),
-          children: List.generate(4, (index) {
+          padding: EdgeInsets.only(top: 8, left: 6, right: 6, bottom: 8),
+          children: List.generate(6, (index) {
             return Container(
               child: Card(
                 clipBehavior: Clip.antiAlias,
