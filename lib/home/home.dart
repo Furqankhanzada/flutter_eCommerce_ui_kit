@@ -27,6 +27,8 @@ class _HomeState extends State<Home> {
       ),
       body: SafeArea(
         top: false,
+        left: false,
+        right: false,
         child: CustomScrollView(
           // Add the app bar and list of items as slivers in the next steps.
             slivers: <Widget>[
@@ -154,7 +156,7 @@ class _HomeState extends State<Home> {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: <Widget>[
                                       SizedBox(
-                                        height: (80.0 / 100) * (MediaQuery.of(context).size.width / 2) - 29,
+                                        height: (MediaQuery.of(context).size.width / 2) - 70,
                                         width: double.infinity,
                                         child: CachedNetworkImage(
                                           fit: BoxFit.cover,
