@@ -69,7 +69,7 @@ class _AppDrawerState extends State<AppDrawer> {
                 title: Text('Categorise'),
                 onTap: () {
                   Navigator.pop(context);
-                  Navigator.pushNamed(context, '/products');
+                  Navigator.pushNamed(context, '/categorise');
                 },
               ),
               ListTile(

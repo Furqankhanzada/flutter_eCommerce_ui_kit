@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'auth/auth.dart';
 import 'home/home.dart';
 import 'products.dart';
+import 'categorise.dart';
 
 void main() {
   runApp(
@@ -15,7 +16,8 @@ void main() {
         routes: <String, WidgetBuilder>{
           '/': (BuildContext context) => Home(),
           '/auth': (BuildContext context) => Auth(),
-          '/products': (BuildContext context) => Products()
+          '/products': (BuildContext context) => Products(),
+          '/categorise': (BuildContext context) => Categorise()
         },
       )
   );
