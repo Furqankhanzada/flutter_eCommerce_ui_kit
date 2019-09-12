@@ -61,7 +61,7 @@ class _AppDrawerState extends State<AppDrawer> {
                 )),
                 onTap: () {
                   Navigator.pop(context);
-                  Navigator.pushNamed(context, '/products');
+                  Navigator.pushNamed(context, '/shop');
                 },
               ),
               ListTile(
@@ -117,6 +117,15 @@ class _AppDrawerState extends State<AppDrawer> {
               ListTile(
                 leading: Icon(Icons.lock, color: Theme.of(context).accentColor),
                 title: Text('Login'),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.pushNamed(context, '/auth');
+                },
+              ),
+              Divider(),
+              ListTile(
+                leading: Icon(Icons.settings, color: Theme.of(context).accentColor),
+                title: Text('Settings'),
                 onTap: () {
                   Navigator.pop(context);
                   Navigator.pushNamed(context, '/auth');

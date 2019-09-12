@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'auth/auth.dart';
 import 'home/home.dart';
-import 'products.dart';
+import 'shop.dart';
 import 'categorise.dart';
 
 void main() {
@@ -9,14 +9,15 @@ void main() {
       MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          primaryColor: Colors.deepOrange[500],
-          accentColor: Colors.lightBlue[900]
+            primaryColor: Colors.deepOrange[500],
+            accentColor: Colors.lightBlue[900],
+            fontFamily: 'Lato'
         ),
         initialRoute: '/',
         routes: <String, WidgetBuilder>{
           '/': (BuildContext context) => Home(),
           '/auth': (BuildContext context) => Auth(),
-          '/products': (BuildContext context) => Products(),
+          '/shop': (BuildContext context) => Shop(),
           '/categorise': (BuildContext context) => Categorise()
         },
       )

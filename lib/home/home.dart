@@ -65,7 +65,7 @@ class _HomeState extends State<Home> {
                         child: Text('New Arrivals', style: TextStyle(
                             color: Theme.of(context).accentColor,
                             fontSize: 18,
-                            fontWeight: FontWeight.bold
+                            fontWeight: FontWeight.w700
                         )),
                       ),
                       Container(
@@ -102,13 +102,12 @@ class _HomeState extends State<Home> {
                                             title: Text(
                                               'Two Gold Rings',
                                               style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 13
+                                                  fontSize: 14
                                               ),
                                             ),
                                             subtitle: Text('\$200', style: TextStyle(
                                                 color: Theme.of(context).accentColor,
-                                                fontWeight: FontWeight.bold
+                                                fontWeight: FontWeight.w700
                                             )),
                                           )
                                         ],
@@ -138,7 +137,7 @@ class _HomeState extends State<Home> {
                             child: Text('Shop By Category', style: TextStyle(
                                 color: Theme.of(context).accentColor,
                                 fontSize: 18,
-                                fontWeight: FontWeight.bold
+                                fontWeight: FontWeight.w700
                             )),
                           ),
                           Padding(
@@ -187,7 +186,7 @@ class _HomeState extends State<Home> {
                                           title: Text(
                                             'Two Gold Rings',
                                             style: TextStyle(
-                                                fontWeight: FontWeight.bold,
+                                                fontWeight: FontWeight.w700,
                                                 fontSize: 16
                                             ),
                                           )
