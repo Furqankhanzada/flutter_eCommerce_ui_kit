@@ -143,13 +143,14 @@ class _HomeState extends State<Home> {
                           Padding(
                             padding: const EdgeInsets.only(right: 8.0, top: 8.0),
                             child: RaisedButton(
-                              color: Theme.of(context).primaryColor,
+                                color: Theme.of(context).primaryColor,
                                 child: Text('View All',
-                                  style: TextStyle(
-                                      color: Colors.white
-                                )),
-                                onPressed: () {}
-                                ),
+                                    style: TextStyle(
+                                        color: Colors.white
+                                    )),
+                                onPressed: () {
+                                  Navigator.pushNamed(context, '/categorise');
+                                }),
                           )
                         ],
                       ),

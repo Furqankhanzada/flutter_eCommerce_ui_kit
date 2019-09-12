@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'auth/auth.dart';
 import 'home/home.dart';
-import 'shop.dart';
+import 'shop/shop.dart';
 import 'categorise.dart';
 
 void main() {
