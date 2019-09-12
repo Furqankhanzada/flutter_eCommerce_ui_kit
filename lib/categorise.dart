@@ -23,50 +23,54 @@ class _CategoriseState extends State<Categorise> {
       appBar: AppBar(
         title: Text('Categorise'),
       ),
-      body:  Container(
-        child: ListView(
-          shrinkWrap: true,
-          padding: EdgeInsets.only(top: 8, left: 6, right: 6, bottom: 8),
-          children: List.generate(6, (index) {
-            return Container(
-              child: Card(
-                clipBehavior: Clip.antiAlias,
-                child: InkWell(
-                  onTap: () {
-                    print('Card tapped.');
-                  },
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      SizedBox(
-                        height: 180,
-                        width: double.infinity,
-                        child: CachedNetworkImage(
-                          fit: BoxFit.cover,
-                          imageUrl: imgList[index],
-                          placeholder: (context, url) => Center(
-                              child: CircularProgressIndicator()
-                          ),
-                          errorWidget: (context, url, error) => new Icon(Icons.error),
-                        ),
-                      ),
-                      ListTile(
-                          title: Text(
-                            'Two Gold Rings',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16
+      body: SafeArea(
+          top: false,
+          left: false,
+          right: false,
+          child: Container(
+            child: ListView(
+              shrinkWrap: true,
+              padding: EdgeInsets.only(top: 8, left: 6, right: 6, bottom: 8),
+              children: List.generate(6, (index) {
+                return Container(
+                  child: Card(
+                    clipBehavior: Clip.antiAlias,
+                    child: InkWell(
+                      onTap: () {
+                        print('Card tapped.');
+                      },
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          SizedBox(
+                            height: 180,
+                            width: double.infinity,
+                            child: CachedNetworkImage(
+                              fit: BoxFit.cover,
+                              imageUrl: imgList[index],
+                              placeholder: (context, url) => Center(
+                                  child: CircularProgressIndicator()
+                              ),
+                              errorWidget: (context, url, error) => new Icon(Icons.error),
                             ),
+                          ),
+                          ListTile(
+                              title: Text(
+                                'Two Gold Rings',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16
+                                ),
+                              )
                           )
-                      )
-                    ],
+                        ],
+                      ),
+                    ),
                   ),
-                ),
-              ),
-            );
-          }),
-        ),
-      ),
+                );
+              }),
+            ),
+          )),
     );
   }
 }
