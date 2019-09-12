@@ -7,6 +7,7 @@ class ShopSearch extends StatefulWidget {
 
 class _ShopSearchState extends State<ShopSearch> {
   @override
+  RangeValues _values = RangeValues(0.3, 0.7);
   Widget build(BuildContext context) {
     return Container(
       height: 425,
@@ -20,7 +21,18 @@ class _ShopSearchState extends State<ShopSearch> {
           ]),
       child: Column(
           children: [
-            Text('sadas')
+            Padding(
+              padding: const EdgeInsets.only(top: 10),
+              child: Text('Select Price Range', style: TextStyle(fontWeight: FontWeight.bold)),
+            ),
+            RangeSlider(
+              values: _values,
+              onChanged: (RangeValues values) {
+                setState(() {
+                  _values = values;
+                });
+              },
+            ),
           ]
       ),
     );
