@@ -16,7 +16,7 @@ class _ShopSearchState extends State<ShopSearch> {
           borderRadius: BorderRadius.all(Radius.circular(15)),
           boxShadow: [
             BoxShadow(
-                blurRadius: 3, color: Colors.grey[300], spreadRadius: 1)
+                blurRadius: 2, color: Colors.black12, spreadRadius: 3)
           ]),
       child: Column(
           children: [
