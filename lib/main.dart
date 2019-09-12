@@ -3,6 +3,7 @@ import 'auth/auth.dart';
 import 'home/home.dart';
 import 'shop/shop.dart';
 import 'categorise.dart';
+import 'wishlist.dart';
 
 void main() {
   runApp(
@@ -18,7 +19,8 @@ void main() {
           '/': (BuildContext context) => Home(),
           '/auth': (BuildContext context) => Auth(),
           '/shop': (BuildContext context) => Shop(),
-          '/categorise': (BuildContext context) => Categorise()
+          '/categorise': (BuildContext context) => Categorise(),
+          '/wishlist': (BuildContext context) => WishList()
         },
       )
   );
