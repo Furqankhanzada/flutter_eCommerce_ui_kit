@@ -1,16 +1,32 @@
 # Flutter E-Commerce UI KIT
 
-A new Flutter application.
+A powerful Flutter E-Commerce starter template that bootstraps development of your mobile application. Flutter E-Commerce Starter is a mobile application template with lots of built-in components like sidebar, navigation, slider, cards, form elements, etc - all you need to start building your mobile app faster. Check out demo
+
+![](demo/full.gif)
+
+## What's inside
+
+- Simple navigation
+- More than 5 Ready-to-use Pages
+
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+#### 1. Clone and Install
 
-A few resources to get you started if this is your first Flutter project:
+```bash
+# Clone the repo
+git clone https://github.com/Furqankhanzada/flutter_eCommerce_ui_kit.git
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+# Navigate to clonned folder and Install dependencies
+cd flutter_eCommerce_ui_kit && flutter packages get
+```
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Contributing
+
+If you find any problems, please [open an issue](https://github.com/Furqankhanzada/flutter_eCommerce_ui_kit/issues/new) or submit a fix as a pull request.
+
+
+## License
+
+[MIT License](LICENSE)
