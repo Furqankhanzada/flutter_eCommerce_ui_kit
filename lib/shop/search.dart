@@ -8,7 +8,7 @@ class ShopSearch extends StatefulWidget {
 class _ShopSearchState extends State<ShopSearch> {
   String dropdownValue = 'One';
   @override
-  RangeValues _values = RangeValues(0.3, 0.7);
+  RangeValues _values = RangeValues(0.0, 500.0);
   Widget build(BuildContext context) {
     return Container(
       height: 425,
@@ -60,12 +60,23 @@ class _ShopSearchState extends State<ShopSearch> {
               ),
             ),
             RangeSlider(
-              values: _values,
-              onChanged: (RangeValues values) {
-                setState(() {
-                  _values = values;
-                });
-              },
+                values: _values,
+                min: 0,
+                max: 5000,
+                activeColor: Theme.of(context).primaryColor,
+                onChanged: (RangeValues values) {
+                  setState(() {
+                    if (values.end - values.start >= 20) {
+                      _values = values;
+                    } else {
+                      if (_values.start == values.start) {
+                        _values = RangeValues(_values.start, _values.start + 20);
+                      } else {
+                        _values = RangeValues(_values.end - 20, _values.end);
+                      }
+                    }
+                  });
+                }
             ),
             Padding(
               padding: const EdgeInsets.only(left: 20, right: 20, top: 30),
@@ -79,7 +90,7 @@ class _ShopSearchState extends State<ShopSearch> {
                     decoration: BoxDecoration(color: Theme.of(context).accentColor),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text('USD 0', style: TextStyle(color: Colors.white)),
+                      child: Text('\$ ${_values.start.round()}', style: TextStyle(color: Colors.white)),
                     )
                   ),
                   Text('to', style: TextStyle(fontSize: 16, color: Colors.black),),
@@ -90,7 +101,7 @@ class _ShopSearchState extends State<ShopSearch> {
                       decoration: BoxDecoration(color: Theme.of(context).accentColor),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Text('USD 5000', style: TextStyle(color: Colors.white)),
+                        child: Text('\$ ${_values.end.round()}', style: TextStyle(color: Colors.white)),
                       )
                   ),
                 ],
