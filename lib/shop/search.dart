@@ -35,7 +35,7 @@ class _ShopSearchState extends State<ShopSearch> {
                   ),
                   underline: Container(
                     height: 1,
-                    color: Colors.grey,
+                    color: Colors.grey[300],
                   ),
                   onChanged: (String newValue) {
                     setState(() {
@@ -64,6 +64,7 @@ class _ShopSearchState extends State<ShopSearch> {
                 min: 0,
                 max: 5000,
                 activeColor: Theme.of(context).primaryColor,
+                inactiveColor: Colors.grey[300],
                 onChanged: (RangeValues values) {
                   setState(() {
                     if (values.end - values.start >= 20) {
