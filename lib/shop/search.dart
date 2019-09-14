@@ -118,7 +118,24 @@ class _ShopSearchState extends State<ShopSearch> {
                   ),
                 ],
               ),
-            )
+            ),
+
+            Padding(
+              padding: const EdgeInsets.only(left: 20.0, right: 20, top: 50),
+              child: ButtonTheme(
+                buttonColor: Theme.of(context).primaryColor,
+                minWidth: double.infinity,
+                height: 40.0,
+                child: RaisedButton(
+                  onPressed: () {},
+                  child: Text(
+                    "Apply Filters",
+                    style: TextStyle(color: Colors.white, fontSize: 16),
+                  ),
+                ),
+              ),
+            ),
+
           ],
       ),
     );
