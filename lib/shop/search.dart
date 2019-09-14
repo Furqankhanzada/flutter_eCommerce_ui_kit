@@ -23,12 +23,12 @@ class _ShopSearchState extends State<ShopSearch> {
       child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 5.0, bottom: 5),
+              padding: const EdgeInsets.only(top: 5.0, bottom: 15),
               child: Container(
                 width: 30,
                 height: 2,
                 decoration: BoxDecoration(
-                  color: Colors.grey,
+                  color: Colors.grey[400],
                   borderRadius: BorderRadius.all(Radius.circular(20)),
                 ),
               ),
@@ -121,7 +121,7 @@ class _ShopSearchState extends State<ShopSearch> {
             ),
 
             Padding(
-              padding: const EdgeInsets.only(left: 20.0, right: 20, top: 50),
+              padding: const EdgeInsets.only(left: 20.0, right: 20),
               child: ButtonTheme(
                 buttonColor: Theme.of(context).primaryColor,
                 minWidth: double.infinity,
