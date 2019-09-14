@@ -111,7 +111,7 @@ class _AppDrawerState extends State<AppDrawer> {
                 ),
                 onTap: () {
                   Navigator.pop(context);
-                  Navigator.pushNamed(context, '/products');
+                  Navigator.pushNamed(context, '/cart');
                 },
               ),
               ListTile(

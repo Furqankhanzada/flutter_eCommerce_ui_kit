@@ -4,6 +4,7 @@ import 'home/home.dart';
 import 'shop/shop.dart';
 import 'categorise.dart';
 import 'wishlist.dart';
+import 'cart.dart';
 
 void main() {
   runApp(
@@ -20,7 +21,8 @@ void main() {
           '/auth': (BuildContext context) => Auth(),
           '/shop': (BuildContext context) => Shop(),
           '/categorise': (BuildContext context) => Categorise(),
-          '/wishlist': (BuildContext context) => WishList()
+          '/wishlist': (BuildContext context) => WishList(),
+          '/cart': (BuildContext context) => CartList()
         },
       )
   );
