@@ -1,23 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_scaffold/blocks/auth_block.dart';
 import 'signin.dart';
 import 'signup.dart';
 
-class Auth extends StatefulWidget {
-  @override
-  _AuthState createState() => _AuthState();
-}
-
-class _AuthState extends State<Auth> with SingleTickerProviderStateMixin {
-  int currentIndex = 1;
+class Auth extends StatelessWidget {
   final List<Widget> tabs = [
     SignIn(),
     SignUp()
   ];
   @override
   Widget build(BuildContext context) {
+    final AuthBlock authBlock = Provider.of<AuthBlock>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text(currentIndex == 0 ? 'Sign In' : 'Create Account'),
+        title: Text(authBlock.currentIndex == 0 ? 'Sign In' : 'Create Account'),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
@@ -30,15 +27,13 @@ class _AuthState extends State<Auth> with SingleTickerProviderStateMixin {
             title: Text('Create Account'),
           ),
         ],
-        currentIndex: currentIndex,
+        currentIndex: authBlock.currentIndex,
         selectedItemColor: Colors.amber[800],
         onTap: (num){
-          setState(() {
-            currentIndex = num;
-          });
+           authBlock.currentIndex = num;
         },
       ),
-      body: tabs[currentIndex],
+      body: tabs[authBlock.currentIndex],
     );
   }
 }
