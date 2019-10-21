@@ -1,1 +1,1 @@
-const String BASE_URL = 'URL_GOES_HERE';
+const String BASE_URL = 'http://localhost:9211/wp-json';

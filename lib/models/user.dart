@@ -9,3 +9,9 @@ class User {
     );
   }
 }
+
+class UserCredential {
+  String usernameOrEmail;
+  String password;
+  UserCredential({this.usernameOrEmail, this.password});
+}
