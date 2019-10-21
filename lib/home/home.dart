@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
 
 import 'drawer.dart';
 import 'slider.dart';
@@ -30,7 +30,7 @@ class _HomeState extends State<Home> {
         left: false,
         right: false,
         child: CustomScrollView(
-          // Add the app bar and list of items as slivers in the next steps.
+            // Add the app bar and list of items as slivers in the next steps.
             slivers: <Widget>[
               SliverAppBar(
                 // Provide a standard title.
@@ -39,9 +39,7 @@ class _HomeState extends State<Home> {
                 actions: <Widget>[
                   IconButton(
                     icon: Icon(Icons.shopping_cart),
-                    onPressed: () {
-
-                    },
+                    onPressed: () {},
                   )
                 ],
                 // Allows the user to reveal the app bar if they begin scrolling
@@ -57,16 +55,16 @@ class _HomeState extends State<Home> {
                 delegate: SliverChildBuilderDelegate(
                   // The builder function returns a ListTile with a title that
                   // displays the index of the current item.
-                      (context, index) =>  Column(
+                  (context, index) => Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Padding(
                         padding: EdgeInsets.only(top: 14.0, left: 8.0),
-                        child: Text('New Arrivals', style: TextStyle(
-                            color: Theme.of(context).accentColor,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w700
-                        )),
+                        child: Text('New Arrivals',
+                            style: TextStyle(
+                                color: Theme.of(context).accentColor,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w700)),
                       ),
                       Container(
                         margin: EdgeInsets.symmetric(vertical: 8.0),
@@ -85,7 +83,8 @@ class _HomeState extends State<Home> {
                                         print('Card tapped.');
                                       },
                                       child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: <Widget>[
                                           SizedBox(
                                             height: 160,
@@ -93,22 +92,24 @@ class _HomeState extends State<Home> {
                                               fit: BoxFit.cover,
                                               imageUrl: i,
                                               placeholder: (context, url) => Center(
-                                                  child: CircularProgressIndicator()
-                                              ),
-                                              errorWidget: (context, url, error) => new Icon(Icons.error),
+                                                  child:
+                                                      CircularProgressIndicator()),
+                                              errorWidget:
+                                                  (context, url, error) =>
+                                                      new Icon(Icons.error),
                                             ),
                                           ),
                                           ListTile(
                                             title: Text(
                                               'Two Gold Rings',
-                                              style: TextStyle(
-                                                  fontSize: 14
-                                              ),
+                                              style: TextStyle(fontSize: 14),
                                             ),
-                                            subtitle: Text('\$200', style: TextStyle(
-                                                color: Theme.of(context).accentColor,
-                                                fontWeight: FontWeight.w700
-                                            )),
+                                            subtitle: Text('\$200',
+                                                style: TextStyle(
+                                                    color: Theme.of(context)
+                                                        .accentColor,
+                                                    fontWeight:
+                                                        FontWeight.w700)),
                                           )
                                         ],
                                       ),
@@ -122,7 +123,8 @@ class _HomeState extends State<Home> {
                       ),
                       Container(
                         child: Padding(
-                          padding: EdgeInsets.only(top: 6.0, left: 8.0, right: 8.0),
+                          padding:
+                              EdgeInsets.only(top: 6.0, left: 8.0, right: 8.0),
                           child: Image(
                             fit: BoxFit.cover,
                             image: AssetImage('assets/images/banner-1.png'),
@@ -134,20 +136,19 @@ class _HomeState extends State<Home> {
                         children: <Widget>[
                           Padding(
                             padding: EdgeInsets.only(top: 8.0, left: 8.0),
-                            child: Text('Shop By Category', style: TextStyle(
-                                color: Theme.of(context).accentColor,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w700
-                            )),
+                            child: Text('Shop By Category',
+                                style: TextStyle(
+                                    color: Theme.of(context).accentColor,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w700)),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(right: 8.0, top: 8.0),
+                            padding:
+                                const EdgeInsets.only(right: 8.0, top: 8.0),
                             child: RaisedButton(
                                 color: Theme.of(context).primaryColor,
                                 child: Text('View All',
-                                    style: TextStyle(
-                                        color: Colors.white
-                                    )),
+                                    style: TextStyle(color: Colors.white)),
                                 onPressed: () {
                                   Navigator.pushNamed(context, '/categorise');
                                 }),
@@ -159,7 +160,8 @@ class _HomeState extends State<Home> {
                           shrinkWrap: true,
                           physics: NeverScrollableScrollPhysics(),
                           crossAxisCount: 2,
-                          padding: EdgeInsets.only(top: 8, left: 6, right: 6, bottom: 12),
+                          padding: EdgeInsets.only(
+                              top: 8, left: 6, right: 6, bottom: 12),
                           children: List.generate(4, (index) {
                             return Container(
                               child: Card(
@@ -169,29 +171,32 @@ class _HomeState extends State<Home> {
                                     print('Card tapped.');
                                   },
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: <Widget>[
                                       SizedBox(
-                                        height: (MediaQuery.of(context).size.width / 2) - 70,
+                                        height:
+                                            (MediaQuery.of(context).size.width /
+                                                    2) -
+                                                70,
                                         width: double.infinity,
                                         child: CachedNetworkImage(
                                           fit: BoxFit.cover,
                                           imageUrl: imgList[index],
                                           placeholder: (context, url) => Center(
-                                              child: CircularProgressIndicator()
-                                          ),
-                                          errorWidget: (context, url, error) => new Icon(Icons.error),
+                                              child:
+                                                  CircularProgressIndicator()),
+                                          errorWidget: (context, url, error) =>
+                                              new Icon(Icons.error),
                                         ),
                                       ),
                                       ListTile(
                                           title: Text(
-                                            'Two Gold Rings',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w700,
-                                                fontSize: 16
-                                            ),
-                                          )
-                                      )
+                                        'Two Gold Rings',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 16),
+                                      ))
                                     ],
                                   ),
                                 ),
@@ -202,7 +207,8 @@ class _HomeState extends State<Home> {
                       ),
                       Container(
                         child: Padding(
-                          padding: EdgeInsets.only(top: 6.0, left: 8.0, right: 8.0, bottom: 10),
+                          padding: EdgeInsets.only(
+                              top: 6.0, left: 8.0, right: 8.0, bottom: 10),
                           child: Image(
                             fit: BoxFit.cover,
                             image: AssetImage('assets/images/banner-2.png'),
@@ -215,8 +221,7 @@ class _HomeState extends State<Home> {
                   childCount: 1,
                 ),
               )
-            ]
-        ),
+            ]),
       ),
     );
   }

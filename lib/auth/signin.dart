@@ -1,4 +1,10 @@
+import 'dart:async';
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_scaffold/blocks/auth_block.dart';
+import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
 
 class SignIn extends StatefulWidget {
   @override
@@ -39,12 +45,19 @@ class _SignInState extends State<SignIn> {
                 child: SizedBox(
                   width: double.infinity,
                   height: 50,
-                  child: RaisedButton(
-                    color: Colors.deepOrange,
-                    textColor: Colors.white,
-                    child: Text('Sign In'),
-                    onPressed: (){
-
+                  child: Consumer<AuthBlock>(
+                    builder: (context, auth, child) {
+                      return RaisedButton(
+                        color: Colors.deepOrange,
+                        textColor: Colors.white,
+                        child: Text(auth.loading ? 'Loading...' : 'Sign In'),
+                        onPressed: () {
+                          auth.loading = true;
+                          final t = Timer(Duration(seconds: 3), () {
+                            auth.loading = false;
+                          });
+                        },
+                      );
                     },
                   ),
                 ),

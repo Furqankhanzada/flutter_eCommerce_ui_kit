@@ -21,23 +21,22 @@ class _AppDrawerState extends State<AppDrawer> {
               padding: const EdgeInsets.only(top: 60, left: 20),
               child: CircleAvatar(
                 radius: 30,
-                backgroundImage: NetworkImage('https://avatars2.githubusercontent.com/u/2400215?s=120&v=4'),
+                backgroundImage: NetworkImage(
+                    'https://avatars2.githubusercontent.com/u/2400215?s=120&v=4'),
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 130, left: 20),
-              child: Text('Muhammad Furqan', style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold
-              )),
+              child: Text('Muhammad Furqan',
+                  style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold)),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 155, left: 20),
-              child: Text('furqan.khanzada@gmail.com', style: TextStyle(
-                  fontSize: 14,
-                  color: Colors.white
-              )),
+              child: Text('furqan.khanzada@gmail.com',
+                  style: TextStyle(fontSize: 14, color: Colors.white)),
             )
           ],
         ),
@@ -53,18 +52,19 @@ class _AppDrawerState extends State<AppDrawer> {
                 },
               ),
               ListTile(
-                leading: Icon(Icons.shopping_basket, color: Theme.of(context).accentColor),
+                leading: Icon(Icons.shopping_basket,
+                    color: Theme.of(context).accentColor),
                 title: Text('Shop'),
-                trailing: Text('New', style: TextStyle(
-                    color: Theme.of(context).primaryColor
-                )),
+                trailing: Text('New',
+                    style: TextStyle(color: Theme.of(context).primaryColor)),
                 onTap: () {
                   Navigator.pop(context);
                   Navigator.pushNamed(context, '/shop');
                 },
               ),
               ListTile(
-                leading: Icon(Icons.category, color: Theme.of(context).accentColor),
+                leading:
+                    Icon(Icons.category, color: Theme.of(context).accentColor),
                 title: Text('Categorise'),
                 onTap: () {
                   Navigator.pop(context);
@@ -72,7 +72,8 @@ class _AppDrawerState extends State<AppDrawer> {
                 },
               ),
               ListTile(
-                leading: Icon(Icons.favorite, color: Theme.of(context).accentColor),
+                leading:
+                    Icon(Icons.favorite, color: Theme.of(context).accentColor),
                 title: Text('My Wishlist'),
                 trailing: Container(
                   padding: const EdgeInsets.all(10.0),
@@ -81,11 +82,7 @@ class _AppDrawerState extends State<AppDrawer> {
                     color: Theme.of(context).primaryColor,
                   ),
                   child: Text('4',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 10.0
-                      )
-                  ),
+                      style: TextStyle(color: Colors.white, fontSize: 10.0)),
                 ),
                 onTap: () {
                   Navigator.pop(context);
@@ -93,7 +90,8 @@ class _AppDrawerState extends State<AppDrawer> {
                 },
               ),
               ListTile(
-                leading: Icon(Icons.shopping_cart, color: Theme.of(context).accentColor),
+                leading: Icon(Icons.shopping_cart,
+                    color: Theme.of(context).accentColor),
                 title: Text('My Cart'),
                 trailing: Container(
                   padding: const EdgeInsets.all(10.0),
@@ -102,11 +100,7 @@ class _AppDrawerState extends State<AppDrawer> {
                     color: Theme.of(context).primaryColor,
                   ),
                   child: Text('2',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 10.0
-                      )
-                  ),
+                      style: TextStyle(color: Colors.white, fontSize: 10.0)),
                 ),
                 onTap: () {
                   Navigator.pop(context);
@@ -123,7 +117,8 @@ class _AppDrawerState extends State<AppDrawer> {
               ),
               Divider(),
               ListTile(
-                leading: Icon(Icons.settings, color: Theme.of(context).accentColor),
+                leading:
+                    Icon(Icons.settings, color: Theme.of(context).accentColor),
                 title: Text('Settings'),
                 onTap: () {
                   Navigator.pop(context);
@@ -133,7 +128,6 @@ class _AppDrawerState extends State<AppDrawer> {
             ],
           ),
         )
-        
       ],
     );
   }
