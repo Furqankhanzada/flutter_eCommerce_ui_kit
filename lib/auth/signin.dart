@@ -27,6 +27,12 @@ class _SignInState extends State<SignIn> {
               Padding(
                 padding: const EdgeInsets.only(bottom: 12.0),
                 child: TextFormField(
+                  validator: (value) {
+                    if (value.isEmpty) {
+                      return 'Please Enter Email or Username';
+                    }
+                    return null;
+                  },
                   decoration: InputDecoration(
                     hintText: 'Enter Username Or Email',
                     labelText: 'Email',
@@ -34,6 +40,12 @@ class _SignInState extends State<SignIn> {
                 ),
               ),
               TextFormField(
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Please Enter Password';
+                  }
+                  return null;
+                },
                 decoration: InputDecoration(
                   hintText: 'Enter Password',
                   labelText: 'Password',
@@ -45,19 +57,15 @@ class _SignInState extends State<SignIn> {
                 child: SizedBox(
                   width: double.infinity,
                   height: 50,
-                  child: Consumer<AuthBlock>(
-                    builder: (context, auth, child) {
-                      return RaisedButton(
-                        color: Colors.deepOrange,
-                        textColor: Colors.white,
-                        child: Text(auth.loading ? 'Loading...' : 'Sign In'),
-                        onPressed: () {
-                          auth.loading = true;
-                          final t = Timer(Duration(seconds: 3), () {
-                            auth.loading = false;
-                          });
-                        },
-                      );
+                  child: RaisedButton(
+                    color: Colors.deepOrange,
+                    textColor: Colors.white,
+                    child: Text('Sign In'),
+                    onPressed: (){
+                      if (_formKey.currentState.validate()) {
+                        // If the form is valid, display a snackbar. In the real world,
+                        // you'd often call a server or save the information in a database.
+                      }
                     },
                   ),
                 ),

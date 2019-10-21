@@ -21,6 +21,12 @@ class _SignUpState extends State<SignUp> {
               Padding(
                 padding: const EdgeInsets.only(bottom: 12.0),
                 child: TextFormField(
+                  validator: (value) {
+                    if (value.isEmpty) {
+                      return 'Please Enter Username';
+                    }
+                    return null;
+                  },
                   decoration: InputDecoration(
                     hintText: 'Enter Username',
                     labelText: 'Username',
@@ -30,6 +36,12 @@ class _SignUpState extends State<SignUp> {
               Padding(
                 padding: const EdgeInsets.only(bottom: 12.0),
                 child: TextFormField(
+                  validator: (value) {
+                    if (value.isEmpty) {
+                      return 'Please Enter Email Address';
+                    }
+                    return null;
+                  },
                   decoration: InputDecoration(
                     hintText: 'Enter Email',
                     labelText: 'Email',
@@ -39,6 +51,12 @@ class _SignUpState extends State<SignUp> {
               Padding(
                 padding: const EdgeInsets.only(bottom: 12.0),
                 child: TextFormField(
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        return 'Please Enter Password';
+                      }
+                      return null;
+                    },
                   decoration: InputDecoration(
                     hintText: 'Enter Password',
                     labelText: 'Password',
@@ -47,6 +65,12 @@ class _SignUpState extends State<SignUp> {
                 ),
               ),
               TextFormField(
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Please Enter Confirm Password';
+                  }
+                  return null;
+                },
                 decoration: InputDecoration(
                   hintText: 'Enter Same Password',
                   labelText: 'Confirm Password',
@@ -63,7 +87,10 @@ class _SignUpState extends State<SignUp> {
                     textColor: Colors.white,
                     child: Text('Sign Up'),
                     onPressed: (){
-
+                      if (_formKey.currentState.validate()) {
+                        // If the form is valid, display a snackbar. In the real world,
+                        // you'd often call a server or save the information in a database.
+                      }
                     },
                   ),
                 ),
