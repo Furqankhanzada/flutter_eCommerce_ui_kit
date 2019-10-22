@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_scaffold/models/user.dart';
 
 class SignUp extends StatefulWidget {
   @override
@@ -7,7 +8,7 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   final _formKey = GlobalKey<FormState>();
-
+  final User user = User();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -27,6 +28,11 @@ class _SignUpState extends State<SignUp> {
                     }
                     return null;
                   },
+                  onSaved: (value) {
+                    setState(() {
+                      user.username = value;
+                    });
+                  },
                   decoration: InputDecoration(
                     hintText: 'Enter Username',
                     labelText: 'Username',
@@ -41,6 +47,11 @@ class _SignUpState extends State<SignUp> {
                       return 'Please Enter Email Address';
                     }
                     return null;
+                  },
+                  onSaved: (value) {
+                    setState(() {
+                      user.email = value;
+                    });
                   },
                   decoration: InputDecoration(
                     hintText: 'Enter Email',
@@ -57,10 +68,15 @@ class _SignUpState extends State<SignUp> {
                       }
                       return null;
                     },
-                  decoration: InputDecoration(
-                    hintText: 'Enter Password',
-                    labelText: 'Password',
-                  ),
+                    onSaved: (value) {
+                      setState(() {
+                        user.password = value;
+                      });
+                    },
+                    decoration: InputDecoration(
+                      hintText: 'Enter Password',
+                      labelText: 'Password',
+                    ),
                   obscureText: true
                 ),
               ),
@@ -90,6 +106,7 @@ class _SignUpState extends State<SignUp> {
                       if (_formKey.currentState.validate()) {
                         // If the form is valid, display a snackbar. In the real world,
                         // you'd often call a server or save the information in a database.
+                        print(user);
                       }
                     },
                   ),
