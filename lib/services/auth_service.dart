@@ -18,7 +18,6 @@ class AuthService {
       // If the call to the server was successful, parse the JSON.
       // return User.fromJson(json.decode(response.body));
       setUser(response.body);
-      print(response.body);
       return jsonDecode(response.body);
     } else {
       // If that call was not successful, throw an error.

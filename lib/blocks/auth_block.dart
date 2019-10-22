@@ -25,9 +25,9 @@ class AuthBlock extends ChangeNotifier {
 
   // Loading
   bool _isLoggedIn = false;
-  bool get isLoggedIn => _loading;
+  bool get isLoggedIn => _isLoggedIn;
   set isLoggedIn(bool isUserExist) {
-    _loading = isUserExist;
+    _isLoggedIn = isUserExist;
     notifyListeners();
   }
 
@@ -40,7 +40,8 @@ class AuthBlock extends ChangeNotifier {
     notifyListeners();
   }
 
-  login(UserCredential userCredential) {
-    _authService.login(userCredential);
+  login(UserCredential userCredential) async {
+    await _authService.login(userCredential);
+    setUser();
   }
 }
