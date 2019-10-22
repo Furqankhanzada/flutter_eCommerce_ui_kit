@@ -3,6 +3,9 @@ import 'package:flutter_scaffold/models/user.dart';
 import 'package:flutter_scaffold/services/auth_service.dart';
 
 class AuthBlock extends ChangeNotifier {
+  AuthBlock() {
+    setUser();
+  }
   AuthService _authService = AuthService();
   // Index
   int _currentIndex = 1;
@@ -17,6 +20,23 @@ class AuthBlock extends ChangeNotifier {
   bool get loading => _loading;
   set loading(bool loadingState) {
     _loading = loadingState;
+    notifyListeners();
+  }
+
+  // Loading
+  bool _isLoggedIn = false;
+  bool get isLoggedIn => _loading;
+  set isLoggedIn(bool isUserExist) {
+    _loading = isUserExist;
+    notifyListeners();
+  }
+
+  // user
+  Map _user = {};
+  Map get user => _user;
+  setUser() async {
+    _user = await _authService.getUser();
+    isLoggedIn = _user == null ? false : true;
     notifyListeners();
   }
 

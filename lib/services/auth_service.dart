@@ -7,10 +7,6 @@ import 'package:http/http.dart' as http;
 
 class AuthService {
   final storage = FlutterSecureStorage();
-  bool isLoggedIn = false;
-  AuthService() {
-    getUser();
-  }
   // Create storage
   Future<Map> login(UserCredential userCredential) async {
     final response = await http.post('$BASE_URL/jwt-auth/v1/token', body: {
@@ -36,9 +32,7 @@ class AuthService {
 
   getUser() async {
     String user = await storage.read(key: 'user');
-    if (user?.isEmpty ?? true) {
-      isLoggedIn = true;
-      print(user);
+    if (user != null) {
       return jsonDecode(user);
     }
   }

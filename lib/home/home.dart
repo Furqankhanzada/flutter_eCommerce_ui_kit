@@ -22,12 +22,6 @@ class _HomeState extends State<Home> {
   AuthService _authService = AuthService();
 
   @override
-  void initState() {
-    print('is loggedin ${_authService.isLoggedIn}');
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: Drawer(
