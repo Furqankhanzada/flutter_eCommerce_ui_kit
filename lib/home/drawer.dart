@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_scaffold/blocks/auth_block.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_scaffold/blocks/auth_block.dart';
 
 class AppDrawer extends StatefulWidget {
   @override
@@ -9,6 +10,7 @@ class AppDrawer extends StatefulWidget {
 }
 
 class _AppDrawerState extends State<AppDrawer> {
+  final storage = FlutterSecureStorage();
   @override
   Widget build(BuildContext context) {
     AuthBlock auth = Provider.of<AuthBlock>(context);
@@ -130,6 +132,14 @@ class _AppDrawerState extends State<AppDrawer> {
                 onTap: () {
                   Navigator.pop(context);
                   Navigator.pushNamed(context, '/auth');
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.exit_to_app,
+                    color: Theme.of(context).accentColor),
+                title: Text('Logout'),
+                onTap: () async {
+                  await auth.logout();
                 },
               )
             ],

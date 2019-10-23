@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_scaffold/models/user.dart';
+import 'package:flutter_scaffold/blocks/auth_block.dart';
+import 'package:provider/provider.dart';
 
 class SignUp extends StatefulWidget {
   @override
@@ -9,6 +11,8 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   final _formKey = GlobalKey<FormState>();
   final User user = User();
+  String password = "";
+  String confirmPassword = "";
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -73,19 +77,26 @@ class _SignUpState extends State<SignUp> {
                         user.password = value;
                       });
                     },
+                  onChanged: (text) {
+                    password = text;
+                  },
                     decoration: InputDecoration(
                       hintText: 'Enter Password',
                       labelText: 'Password',
                     ),
-                  obscureText: true
-                ),
+                    obscureText: true),
               ),
               TextFormField(
                 validator: (value) {
                   if (value.isEmpty) {
                     return 'Please Enter Confirm Password';
+                  }else if(password != confirmPassword) {
+                    return "Password fields don't match";
                   }
                   return null;
+                },
+                onChanged: (text) {
+                  confirmPassword = text;
                 },
                 decoration: InputDecoration(
                   hintText: 'Enter Same Password',
@@ -98,18 +109,22 @@ class _SignUpState extends State<SignUp> {
                 child: SizedBox(
                   width: double.infinity,
                   height: 50,
-                  child: RaisedButton(
-                    color: Colors.deepOrange,
-                    textColor: Colors.white,
-                    child: Text('Sign Up'),
-                    onPressed: (){
-                      if (_formKey.currentState.validate()) {
-                        // If the form is valid, display a snackbar. In the real world,
-                        // you'd often call a server or save the information in a database.
-                        print(user);
-                      }
-                    },
-                  ),
+                  child: Consumer<AuthBlock>(builder:
+                      (BuildContext context, AuthBlock auth, Widget child) {
+                    return RaisedButton(
+                      color: Colors.deepOrange,
+                      textColor: Colors.white,
+                      child: Text('Sign Up'),
+                      onPressed: () {
+                        if (_formKey.currentState.validate()) {
+                          _formKey.currentState.save();
+                          // If the form is valid, display a snackbar. In the real world,
+                          // you'd often call a server or save the information in a database.
+                          auth.register(user);
+                        }
+                      },
+                    );
+                  }),
                 ),
               )
             ],

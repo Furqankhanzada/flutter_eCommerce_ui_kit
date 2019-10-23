@@ -15,9 +15,28 @@ class AuthService {
     });
 
     if (response.statusCode == 200) {
+      print(response);
       // If the call to the server was successful, parse the JSON.
       // return User.fromJson(json.decode(response.body));
       setUser(response.body);
+      return jsonDecode(response.body);
+    } else {
+      // If that call was not successful, throw an error.
+      throw Exception(response.body);
+    }
+  }
+
+  Future<Map> register(User user) async {
+    print(user.username);
+    final response = await http.post('$BASE_URL/tradebakerz/wc/v1/register', body: {
+      'username': user.username,
+      'password': user.password,
+      'email': user.email
+    });
+    if (response.statusCode == 200) {
+      print(response);
+      // If the call to the server was successful, parse the JSON.
+      // return User.fromJson(json.decode(response.body));
       return jsonDecode(response.body);
     } else {
       // If that call was not successful, throw an error.
