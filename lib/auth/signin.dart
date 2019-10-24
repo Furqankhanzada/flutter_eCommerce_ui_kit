@@ -73,7 +73,9 @@ class _SignInState extends State<SignIn> {
                           return RaisedButton(
                             color: Theme.of(context).primaryColor,
                             textColor: Colors.white,
-                            child: Text('Sign In'),
+                            child: auth.loading && auth.loadingType == 'login' ? CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                            ) : Text('Sign In'),
                             onPressed: () {
                               // Validate form
                               if (_formKey.currentState.validate()) {

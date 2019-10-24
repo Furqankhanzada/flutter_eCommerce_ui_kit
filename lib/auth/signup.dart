@@ -115,7 +115,9 @@ class _SignUpState extends State<SignUp> {
                         return RaisedButton(
                           color: Theme.of(context).primaryColor,
                           textColor: Colors.white,
-                          child: Text('Sign Up'),
+                          child: auth.loading && auth.loadingType == 'register' ? CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                          ) : Text('Sign Up'),
                           onPressed: () {
                             if (_formKey.currentState.validate()) {
                               _formKey.currentState.save();
