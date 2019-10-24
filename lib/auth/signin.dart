@@ -50,7 +50,6 @@ class _SignInState extends State<SignIn> {
                   return null;
                 },
                 onSaved: (value) {
-                  print('value: $value');
                   setState(() {
                     userCredential.password = value;
                   });
@@ -70,7 +69,7 @@ class _SignInState extends State<SignIn> {
                     builder:
                         (BuildContext context, AuthBlock auth, Widget child) {
                       return RaisedButton(
-                        color: Colors.deepOrange,
+                        color: Theme.of(context).primaryColor,
                         textColor: Colors.white,
                         child: Text('Sign In'),
                         onPressed: () {

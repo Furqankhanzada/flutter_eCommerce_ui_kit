@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_scaffold/models/user.dart';
 import 'package:flutter_scaffold/services/auth_service.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class AuthBlock extends ChangeNotifier {
-  final storage = FlutterSecureStorage();
   AuthBlock() {
     setUser();
   }
@@ -50,7 +48,7 @@ class AuthBlock extends ChangeNotifier {
     await _authService.register(user);
   }
   logout() async{
-    await storage.delete(key: 'user');
+    await _authService.logout();
     isLoggedIn = false;
     notifyListeners();
   }

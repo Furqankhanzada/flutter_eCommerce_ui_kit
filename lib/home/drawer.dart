@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_scaffold/blocks/auth_block.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_scaffold/blocks/auth_block.dart';
 
 class AppDrawer extends StatefulWidget {
   @override
@@ -10,7 +8,6 @@ class AppDrawer extends StatefulWidget {
 }
 
 class _AppDrawerState extends State<AppDrawer> {
-  final storage = FlutterSecureStorage();
   @override
   Widget build(BuildContext context) {
     AuthBlock auth = Provider.of<AuthBlock>(context);
@@ -55,8 +52,6 @@ class _AppDrawerState extends State<AppDrawer> {
                 leading: Icon(Icons.home, color: Theme.of(context).accentColor),
                 title: Text('Home'),
                 onTap: () {
-                  final storage = new FlutterSecureStorage();
-                  storage.delete(key: 'user');
                   Navigator.pop(context);
                 },
               ),

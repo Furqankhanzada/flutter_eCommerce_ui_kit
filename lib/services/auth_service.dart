@@ -15,7 +15,6 @@ class AuthService {
     });
 
     if (response.statusCode == 200) {
-      print(response);
       // If the call to the server was successful, parse the JSON.
       // return User.fromJson(json.decode(response.body));
       setUser(response.body);
@@ -27,14 +26,12 @@ class AuthService {
   }
 
   Future<Map> register(User user) async {
-    print(user.username);
     final response = await http.post('$BASE_URL/tradebakerz/wc/v1/register', body: {
       'username': user.username,
       'password': user.password,
       'email': user.email
     });
     if (response.statusCode == 200) {
-      print(response);
       // If the call to the server was successful, parse the JSON.
       // return User.fromJson(json.decode(response.body));
       return jsonDecode(response.body);
@@ -53,5 +50,8 @@ class AuthService {
     if (user != null) {
       return jsonDecode(user);
     }
+  }
+  logout() async {
+    await storage.delete(key: 'user');
   }
 }

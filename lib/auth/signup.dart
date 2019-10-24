@@ -11,8 +11,7 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   final _formKey = GlobalKey<FormState>();
   final User user = User();
-  String password = "";
-  String confirmPassword = "";
+  String confirmPassword;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -77,9 +76,9 @@ class _SignUpState extends State<SignUp> {
                         user.password = value;
                       });
                     },
-                  onChanged: (text) {
-                    password = text;
-                  },
+                    onChanged: (text) {
+                      user.password = text;
+                    },
                     decoration: InputDecoration(
                       hintText: 'Enter Password',
                       labelText: 'Password',
@@ -90,8 +89,8 @@ class _SignUpState extends State<SignUp> {
                 validator: (value) {
                   if (value.isEmpty) {
                     return 'Please Enter Confirm Password';
-                  }else if(password != confirmPassword) {
-                    return "Password fields don't match";
+                  } else if (user.password != confirmPassword) {
+                    return 'Password fields dont match';
                   }
                   return null;
                 },
@@ -112,7 +111,7 @@ class _SignUpState extends State<SignUp> {
                   child: Consumer<AuthBlock>(builder:
                       (BuildContext context, AuthBlock auth, Widget child) {
                     return RaisedButton(
-                      color: Colors.deepOrange,
+                      color: Theme.of(context).primaryColor,
                       textColor: Colors.white,
                       child: Text('Sign Up'),
                       onPressed: () {
