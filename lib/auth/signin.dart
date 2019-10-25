@@ -78,7 +78,7 @@ class _SignInState extends State<SignIn> {
                             ) : Text('Sign In'),
                             onPressed: () {
                               // Validate form
-                              if (_formKey.currentState.validate()) {
+                              if (_formKey.currentState.validate() && !auth.loading) {
                                 // Update values
                                 _formKey.currentState.save();
                                 // Hit Api

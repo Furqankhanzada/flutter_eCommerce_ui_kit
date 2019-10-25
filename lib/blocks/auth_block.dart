@@ -55,6 +55,7 @@ class AuthBlock extends ChangeNotifier {
 
   register(User user) async {
     loading = true;
+    loadingType = 'register';
     await _authService.register(user);
     loading = false;
   }

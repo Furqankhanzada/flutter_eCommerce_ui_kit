@@ -119,7 +119,7 @@ class _SignUpState extends State<SignUp> {
                             valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                           ) : Text('Sign Up'),
                           onPressed: () {
-                            if (_formKey.currentState.validate()) {
+                            if (_formKey.currentState.validate() && !auth.loading) {
                               _formKey.currentState.save();
                               // If the form is valid, display a snackbar. In the real world,
                               // you'd often call a server or save the information in a database.
