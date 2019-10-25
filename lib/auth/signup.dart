@@ -14,8 +14,7 @@ class _SignUpState extends State<SignUp> {
   String confirmPassword;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
+    return Center(
         child: Form(
           key: _formKey,
           child: SingleChildScrollView(
@@ -135,7 +134,6 @@ class _SignUpState extends State<SignUp> {
             ),
           ),
         ),
-      ),
     );
   }
 }
