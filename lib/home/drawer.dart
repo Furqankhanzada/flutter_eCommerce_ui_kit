@@ -126,7 +126,7 @@ class _AppDrawerState extends State<AppDrawer> {
                 title: Text('Settings'),
                 onTap: () {
                   Navigator.pop(context);
-                  Navigator.pushNamed(context, '/auth');
+                  Navigator.pushNamed(context, '/settings');
                 },
               ),
               ListTile(
