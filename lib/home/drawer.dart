@@ -14,35 +14,18 @@ class _AppDrawerState extends State<AppDrawer> {
     return Column(
       children: <Widget>[
         if (auth.isLoggedIn)
-          Stack(
-            children: <Widget>[
-              Image(
-                fit: BoxFit.cover,
-                height: 210,
-                image: AssetImage('assets/images/drawer-header.jpg'),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 60, left: 20),
-                child: CircleAvatar(
-                  radius: 30,
-                  backgroundImage: NetworkImage(
-                      'https://avatars2.githubusercontent.com/u/2400215?s=120&v=4'),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 130, left: 20),
-                child: Text(auth.user['user_display_name'],
-                    style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold)),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 155, left: 20),
-                child: Text(auth.user['user_email'],
-                    style: TextStyle(fontSize: 14, color: Colors.white)),
-              )
-            ],
+          UserAccountsDrawerHeader(
+            decoration: BoxDecoration(
+                image: DecorationImage(
+              fit: BoxFit.cover,
+              image: AssetImage('assets/images/drawer-header.jpg'),
+            )),
+            currentAccountPicture: CircleAvatar(
+              backgroundImage: NetworkImage(
+                  'https://avatars2.githubusercontent.com/u/2400215?s=120&v=4'),
+            ),
+            accountEmail: Text(auth.user['user_email']),
+            accountName: Text(auth.user['user_display_name']),
           ),
         Expanded(
           child: ListView(
