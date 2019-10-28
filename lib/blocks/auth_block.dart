@@ -17,12 +17,17 @@ class AuthBlock extends ChangeNotifier {
 
   // Loading
   bool _loading = false;
+  String _loadingType;
   bool get loading => _loading;
+  String get loadingType => _loadingType;
   set loading(bool loadingState) {
     _loading = loadingState;
     notifyListeners();
   }
-
+  set loadingType(String loadingType) {
+    _loadingType = loadingType;
+    notifyListeners();
+  }
   // Loading
   bool _isLoggedIn = false;
   bool get isLoggedIn => _isLoggedIn;
@@ -41,13 +46,21 @@ class AuthBlock extends ChangeNotifier {
   }
 
   login(UserCredential userCredential) async {
+    loading = true;
+    loadingType = 'login';
     await _authService.login(userCredential);
     setUser();
+    loading = false;
   }
+
   register(User user) async {
+    loading = true;
+    loadingType = 'register';
     await _authService.register(user);
+    loading = false;
   }
-  logout() async{
+
+  logout() async {
     await _authService.logout();
     isLoggedIn = false;
     notifyListeners();
