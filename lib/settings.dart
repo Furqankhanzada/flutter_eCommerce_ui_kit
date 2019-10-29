@@ -16,13 +16,12 @@ class _SettingsState extends State<Settings> {
           title: Text('Settings'),
         ),
         body: SafeArea(
-          child: SingleChildScrollView(
               child: Column(
                 children: <Widget>[
                   Container(
                     alignment: Alignment(-1, 1),
                     width: MediaQuery.of(context).size.width,
-                    height: 250,
+                    height: 190,
                     decoration: BoxDecoration(
                       image: DecorationImage(
                         fit: BoxFit.fill,
@@ -40,9 +39,10 @@ class _SettingsState extends State<Settings> {
                   Column(
                     children: <Widget>[
                       Container(
-                        margin: EdgeInsets.only(bottom: 20),
+                        margin: EdgeInsets.only(bottom: 0),
                         width: double.infinity,
                         decoration: BoxDecoration(
+                          color: Theme.of(context).accentColor,
                           border: Border(
                             bottom: BorderSide( //                   <--- left side
                               color: Colors.grey[300],
@@ -54,60 +54,78 @@ class _SettingsState extends State<Settings> {
                           padding: const EdgeInsets.only(top: 15, bottom: 15, left: 15, right: 15),
                           child: Text(
                             'John Doe',
-                            style: TextStyle(color: Colors.black, fontSize: 16),
+                            style: TextStyle(color: Colors.white, fontSize: 16),
                           ),
-                        )
+                        ),
                       )
                     ],
                   ),
-                  ListView(
-                    shrinkWrap: true,
-                    children: <Widget>[
-                      ListTile(
-                        leading: Icon(Icons.edit, color: Theme.of(context).accentColor, size: 28,),
-                        title: Text('Profile', style: TextStyle(color: Colors.black, fontSize: 17)),
-                        trailing: Icon(Icons.keyboard_arrow_right, color: Theme.of(context).accentColor),
-                      ),
-                      ListTile(
-                        leading: Icon(Icons.notifications, color: Theme.of(context).accentColor, size: 28,),
-                        title: Text('Notifications', style: TextStyle(color: Colors.black, fontSize: 17)),
-                        trailing: Icon(Icons.keyboard_arrow_right, color: Theme.of(context).accentColor),
-                      ),
-                      ListTile(
-                        leading: Icon(Icons.panorama, color: Theme.of(context).accentColor, size: 28,),
-                        title: Text('Progress', style: TextStyle(color: Colors.black, fontSize: 17)),
-                        trailing: Icon(Icons.keyboard_arrow_right, color: Theme.of(context).accentColor),
-                      ),
-                      ListTile(
-                        leading: Icon(Icons.favorite, color: Theme.of(context).accentColor, size: 28,),
-                        title: Text('Favorite', style: TextStyle(color: Colors.black, fontSize: 17)),
-                        trailing: Icon(Icons.keyboard_arrow_right, color: Theme.of(context).accentColor),
-                      ),
-                      ListTile(
-                        leading: Icon(Icons.feedback, color: Theme.of(context).accentColor, size: 28,),
-                        title: Text('Feedback', style: TextStyle(color: Colors.black, fontSize: 17)),
-                        trailing: Icon(Icons.keyboard_arrow_right, color: Theme.of(context).accentColor),
-                      ),
-                      ListTile(
-                        leading: Icon(Icons.add_photo_alternate, color: Theme.of(context).accentColor, size: 28,),
-                        title: Text('About Us', style: TextStyle(color: Colors.black, fontSize: 17)),
-                        trailing: Icon(Icons.keyboard_arrow_right, color: Theme.of(context).accentColor),
-                      ),
-                      ListTile(
-                        leading: Icon(Icons.vpn_key, color: Theme.of(context).accentColor, size: 28,),
-                        title: Text('Change Password', style: TextStyle(color: Colors.black, fontSize: 17)),
-                        trailing: Icon(Icons.keyboard_arrow_right, color: Theme.of(context).accentColor),
-                      ),
-                      ListTile(
-                        leading: Icon(Icons.lock, color: Theme.of(context).accentColor, size: 28,),
-                        title: Text('Logout', style: TextStyle(color: Colors.black, fontSize: 17)),
-                        trailing: Icon(Icons.keyboard_arrow_right, color: Theme.of(context).accentColor),
-                      ),
-                    ],
-                  )
+                  Expanded(
+                    child:  ListView(
+                      shrinkWrap: true,
+                      children: <Widget>[
+                        Card(
+                          child: ListTile(
+                            leading: Icon(Icons.edit, color: Theme.of(context).accentColor, size: 28,),
+                            title: Text('Profile', style: TextStyle(color: Colors.black, fontSize: 17)),
+                            trailing: Icon(Icons.keyboard_arrow_right, color: Theme.of(context).accentColor),
+                          ),
+                        ),
+                        Card(
+                          child: ListTile(
+                            leading: Icon(Icons.notifications, color: Theme.of(context).accentColor, size: 28,),
+                            title: Text('Notifications', style: TextStyle(color: Colors.black, fontSize: 17)),
+                            trailing: Icon(Icons.keyboard_arrow_right, color: Theme.of(context).accentColor),
+                          ),
+                        ),
+                        Card(
+                          child: ListTile(
+                            leading: Icon(Icons.panorama, color: Theme.of(context).accentColor, size: 28,),
+                            title: Text('Progress', style: TextStyle(color: Colors.black, fontSize: 17)),
+                            trailing: Icon(Icons.keyboard_arrow_right, color: Theme.of(context).accentColor),
+                          ),
+                        ),
+                        Card(
+                          child: ListTile(
+                            leading: Icon(Icons.favorite, color: Theme.of(context).accentColor, size: 28,),
+                            title: Text('Favorite', style: TextStyle(color: Colors.black, fontSize: 17)),
+                            trailing: Icon(Icons.keyboard_arrow_right, color: Theme.of(context).accentColor),
+                          ),
+                        ),
+                        Card(
+                          child: ListTile(
+                            leading: Icon(Icons.feedback, color: Theme.of(context).accentColor, size: 28,),
+                            title: Text('Feedback', style: TextStyle(color: Colors.black, fontSize: 17)),
+                            trailing: Icon(Icons.keyboard_arrow_right, color: Theme.of(context).accentColor),
+                          ),
+                        ),
+                        Card(
+                          child:  ListTile(
+                            leading: Icon(Icons.add_photo_alternate, color: Theme.of(context).accentColor, size: 28,),
+                            title: Text('About Us', style: TextStyle(color: Colors.black, fontSize: 17)),
+                            trailing: Icon(Icons.keyboard_arrow_right, color: Theme.of(context).accentColor),
+                          ),
+                        ),
+                        Card(
+                          child: ListTile(
+                            leading: Icon(Icons.vpn_key, color: Theme.of(context).accentColor, size: 28,),
+                            title: Text('Change Password', style: TextStyle(color: Colors.black, fontSize: 17)),
+                            trailing: Icon(Icons.keyboard_arrow_right, color: Theme.of(context).accentColor),
+                          ),
+                        ),
+                        Card(
+                          child: ListTile(
+                            leading: Icon(Icons.lock, color: Theme.of(context).accentColor, size: 28,),
+                            title: Text('Logout', style: TextStyle(color: Colors.black, fontSize: 17)),
+                            trailing: Icon(Icons.keyboard_arrow_right, color: Theme.of(context).accentColor),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
                 ],
               ),
-          ),
         )
     );
   }
