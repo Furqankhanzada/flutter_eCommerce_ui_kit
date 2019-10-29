@@ -19,19 +19,24 @@ class _SettingsState extends State<Settings> {
               child: Column(
                 children: <Widget>[
                   Container(
-                    alignment: Alignment(-1, 1),
+                    alignment: Alignment(1, 1),
                     width: MediaQuery.of(context).size.width,
                     height: 190,
                     decoration: BoxDecoration(
                       image: DecorationImage(
                         fit: BoxFit.fill,
-                        image: NetworkImage("https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"),
+                        image: NetworkImage("https://images.pexels.com/photos/236047/pexels-photo-236047.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"),
                       ),
                     ),
-                    child: Padding(
+                    child: Container(
+                      margin: EdgeInsets.only(right: 10, bottom: 10),
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).primaryColor,
+                        borderRadius: new BorderRadius.circular(60),
+                      ),
                       padding: const EdgeInsets.all(10.0),
                       child: Icon(
-                        Icons.edit,
+                        Icons.camera_alt,
                         color: Colors.white, size: 32,
                       ),
                     ),
