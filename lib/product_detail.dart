@@ -1,16 +1,14 @@
-import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
 
-class Product extends StatefulWidget {
-  @override
-  _ProductDetail createState() => _ProductDetail();
-}
-
-class _ProductDetail extends State<Product> {
-
+class Product extends StatelessWidget {
+  var i;
+  Product(this.i);
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         title: Text('Product Detail'),
       ),
@@ -18,15 +16,17 @@ class _ProductDetail extends State<Product> {
           top: false,
           left: false,
           right: false,
-
-          child: Hero(
-            tag: 'products',
-            child: Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  fit: BoxFit.fill,
-                  image: NetworkImage("https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80"),
-                ),
+          child: SizedBox(
+            width: double.infinity,
+            height: 260,
+            child: Hero(
+              tag: i,
+              child: CachedNetworkImage(
+                fit: BoxFit.cover,
+                imageUrl: i,
+                placeholder: (context, url) =>
+                    Center(child: CircularProgressIndicator()),
+                errorWidget: (context, url, error) => new Icon(Icons.error),
               ),
             ),
           )),
