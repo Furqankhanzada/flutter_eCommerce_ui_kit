@@ -3,6 +3,7 @@ import 'package:flutter_scaffold/auth/auth.dart';
 import 'package:flutter_scaffold/blocks/auth_block.dart';
 import 'package:flutter_scaffold/cart.dart';
 import 'package:flutter_scaffold/settings.dart';
+import 'package:flutter_scaffold/product_detail.dart';
 import 'package:flutter_scaffold/categorise.dart';
 import 'package:flutter_scaffold/home/home.dart';
 import 'package:flutter_scaffold/shop/shop.dart';
@@ -26,7 +27,8 @@ void main() {
         '/categorise': (BuildContext context) => Categorise(),
         '/wishlist': (BuildContext context) => WishList(),
         '/cart': (BuildContext context) => CartList(),
-        '/settings': (BuildContext context) => Settings()
+        '/settings': (BuildContext context) => Settings(),
+        '/products': (BuildContext context) => Product()
       },
     ),
   ));

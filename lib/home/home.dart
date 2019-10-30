@@ -78,42 +78,47 @@ class _HomeState extends State<Home> {
                               builder: (BuildContext context) {
                                 return Container(
                                   width: 140.0,
-                                  child: Card(
-                                    clipBehavior: Clip.antiAlias,
-                                    child: InkWell(
-                                      onTap: () {
-                                        print('Card tapped.');
-                                      },
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: <Widget>[
-                                          SizedBox(
-                                            height: 160,
-                                            child: CachedNetworkImage(
-                                              fit: BoxFit.cover,
-                                              imageUrl: i,
-                                              placeholder: (context, url) => Center(
-                                                  child:
-                                                      CircularProgressIndicator()),
-                                              errorWidget:
-                                                  (context, url, error) =>
-                                                      new Icon(Icons.error),
+                                  child: Hero(
+                                    tag: 'products',
+                                    child: Card(
+                                      clipBehavior: Clip.antiAlias,
+                                      child: InkWell(
+                                        onTap: () {
+                                          print('Card tapped.');
+                                            Navigator.pop(context);
+                                            Navigator.pushNamed(context, '/products');
+                                        },
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            SizedBox(
+                                              height: 160,
+                                              child: CachedNetworkImage(
+                                                fit: BoxFit.cover,
+                                                imageUrl: i,
+                                                placeholder: (context, url) => Center(
+                                                    child:
+                                                        CircularProgressIndicator()),
+                                                errorWidget:
+                                                    (context, url, error) =>
+                                                        new Icon(Icons.error),
+                                              ),
                                             ),
-                                          ),
-                                          ListTile(
-                                            title: Text(
-                                              'Two Gold Rings',
-                                              style: TextStyle(fontSize: 14),
-                                            ),
-                                            subtitle: Text('\$200',
-                                                style: TextStyle(
-                                                    color: Theme.of(context)
-                                                        .accentColor,
-                                                    fontWeight:
-                                                        FontWeight.w700)),
-                                          )
-                                        ],
+                                            ListTile(
+                                              title: Text(
+                                                'Two Gold Rings',
+                                                style: TextStyle(fontSize: 14),
+                                              ),
+                                              subtitle: Text('\$200',
+                                                  style: TextStyle(
+                                                      color: Theme.of(context)
+                                                          .accentColor,
+                                                      fontWeight:
+                                                          FontWeight.w700)),
+                                            )
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
