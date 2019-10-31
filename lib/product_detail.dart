@@ -1,14 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-class Product extends StatelessWidget {
-  var i;
-  Product(this.i);
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+class Products extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final args = ModalRoute.of(context).settings.arguments;
     return Scaffold(
-      key: _scaffoldKey,
       appBar: AppBar(
         title: Text('Product Detail'),
       ),
@@ -20,10 +17,10 @@ class Product extends StatelessWidget {
             width: double.infinity,
             height: 260,
             child: Hero(
-              tag: i,
+              tag: args,
               child: CachedNetworkImage(
                 fit: BoxFit.cover,
-                imageUrl: i,
+                imageUrl: args,
                 placeholder: (context, url) =>
                     Center(child: CircularProgressIndicator()),
                 errorWidget: (context, url, error) => new Icon(Icons.error),
