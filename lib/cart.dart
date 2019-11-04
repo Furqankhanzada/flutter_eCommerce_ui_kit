@@ -154,7 +154,7 @@ class _CartListState extends State<CartList> {
                       child: Row(
                         children: <Widget>[
                           Expanded(
-                            child: Text("TOTAL", style: TextStyle(fontSize: 16, color: Colors.grey),)
+                              child: Text("TOTAL", style: TextStyle(fontSize: 16, color: Colors.grey),)
                           ),
                           Text("\$41.24",  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                         ],

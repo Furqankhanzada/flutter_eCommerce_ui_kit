@@ -1,8 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_scaffold/blocks/categories_block.dart';
 import 'drawer.dart';
 import 'slider.dart';
+import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -20,7 +21,22 @@ class _HomeState extends State<Home> {
   ];
 
   @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(milliseconds: 3000), () {
+// Here you can write your code
+      final CategoriesBlock categoryBlock = Provider.of<CategoriesBlock>(context);
+      categoryBlock.getCategories();
+//      setState(() {
+//        // Here you can write your code for open new view
+//      });
+
+    });
+
+  }
   Widget build(BuildContext context) {
+    final CategoriesBlock categoriesBlock = Provider.of<CategoriesBlock>(context);
+    final categories = categoriesBlock.categories;
     return Scaffold(
       drawer: Drawer(
         child: AppDrawer(),
@@ -168,7 +184,7 @@ class _HomeState extends State<Home> {
                           crossAxisCount: 2,
                           padding: EdgeInsets.only(
                               top: 8, left: 6, right: 6, bottom: 12),
-                          children: List.generate(4, (index) {
+                          children: List.generate(categories.length, (index) {
                             return Container(
                               child: Card(
                                 clipBehavior: Clip.antiAlias,
@@ -198,7 +214,7 @@ class _HomeState extends State<Home> {
                                       ),
                                       ListTile(
                                           title: Text(
-                                        'Two Gold Rings',
+                                            categories[index]['name'],
                                         style: TextStyle(
                                             fontWeight: FontWeight.w700,
                                             fontSize: 16),

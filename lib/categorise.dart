@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-
+import 'package:flutter_scaffold/blocks/categories_block.dart';
+import 'package:provider/provider.dart';
 class Categorise extends StatefulWidget {
   @override
   _CategoriseState createState() => _CategoriseState();
@@ -19,6 +20,9 @@ class _CategoriseState extends State<Categorise> {
 
   @override
   Widget build(BuildContext context) {
+    final CategoriesBlock categoriesBlock = Provider.of<CategoriesBlock>(context);
+    final categories = categoriesBlock.categories;
+    print("$categories");
     return Scaffold(
       appBar: AppBar(
         title: Text('Categorise'),
@@ -31,7 +35,8 @@ class _CategoriseState extends State<Categorise> {
             child: ListView(
               shrinkWrap: true,
               padding: EdgeInsets.only(top: 8, left: 6, right: 6, bottom: 8),
-              children: List.generate(6, (index) {
+              children: List.generate(categories.length, (index) {
+                print(categories[index]['name']);
                 return Container(
                   child: Card(
                     clipBehavior: Clip.antiAlias,
@@ -56,7 +61,7 @@ class _CategoriseState extends State<Categorise> {
                           ),
                           ListTile(
                               title: Text(
-                                'Two Gold Rings',
+                                categories[index]['name'],
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 16

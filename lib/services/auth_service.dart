@@ -36,7 +36,7 @@ class AuthService {
   }
 
   Future<Map> register(User user) async {
-    final response = await http.post('$BASE_URL/tradebakerz/wc/v1/register',
+    final response = await http.post('$BASE_URL/wc-apis/v1/users',
         body: {
           'username': user.username,
           'password': user.password,

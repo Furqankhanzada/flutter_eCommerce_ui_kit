@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_scaffold/auth/auth.dart';
 import 'package:flutter_scaffold/blocks/auth_block.dart';
+import 'package:flutter_scaffold/blocks/categories_block.dart';
 import 'package:flutter_scaffold/cart.dart';
 import 'package:flutter_scaffold/categorise.dart';
 import 'package:flutter_scaffold/home/home.dart';
@@ -12,7 +13,7 @@ import 'package:provider/provider.dart';
 
 void main() {
   runApp(MultiProvider(
-    providers: [ChangeNotifierProvider<AuthBlock>.value(value: AuthBlock())],
+    providers: [ChangeNotifierProvider<AuthBlock>.value(value: AuthBlock()), ChangeNotifierProvider<CategoriesBlock>.value(value: CategoriesBlock())],
     child: MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
