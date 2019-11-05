@@ -6,7 +6,13 @@ A powerful Flutter E-Commerce starter template that bootstraps development of yo
 
 ## What's inside
 
-- Simple navigation
+- Drawer 
+- Routing
+- State Managemet using [Provider](https://pub.dev/packages/provider)
+- Authentication Ready
+- Home Slider
+- Cards, List Items
+- Horizontal Card Slider
 - More than 5 Ready-to-use Pages
 
 
@@ -21,6 +27,10 @@ git clone https://github.com/Furqankhanzada/flutter_eCommerce_ui_kit.git
 # Navigate to clonned folder and Install dependencies
 cd flutter_eCommerce_ui_kit && flutter packages get
 ```
+
+## Looking for Flutter Developer ?
+
+I can translate you idea to Mobile Application. Hire me [Upwork](https://www.upwork.com/fl/muhammadfurqan)
 
 ## Contributing
 
