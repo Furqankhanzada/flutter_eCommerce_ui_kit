@@ -4,6 +4,7 @@ import 'package:flutter_scaffold/blocks/categories_block.dart';
 import 'drawer.dart';
 import 'slider.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_scaffold/blocks/products_block.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -23,20 +24,20 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(milliseconds: 3000), () {
-// Here you can write your code
+    Future.delayed(const Duration(milliseconds: 500), () {
+    // Here you can write your code
       final CategoriesBlock categoryBlock = Provider.of<CategoriesBlock>(context);
+      final ProductsBlock productBlock = Provider.of<ProductsBlock>(context);
       categoryBlock.getCategories();
-//      setState(() {
-//        // Here you can write your code for open new view
-//      });
-
+      productBlock.getNewArrivals();
     });
-
   }
+
   Widget build(BuildContext context) {
+    final ProductsBlock productBlock = Provider.of<ProductsBlock>(context);
     final CategoriesBlock categoriesBlock = Provider.of<CategoriesBlock>(context);
     final categories = categoriesBlock.categories;
+    List<dynamic> newArrivals = productBlock.newArrivals;
     return Scaffold(
       drawer: Drawer(
         child: AppDrawer(),
@@ -87,7 +88,7 @@ class _HomeState extends State<Home> {
                         height: 240.0,
                         child: ListView(
                           scrollDirection: Axis.horizontal,
-                          children: imgList.map((i) {
+                          children: newArrivals.map((i) {
                             return Builder(
                               builder: (BuildContext context) {
                                 return Container(
@@ -98,7 +99,7 @@ class _HomeState extends State<Home> {
                                       onTap: () {
                                         Navigator.pushNamed(
                                             context, '/products',
-                                            arguments: i);
+                                            arguments: imgList[newArrivals.indexOf(i)]);
                                       },
                                       child: Column(
                                         crossAxisAlignment:
@@ -110,7 +111,7 @@ class _HomeState extends State<Home> {
                                               tag: '$i',
                                               child: CachedNetworkImage(
                                                 fit: BoxFit.cover,
-                                                imageUrl: i,
+                                                imageUrl: imgList[newArrivals.indexOf(i)],
                                                 placeholder: (context, url) =>
                                                     Center(
                                                         child:
@@ -123,7 +124,7 @@ class _HomeState extends State<Home> {
                                           ),
                                           ListTile(
                                             title: Text(
-                                              'Two Gold Rings',
+                                              i['name'],
                                               style: TextStyle(fontSize: 14),
                                             ),
                                             subtitle: Text('\$200',
@@ -214,7 +215,7 @@ class _HomeState extends State<Home> {
                                       ),
                                       ListTile(
                                           title: Text(
-                                            categories[index]['name'],
+                                        categories[index]['name'],
                                         style: TextStyle(
                                             fontWeight: FontWeight.w700,
                                             fontSize: 16),

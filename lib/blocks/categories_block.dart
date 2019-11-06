@@ -12,7 +12,6 @@ class CategoriesBlock extends ChangeNotifier {
   }
   getCategories() async {
    final response = await _categoryService.getCategories();
-   print(response);
    categories = response;
   }
 }
