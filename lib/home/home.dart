@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_scaffold/localizations.dart';
 import 'package:flutter_scaffold/blocks/categories_block.dart';
 import 'drawer.dart';
 import 'slider.dart';
@@ -20,7 +21,6 @@ class _HomeState extends State<Home> {
     'https://images.unsplash.com/photo-1508704019882-f9cf40e475b4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=8c6e5e3aba713b17aa1fe71ab4f0ae5b&auto=format&fit=crop&w=1352&q=80',
     'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80'
   ];
-
   @override
   void initState() {
     super.initState();
@@ -76,8 +76,11 @@ class _HomeState extends State<Home> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Padding(
-                        padding: EdgeInsets.only(top: 14.0, left: 8.0),
-                        child: Text('New Arrivals',
+                        padding:
+                            EdgeInsets.only(top: 14.0, left: 8.0, right: 8.0),
+                        child: Text(
+                            AppLocalizations.of(context)
+                                .translate('NEW_ARRIVALS'),
                             style: TextStyle(
                                 color: Theme.of(context).accentColor,
                                 fontSize: 18,
@@ -158,7 +161,8 @@ class _HomeState extends State<Home> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           Padding(
-                            padding: EdgeInsets.only(top: 8.0, left: 8.0),
+                            padding: EdgeInsets.only(
+                                top: 8.0, left: 8.0, right: 8.0),
                             child: Text('Shop By Category',
                                 style: TextStyle(
                                     color: Theme.of(context).accentColor,
@@ -166,8 +170,8 @@ class _HomeState extends State<Home> {
                                     fontWeight: FontWeight.w700)),
                           ),
                           Padding(
-                            padding:
-                                const EdgeInsets.only(right: 8.0, top: 8.0),
+                            padding: const EdgeInsets.only(
+                                right: 8.0, top: 8.0, left: 8.0),
                             child: RaisedButton(
                                 color: Theme.of(context).primaryColor,
                                 child: Text('View All',

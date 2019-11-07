@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_scaffold/auth/auth.dart';
 import 'package:flutter_scaffold/blocks/auth_block.dart';
 import 'package:flutter_scaffold/blocks/categories_block.dart';
@@ -6,6 +7,7 @@ import 'package:flutter_scaffold/blocks/products_block.dart';
 import 'package:flutter_scaffold/cart.dart';
 import 'package:flutter_scaffold/categorise.dart';
 import 'package:flutter_scaffold/home/home.dart';
+import 'package:flutter_scaffold/localizations.dart';
 import 'package:flutter_scaffold/product_detail.dart';
 import 'package:flutter_scaffold/settings.dart';
 import 'package:flutter_scaffold/shop/shop.dart';
@@ -13,14 +15,23 @@ import 'package:flutter_scaffold/wishlist.dart';
 import 'package:provider/provider.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  final Locale locale = Locale('en');
   runApp(MultiProvider(
     providers: [ChangeNotifierProvider<AuthBlock>.value(value: AuthBlock()), ChangeNotifierProvider<CategoriesBlock>.value(value: CategoriesBlock()), ChangeNotifierProvider<ProductsBlock>.value(value: ProductsBlock())],
     child: MaterialApp(
+      localizationsDelegates: [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate
+      ],
+      supportedLocales: [Locale('en'), Locale('ar')],
+      locale: locale,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           primaryColor: Colors.deepOrange[500],
           accentColor: Colors.lightBlue[900],
-          fontFamily: 'Lato'),
+          fontFamily: locale.languageCode == 'ar' ? 'Dubai' : 'Lato'),
       initialRoute: '/',
       routes: <String, WidgetBuilder>{
         '/': (BuildContext context) => Home(),
