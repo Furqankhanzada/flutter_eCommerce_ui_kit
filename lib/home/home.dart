@@ -116,7 +116,7 @@ class _HomeState extends State<Home> {
                                           SizedBox(
                                             height: 160,
                                             child: Hero(
-                                              tag: '$i',
+                                              tag: i["thumbnail"],
                                               child: CachedNetworkImage(
                                                 fit: BoxFit.cover,
                                                 imageUrl: i["thumbnail"],

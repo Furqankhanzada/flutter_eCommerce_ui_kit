@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
-import 'package:smooth_star_rating/smooth_star_rating.dart';
 
 class Products extends StatelessWidget {
   @override
@@ -22,7 +21,7 @@ class Products extends StatelessWidget {
                 width: double.infinity,
                 height: 260,
                 child: Hero(
-                  tag: args,
+                  tag: args['thumbnail'],
                   child: CachedNetworkImage(
                     fit: BoxFit.cover,
                     imageUrl: args['thumbnail'],
