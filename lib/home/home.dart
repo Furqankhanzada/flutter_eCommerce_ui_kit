@@ -1,11 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_scaffold/localizations.dart';
 import 'package:flutter_scaffold/blocks/categories_block.dart';
+import 'package:flutter_scaffold/blocks/products_block.dart';
+import 'package:flutter_scaffold/localizations.dart';
+import 'package:provider/provider.dart';
+
 import 'drawer.dart';
 import 'slider.dart';
-import 'package:provider/provider.dart';
-import 'package:flutter_scaffold/blocks/products_block.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -25,8 +26,9 @@ class _HomeState extends State<Home> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(milliseconds: 500), () {
-    // Here you can write your code
-      final CategoriesBlock categoryBlock = Provider.of<CategoriesBlock>(context);
+      // Here you can write your code
+      final CategoriesBlock categoryBlock =
+          Provider.of<CategoriesBlock>(context);
       final ProductsBlock productBlock = Provider.of<ProductsBlock>(context);
       categoryBlock.getCategories();
       productBlock.getNewArrivals();
@@ -35,7 +37,8 @@ class _HomeState extends State<Home> {
 
   Widget build(BuildContext context) {
     final ProductsBlock productBlock = Provider.of<ProductsBlock>(context);
-    final CategoriesBlock categoriesBlock = Provider.of<CategoriesBlock>(context);
+    final CategoriesBlock categoriesBlock =
+        Provider.of<CategoriesBlock>(context);
     final categories = categoriesBlock.categories;
     List<dynamic> newArrivals = productBlock.newArrivals;
     return Scaffold(
@@ -102,7 +105,8 @@ class _HomeState extends State<Home> {
                                       onTap: () {
                                         Navigator.pushNamed(
                                             context, '/products',
-                                            arguments: imgList[newArrivals.indexOf(i)]);
+                                            arguments: imgList[
+                                                newArrivals.indexOf(i)]);
                                       },
                                       child: Column(
                                         crossAxisAlignment:
@@ -114,7 +118,8 @@ class _HomeState extends State<Home> {
                                               tag: '$i',
                                               child: CachedNetworkImage(
                                                 fit: BoxFit.cover,
-                                                imageUrl: imgList[newArrivals.indexOf(i)],
+                                                imageUrl: imgList[
+                                                    newArrivals.indexOf(i)],
                                                 placeholder: (context, url) =>
                                                     Center(
                                                         child:
