@@ -95,6 +95,8 @@ class _HomeState extends State<Home> {
                         child: ListView(
                           scrollDirection: Axis.horizontal,
                           children: newArrivals.map((i) {
+                            i["thumbnail"] = imgList[newArrivals.indexOf(i)];
+                            print(i["thumbnail"]);
                             return Builder(
                               builder: (BuildContext context) {
                                 return Container(
@@ -105,8 +107,7 @@ class _HomeState extends State<Home> {
                                       onTap: () {
                                         Navigator.pushNamed(
                                             context, '/products',
-                                            arguments: imgList[
-                                                newArrivals.indexOf(i)]);
+                                            arguments: i);
                                       },
                                       child: Column(
                                         crossAxisAlignment:
@@ -118,8 +119,7 @@ class _HomeState extends State<Home> {
                                               tag: '$i',
                                               child: CachedNetworkImage(
                                                 fit: BoxFit.cover,
-                                                imageUrl: imgList[
-                                                    newArrivals.indexOf(i)],
+                                                imageUrl: i["thumbnail"],
                                                 placeholder: (context, url) =>
                                                     Center(
                                                         child:
