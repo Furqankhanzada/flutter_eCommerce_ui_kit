@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_scaffold/blocks/categories_block.dart';
 import 'package:provider/provider.dart';
+import 'package:shimmer/shimmer.dart';
+
 class Categorise extends StatefulWidget {
   @override
   _CategoriseState createState() => _CategoriseState();
@@ -35,7 +37,72 @@ class _CategoriseState extends State<Categorise> {
             child: ListView(
               shrinkWrap: true,
               padding: EdgeInsets.only(top: 8, left: 6, right: 6, bottom: 8),
-              children: List.generate(categories.length, (index) {
+              children: categories.length == 0 ? [1,2,3].map((i) {
+//                            i["thumbnail"] = imgList[newArrivals.indexOf(i)];
+//                            print(i["thumbnail"]);
+                return Builder(
+                  builder: (BuildContext context) {
+                    return Container(
+                      width: 140.0,
+                      child: Card(
+                        clipBehavior: Clip.antiAlias,
+                        child: InkWell(
+                          child: Column(
+                            crossAxisAlignment:
+                            CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Shimmer.fromColors(
+                                baseColor: Colors.grey[300],
+                                highlightColor: Colors.grey[100],
+                                enabled: true,
+                                child: Column(
+                                  children: [0]
+                                      .map((_) => Padding(
+                                    padding: const EdgeInsets.only(bottom: 8.0),
+                                    child: Row(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                          width: MediaQuery.of(context).size.width,
+                                          height: 150,
+                                          color: Colors.white,
+                                        ),
+                                      ],
+                                    ),
+                                  ))
+                                      .toList(),
+                                ),
+                              ),
+                              Shimmer.fromColors(
+                                baseColor: Colors.grey[300],
+                                highlightColor: Colors.grey[100],
+                                enabled: true,
+                                child: Column(
+                                  children: [0]
+                                      .map((_) => Padding(
+                                    padding: const EdgeInsets.only( left: 5.0, right: 5.0, bottom: 10),
+                                    child: Row(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                          width: 50.0,
+                                          height: 10,
+                                          color: Colors.white,
+                                        ),
+                                      ],
+                                    ),
+                                  ))
+                                      .toList(),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                );
+              }).toList() : List.generate(categories.length, (index) {
                 print(categories[index]['name']);
                 return Container(
                   child: Card(
@@ -73,7 +140,7 @@ class _CategoriseState extends State<Categorise> {
                     ),
                   ),
                 );
-              }),
+              })
             ),
           )),
     );

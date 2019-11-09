@@ -4,6 +4,7 @@ import 'package:flutter_scaffold/blocks/categories_block.dart';
 import 'package:flutter_scaffold/blocks/products_block.dart';
 import 'package:flutter_scaffold/localizations.dart';
 import 'package:provider/provider.dart';
+import 'package:shimmer/shimmer.dart';
 
 import 'drawer.dart';
 import 'slider.dart';
@@ -12,6 +13,9 @@ class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
 }
+
+
+
 
 class _HomeState extends State<Home> {
   final List<String> imgList = [
@@ -94,7 +98,94 @@ class _HomeState extends State<Home> {
                         height: 240.0,
                         child: ListView(
                           scrollDirection: Axis.horizontal,
-                          children: newArrivals.map((i) {
+                          children: newArrivals.length == 0 ? [1,2,3,4].map((i) {
+//                            i["thumbnail"] = imgList[newArrivals.indexOf(i)];
+//                            print(i["thumbnail"]);
+                            return Builder(
+                              builder: (BuildContext context) {
+                                return Container(
+                                  width: 140.0,
+                                  child: Card(
+                                    clipBehavior: Clip.antiAlias,
+                                    child: InkWell(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          Shimmer.fromColors(
+                                            baseColor: Colors.grey[300],
+                                            highlightColor: Colors.grey[100],
+                                            enabled: true,
+                                            child: Column(
+                                              children: [0]
+                                                  .map((_) => Padding(
+                                                padding: const EdgeInsets.only(bottom: 8.0),
+                                                child: Row(
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  children: [
+                                                    Container(
+                                                      width: 138.0,
+                                                      height: 150,
+                                                      color: Colors.white,
+                                                    ),
+                                                  ],
+                                                ),
+                                              ))
+                                                  .toList(),
+                                            ),
+                                          ),
+                                          Shimmer.fromColors(
+                                            baseColor: Colors.grey[300],
+                                            highlightColor: Colors.grey[100],
+                                            enabled: true,
+                                            child: Column(
+                                              children: [0]
+                                                  .map((_) => Padding(
+                                                padding: const EdgeInsets.only( left: 5.0, right: 5.0),
+                                                child: Row(
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  children: [
+                                                    Container(
+                                                      width: 135.0,
+                                                      height: 10,
+                                                      color: Colors.white,
+                                                    ),
+                                                  ],
+                                                ),
+                                              ))
+                                                  .toList(),
+                                            ),
+                                          ),
+                                          Shimmer.fromColors(
+                                            baseColor: Colors.grey[300],
+                                            highlightColor: Colors.grey[100],
+                                            enabled: true,
+                                            child: Column(
+                                              children: [0]
+                                                  .map((_) => Padding(
+                                                padding: const EdgeInsets.only( top: 10.0,left: 5.0),
+                                                child: Row(
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  children: [
+                                                    Container(
+                                                      width: 50.0,
+                                                      height: 10,
+                                                      color: Colors.white,
+                                                    ),
+                                                  ],
+                                                ),
+                                              ))
+                                                  .toList(),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                            );
+                          }).toList() : newArrivals.map((i) {
                             i["thumbnail"] = imgList[newArrivals.indexOf(i)];
                             print(i["thumbnail"]);
                             return Builder(
@@ -111,7 +202,7 @@ class _HomeState extends State<Home> {
                                       },
                                       child: Column(
                                         crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                         children: <Widget>[
                                           SizedBox(
                                             height: 160,
@@ -123,10 +214,10 @@ class _HomeState extends State<Home> {
                                                 placeholder: (context, url) =>
                                                     Center(
                                                         child:
-                                                            CircularProgressIndicator()),
+                                                        CircularProgressIndicator()),
                                                 errorWidget:
                                                     (context, url, error) =>
-                                                        new Icon(Icons.error),
+                                                new Icon(Icons.error),
                                               ),
                                             ),
                                           ),
@@ -140,7 +231,7 @@ class _HomeState extends State<Home> {
                                                     color: Theme.of(context)
                                                         .accentColor,
                                                     fontWeight:
-                                                        FontWeight.w700)),
+                                                    FontWeight.w700)),
                                           )
                                         ],
                                       ),
@@ -156,7 +247,28 @@ class _HomeState extends State<Home> {
                         child: Padding(
                           padding:
                               EdgeInsets.only(top: 6.0, left: 8.0, right: 8.0),
-                          child: Image(
+                          child: newArrivals.length == 0 ? Shimmer.fromColors(
+                            baseColor: Colors.grey[300],
+                            highlightColor: Colors.grey[100],
+                            enabled: true,
+                            child: Column(
+                              children: [0]
+                                  .map((_) => Padding(
+                                padding: const EdgeInsets.only(bottom: 8.0),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      height: 150,
+                                      color: Colors.white,
+                                    ),
+                                  ],
+                                ),
+                              ))
+                                  .toList(),
+                            ),
+                          ) : Image(
                             fit: BoxFit.cover,
                             image: AssetImage('assets/images/banner-1.png'),
                           ),
@@ -194,7 +306,69 @@ class _HomeState extends State<Home> {
                           crossAxisCount: 2,
                           padding: EdgeInsets.only(
                               top: 8, left: 6, right: 6, bottom: 12),
-                          children: List.generate(categories.length, (index) {
+                          children: categories.length == 0 ? [1,2].map((i) {
+                            return Builder(
+                              builder: (BuildContext context) {
+                                return Container(
+                                  width: 140.0,
+                                  child: Card(
+                                    clipBehavior: Clip.antiAlias,
+                                    child: InkWell(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          Shimmer.fromColors(
+                                            baseColor: Colors.grey[300],
+                                            highlightColor: Colors.grey[100],
+                                            enabled: true,
+                                            child: Column(
+                                              children: [0]
+                                                  .map((_) => Row(
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  children: [
+                                                    Container(
+                                                      width: MediaQuery.of(context).size.width,
+                                                      height: (MediaQuery.of(context).size.width /
+                                                          2) -
+                                                          70,
+                                                      color: Colors.white,
+                                                    ),
+                                                  ],
+                                              )).toList(),
+                                            ),
+                                          ),
+
+                                          Shimmer.fromColors(
+                                            baseColor: Colors.grey[300],
+                                            highlightColor: Colors.grey[100],
+                                            enabled: true,
+                                            child: Column(
+                                              children: [0]
+                                                  .map((_) => Padding(
+                                                padding: const EdgeInsets.only(left: 5.0, top: 10.0),
+                                                child: Row(
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  children: [
+                                                    Container(
+                                                      width: 50.0,
+                                                      height: 10,
+                                                      color: Colors.white,
+                                                    ),
+                                                  ],
+                                                ),
+                                              ))
+                                                  .toList(),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                            );
+                          }).toList() : List.generate(categories.length, (index) {
                             return Container(
                               child: Card(
                                 clipBehavior: Clip.antiAlias,
@@ -204,44 +378,66 @@ class _HomeState extends State<Home> {
                                   },
                                   child: Column(
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    CrossAxisAlignment.start,
                                     children: <Widget>[
                                       SizedBox(
                                         height:
-                                            (MediaQuery.of(context).size.width /
-                                                    2) -
-                                                70,
+                                        (MediaQuery.of(context).size.width /
+                                            2) -
+                                            70,
                                         width: double.infinity,
                                         child: CachedNetworkImage(
                                           fit: BoxFit.cover,
                                           imageUrl: imgList[index],
                                           placeholder: (context, url) => Center(
                                               child:
-                                                  CircularProgressIndicator()),
+                                              CircularProgressIndicator()),
                                           errorWidget: (context, url, error) =>
-                                              new Icon(Icons.error),
+                                          new Icon(Icons.error),
                                         ),
                                       ),
                                       ListTile(
                                           title: Text(
-                                        categories[index]['name'],
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w700,
-                                            fontSize: 16),
-                                      ))
+                                            categories[index]['name'],
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w700,
+                                                fontSize: 16),
+                                          ))
                                     ],
                                   ),
                                 ),
                               ),
                             );
-                          }),
+                          })
                         ),
                       ),
                       Container(
                         child: Padding(
                           padding: EdgeInsets.only(
                               top: 6.0, left: 8.0, right: 8.0, bottom: 10),
-                          child: Image(
+                          child: newArrivals.length == 0 ? Shimmer.fromColors(
+                            baseColor: Colors.grey[300],
+                            highlightColor: Colors.grey[100],
+                            enabled: true,
+                            child: Column(
+                              children: [0]
+                                  .map((_) => Padding(
+                                padding: const EdgeInsets.only(bottom: 8.0),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      height: 150,
+                                      color: Colors.white,
+                                    ),
+                                  ],
+                                ),
+                              ))
+                                  .toList(),
+                            ),
+                          ) :
+                          Image(
                             fit: BoxFit.cover,
                             image: AssetImage('assets/images/banner-2.png'),
                           ),
