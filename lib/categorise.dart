@@ -3,6 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_scaffold/blocks/categories_block.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:flutter_scaffold/localizations.dart';
 
 class Categorise extends StatefulWidget {
   @override
@@ -27,7 +28,8 @@ class _CategoriseState extends State<Categorise> {
     print("$categories");
     return Scaffold(
       appBar: AppBar(
-        title: Text('Categorise'),
+        title: Text(AppLocalizations.of(context)
+            .translate('CATEGORIES')),
       ),
       body: SafeArea(
           top: false,

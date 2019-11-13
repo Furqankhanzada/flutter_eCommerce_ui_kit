@@ -1,1 +1,1 @@
-const String BASE_URL = 'http://localhost:9211/wp-json';
+const String BASE_URL = 'http://192.168.100.11/tradebakerz/wp-json';

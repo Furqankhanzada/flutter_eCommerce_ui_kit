@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
+import 'package:flutter_scaffold/localizations.dart';
 
 class Products extends StatelessWidget {
   @override
@@ -8,7 +9,8 @@ class Products extends StatelessWidget {
     Map<String, dynamic> args = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Product Detail'),
+        title: Text(AppLocalizations.of(context)
+            .translate('SETTINGS')),
       ),
       body: SafeArea(
         top: false,
@@ -104,7 +106,8 @@ class Products extends StatelessWidget {
                             child: Padding(
                               padding: const EdgeInsets.only(bottom: 10.0),
                               child: Text(
-                                'Description',
+                                AppLocalizations.of(context)
+                                    .translate('DESCRIPTION'),
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 20,

@@ -3,6 +3,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 import 'package:flutter_scaffold/blocks/products_block.dart';
 import 'package:provider/provider.dart';
+import 'package:shimmer/shimmer.dart';
+import 'package:flutter_scaffold/localizations.dart';
 
 import 'search.dart';
 
@@ -88,11 +90,14 @@ class _ShopState extends State<Shop> {
 
   Widget build(BuildContext context) {
     final ProductsBlock productBlock = Provider.of<ProductsBlock>(context);
-    final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey = new GlobalKey<RefreshIndicatorState>();
-    final GlobalKey<RefreshIndicatorState> _refreshIndicatorKeyGrid = new GlobalKey<RefreshIndicatorState>();
+    final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
+        new GlobalKey<RefreshIndicatorState>();
+    final GlobalKey<RefreshIndicatorState> _refreshIndicatorKeyGrid =
+        new GlobalKey<RefreshIndicatorState>();
     Future<Null> _refresh() {
       productBlock.getProducts();
     }
+
     List<dynamic> products = productBlock.products;
     print("------products $products");
     return DefaultTabController(
@@ -109,7 +114,8 @@ class _ShopState extends State<Shop> {
               },
             )
           ],
-          title: Text('Shop'),
+          title: Text(AppLocalizations.of(context)
+              .translate('SHOP_BY_CATEGORY')),
         ),
         body: Builder(
           builder: (BuildContext context) {
@@ -136,137 +142,288 @@ class _ShopState extends State<Shop> {
                           RefreshIndicator(
                             key: _refreshIndicatorKey,
                             onRefresh: _refresh,
-                            child:  ListView(
-                              children: products.map((product) {
-                                return Builder(
-                                  builder: (BuildContext context) {
-                                    return InkWell(
-                                      onTap: () {
-                                        print('Card tapped.');
-                                      },
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: <Widget>[
-                                          Divider(
-                                            height: 0,
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                top: 10.0, bottom: 10.0),
-                                            child: ListTile(
-                                              trailing:
-                                                  Icon(Icons.navigate_next),
-                                              leading: ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(5.0),
-                                                child: Container(
-                                                  decoration: BoxDecoration(
-                                                      color: Colors.blue),
-                                                  child: CachedNetworkImage(
-                                                    fit: BoxFit.cover,
-                                                    imageUrl: 'https://raw.githubusercontent.com/peng8350/flutter_pulltorefresh/master/arts/qr_code.png',
-                                                    placeholder: (context,
-                                                            url) =>
-                                                        Center(
-                                                            child:
-                                                                CircularProgressIndicator()),
-                                                    errorWidget: (context, url,
-                                                            error) =>
-                                                        new Icon(Icons.error),
-                                                  ),
+                            child: ListView(
+                              children: products.length == 0
+                                  ? [1, 2, 3, 4].map((product) {
+                                      return Builder(
+                                        builder: (BuildContext context) {
+                                          return Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: <Widget>[
+                                              Divider(
+                                                height: 0,
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    top: 10.0, bottom: 10.0),
+                                                child: Row(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: <Widget>[
+                                                    Shimmer.fromColors(
+                                                      baseColor:
+                                                          Colors.grey[300],
+                                                      highlightColor:
+                                                          Colors.grey[100],
+                                                      enabled: true,
+                                                      child: Column(
+                                                        children: [0]
+                                                            .map((_) => Padding(
+                                                                  padding: const EdgeInsets
+                                                                          .only(
+                                                                      bottom:
+                                                                          8.0,
+                                                                      left:
+                                                                          10.0),
+                                                                  child: Row(
+                                                                    crossAxisAlignment:
+                                                                        CrossAxisAlignment
+                                                                            .start,
+                                                                    children: [
+                                                                      Container(
+                                                                        width:
+                                                                            60,
+                                                                        height:
+                                                                            60,
+                                                                        color: Colors
+                                                                            .white,
+                                                                      ),
+                                                                    ],
+                                                                  ),
+                                                                ))
+                                                            .toList(),
+                                                      ),
+                                                    ),
+                                                    Column(
+                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                        children: [
+                                                      Shimmer.fromColors(
+                                                          baseColor:
+                                                              Colors.grey[300],
+                                                          highlightColor:
+                                                              Colors.grey[100],
+                                                          enabled: true,
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    left: 10.0,
+                                                                    right: 5.0,
+                                                                    top: 5.0),
+                                                            child: Container(
+                                                                  width: MediaQuery.of(context).size.width - 90,
+                                                                  height: 10,
+                                                                  color: Colors
+                                                                      .white,
+                                                                ),
+
+                                                          )
+                                                      ),
+                                                      Shimmer.fromColors(
+                                                          baseColor:
+                                                              Colors.grey[300],
+                                                          highlightColor:
+                                                              Colors.grey[100],
+                                                          enabled: true,
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    left: 10.0,
+                                                                    right: 5.0,
+                                                                    top: 10.0),
+                                                            child: Container(
+                                                                  width: MediaQuery.of(context).size.width - 180,
+                                                                  height: 10,
+                                                                  color: Colors
+                                                                      .white,
+                                                                )
+                                                          )
+                                                      ),
+                                                      Shimmer.fromColors(
+                                                        baseColor:
+                                                            Colors.grey[300],
+                                                        highlightColor:
+                                                            Colors.grey[100],
+                                                        enabled: true,
+                                                        child: Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .only(
+                                                                  left: 10.0,
+                                                                  right: 5.0,
+                                                                  top: 10.0),
+                                                          child: Container(
+                                                                width: MediaQuery.of(context).size.width - 270,
+                                                                height: 10,
+                                                                color: Colors
+                                                                    .white,
+                                                              ),
+                                                        ),
+                                                      )
+                                                    ])
+                                                  ],
                                                 ),
                                               ),
-                                              title: Text(
-                                                product['name'],
-                                                style: TextStyle(fontSize: 14),
-                                              ),
-                                              subtitle: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: <Widget>[
-                                                  Row(
-                                                    children: <Widget>[
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .only(
-                                                                top: 2.0,
-                                                                bottom: 1),
-                                                        child: Text('\$'+product['price'],
-                                                            style: TextStyle(
-                                                              color: Theme.of(
-                                                                      context)
-                                                                  .accentColor,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w700,
-                                                            )),
+                                            ],
+                                          );
+                                        },
+                                      );
+                                    }).toList()
+                                  : products.map((product) {
+                                      return Builder(
+                                        builder: (BuildContext context) {
+                                          return InkWell(
+                                            onTap: () {
+                                              print('Card tapped.');
+                                            },
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: <Widget>[
+                                                Divider(
+                                                  height: 0,
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          top: 10.0,
+                                                          bottom: 10.0),
+                                                  child: ListTile(
+                                                    trailing: Icon(
+                                                        Icons.navigate_next),
+                                                    leading: ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5.0),
+                                                      child: Container(
+                                                        decoration:
+                                                            BoxDecoration(
+                                                                color: Colors
+                                                                    .blue),
+                                                        child:
+                                                            CachedNetworkImage(
+                                                          fit: BoxFit.cover,
+                                                          imageUrl:
+                                                              'https://raw.githubusercontent.com/peng8350/flutter_pulltorefresh/master/arts/qr_code.png',
+                                                          placeholder: (context,
+                                                                  url) =>
+                                                              Center(
+                                                                  child:
+                                                                      CircularProgressIndicator()),
+                                                          errorWidget: (context,
+                                                                  url, error) =>
+                                                              new Icon(
+                                                                  Icons.error),
+                                                        ),
                                                       ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .only(
-                                                                left: 6.0),
-                                                        child: Text('(\$)' + product['regular_price'],
-                                                            style: TextStyle(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w700,
-                                                                fontStyle:
-                                                                    FontStyle
-                                                                        .italic,
-                                                                color:
-                                                                    Colors.grey,
-                                                                decoration:
-                                                                    TextDecoration
-                                                                        .lineThrough)),
-                                                      )
-                                                    ],
+                                                    ),
+                                                    title: Text(
+                                                      product['name'],
+                                                      style: TextStyle(
+                                                          fontSize: 14),
+                                                    ),
+                                                    subtitle: Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: <Widget>[
+                                                        Row(
+                                                          children: <Widget>[
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                          .only(
+                                                                      top: 2.0,
+                                                                      bottom:
+                                                                          1),
+                                                              child: Text(
+                                                                  '\$' +
+                                                                      product[
+                                                                          'price'],
+                                                                  style:
+                                                                      TextStyle(
+                                                                    color: Theme.of(
+                                                                            context)
+                                                                        .accentColor,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w700,
+                                                                  )),
+                                                            ),
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                          .only(
+                                                                      left:
+                                                                          6.0),
+                                                              child: Text('(\$)' + product['regular_price'],
+                                                                  style: TextStyle(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w700,
+                                                                      fontStyle:
+                                                                          FontStyle
+                                                                              .italic,
+                                                                      color: Colors
+                                                                          .grey,
+                                                                      decoration:
+                                                                          TextDecoration
+                                                                              .lineThrough)),
+                                                            )
+                                                          ],
+                                                        ),
+                                                        Row(
+                                                          children: <Widget>[
+                                                            SmoothStarRating(
+                                                                allowHalfRating:
+                                                                    false,
+                                                                onRatingChanged:
+                                                                    (v) {
+                                                                  product[
+                                                                      'review_count'] = v;
+                                                                  setState(
+                                                                      () {});
+                                                                },
+                                                                starCount: 5,
+                                                                rating: product[
+                                                                        'review_count']
+                                                                    .toDouble(),
+                                                                size: 16.0,
+                                                                color: Colors
+                                                                    .amber,
+                                                                borderColor:
+                                                                    Colors
+                                                                        .amber,
+                                                                spacing: 0.0),
+                                                            Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                          .only(
+                                                                      left:
+                                                                          6.0),
+                                                              child: Text('(4)',
+                                                                  style: TextStyle(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w300,
+                                                                      color: Theme.of(
+                                                                              context)
+                                                                          .primaryColor)),
+                                                            )
+                                                          ],
+                                                        )
+                                                      ],
+                                                    ),
                                                   ),
-                                                  Row(
-                                                    children: <Widget>[
-                                                      SmoothStarRating(
-                                                          allowHalfRating:
-                                                              false,
-                                                          onRatingChanged: (v) {
-                                                            product['review_count'] =
-                                                                v;
-                                                            setState(() {});
-                                                          },
-                                                          starCount: 5,
-                                                          rating: product['review_count'].toDouble(),
-                                                          size: 16.0,
-                                                          color: Colors.amber,
-                                                          borderColor:
-                                                              Colors.amber,
-                                                          spacing: 0.0),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .only(
-                                                                left: 6.0),
-                                                        child: Text('(4)',
-                                                            style: TextStyle(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w300,
-                                                                color: Theme.of(
-                                                                        context)
-                                                                    .primaryColor)),
-                                                      )
-                                                    ],
-                                                  )
-                                                ],
-                                              ),
+                                                ),
+                                              ],
                                             ),
-                                          ),
-                                        ],
-                                      ),
-                                    );
-                                  },
-                                );
-                              }).toList(),
+                                          );
+                                        },
+                                      );
+                                    }).toList(),
                             ),
                           ),
                           RefreshIndicator(
@@ -277,8 +434,108 @@ class _ShopState extends State<Shop> {
                               crossAxisCount: 2,
                               childAspectRatio: 0.7,
                               padding: EdgeInsets.only(
-                                  top: 8, left: 6, right: 6, bottom: 0),
-                              children: List.generate(products.length, (index) {
+                                  top: 8, left: 10, bottom: 0),
+                              children: products.length == 0 ?
+                              List.generate(4, (index) {
+                                return Container(
+                                  child: Column(
+
+                                        children: <Widget>[
+                                          SizedBox(
+                                            height: (MediaQuery.of(context)
+                                                .size
+                                                .width /
+                                                2 -
+                                                5),
+                                            width: double.infinity,
+                                            child: Shimmer.fromColors(
+                                              baseColor:
+                                              Colors.grey[300],
+                                              highlightColor:
+                                              Colors.grey[100],
+                                              enabled: true,
+                                              child: Padding(
+                                                  padding: const EdgeInsets
+                                                      .only(
+                                                      bottom:
+                                                      8.0,
+                                                      right:
+                                                      10.0),
+                                                  child: Row(
+                                                    crossAxisAlignment:
+                                                    CrossAxisAlignment
+                                                        .start,
+                                                    children: [
+                                                      Container(
+                                                        width:
+                                                        MediaQuery.of(context).size.width,
+                                                        height:
+                                                        MediaQuery.of(context).size.height,
+                                                        color: Colors
+                                                            .white,
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                            ),
+                                          ),
+                                          Shimmer.fromColors(
+                                            baseColor:
+                                            Colors.grey[300],
+                                            highlightColor:
+                                            Colors.grey[100],
+                                            enabled: true,
+                                            child: Padding(
+                                              padding: const EdgeInsets
+                                                  .only(
+                                                  right:
+                                                  10.0),
+                                              child: Row(
+                                                crossAxisAlignment:
+                                                CrossAxisAlignment
+                                                    .start,
+                                                children: [
+                                                  Container(
+                                                    width:
+                                                    MediaQuery.of(context).size.width,
+                                                    height: 10,
+                                                    color: Colors
+                                                        .white,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(top: 5.0, right:
+                                            10.0),
+                                            child: Shimmer.fromColors(
+                                              baseColor:
+                                              Colors.grey[300],
+                                              highlightColor:
+                                              Colors.grey[100],
+                                              enabled: true,
+                                              child: Row(
+                                                crossAxisAlignment:
+                                                CrossAxisAlignment
+                                                    .start,
+                                                children: [
+                                                  Container(
+                                                    width: 60,
+                                                    height: 10,
+                                                    color: Colors
+                                                        .white,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+
+                                );
+                              })
+                                  : List.generate(products.length, (index) {
                                 return Container(
                                   child: Card(
                                     clipBehavior: Clip.antiAlias,
@@ -295,11 +552,12 @@ class _ShopState extends State<Shop> {
                                                         .size
                                                         .width /
                                                     2 -
-                                                5),
+                                                10),
                                             width: double.infinity,
                                             child: CachedNetworkImage(
                                               fit: BoxFit.cover,
-                                              imageUrl: 'https://raw.githubusercontent.com/peng8350/flutter_pulltorefresh/master/arts/qr_code.png',
+                                              imageUrl:
+                                                  'https://raw.githubusercontent.com/peng8350/flutter_pulltorefresh/master/arts/qr_code.png',
                                               placeholder: (context, url) => Center(
                                                   child:
                                                       CircularProgressIndicator()),
@@ -330,7 +588,10 @@ class _ShopState extends State<Shop> {
                                                                     .only(
                                                                 top: 2.0,
                                                                 bottom: 1),
-                                                        child: Text('\$' + products[index]['regular_price'],
+                                                        child: Text(
+                                                            '\$' +
+                                                                products[index][
+                                                                    'regular_price'],
                                                             style: TextStyle(
                                                               color: Theme.of(
                                                                       context)
@@ -367,13 +628,15 @@ class _ShopState extends State<Shop> {
                                                           allowHalfRating:
                                                               false,
                                                           onRatingChanged: (v) {
-                                                            products[index]
-                                                                ['review_count'] = v;
+                                                            products[index][
+                                                                'review_count'] = v;
                                                             setState(() {});
                                                           },
                                                           starCount: 5,
-                                                          rating: products[index]
-                                                          ['review_count'].toDouble(),
+                                                          rating: products[
+                                                                      index][
+                                                                  'review_count']
+                                                              .toDouble(),
                                                           size: 16.0,
                                                           color: Colors.amber,
                                                           borderColor:

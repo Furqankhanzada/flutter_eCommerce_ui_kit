@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
+import 'package:flutter_scaffold/localizations.dart';
 
 class CartList extends StatefulWidget {
   @override
@@ -20,7 +21,8 @@ class _CartListState extends State<CartList> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Cart'),
+          title: Text(AppLocalizations.of(context)
+              .translate('CART')),
         ),
         body: Column(
           children: <Widget>[

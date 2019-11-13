@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_scaffold/blocks/auth_block.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_scaffold/localizations.dart';
 
 class AppDrawer extends StatefulWidget {
   @override
@@ -33,7 +34,8 @@ class _AppDrawerState extends State<AppDrawer> {
             children: <Widget>[
               ListTile(
                 leading: Icon(Icons.home, color: Theme.of(context).accentColor),
-                title: Text('Home'),
+                title: Text(AppLocalizations.of(context)
+        .translate('HOME')),
                 onTap: () {
                   Navigator.pop(context);
                 },
@@ -41,7 +43,8 @@ class _AppDrawerState extends State<AppDrawer> {
               ListTile(
                 leading: Icon(Icons.shopping_basket,
                     color: Theme.of(context).accentColor),
-                title: Text('Shop'),
+                title: Text(AppLocalizations.of(context)
+        .translate('SHOP')),
                 trailing: Text('New',
                     style: TextStyle(color: Theme.of(context).primaryColor)),
                 onTap: () {
@@ -52,7 +55,8 @@ class _AppDrawerState extends State<AppDrawer> {
               ListTile(
                 leading:
                     Icon(Icons.category, color: Theme.of(context).accentColor),
-                title: Text('Categorise'),
+                title: Text(AppLocalizations.of(context)
+        .translate('CATEGORIES')),
                 onTap: () {
                   Navigator.pop(context);
                   Navigator.pushNamed(context, '/categorise');
@@ -61,7 +65,8 @@ class _AppDrawerState extends State<AppDrawer> {
               ListTile(
                 leading:
                     Icon(Icons.favorite, color: Theme.of(context).accentColor),
-                title: Text('My Wishlist'),
+                title: Text(AppLocalizations.of(context)
+        .translate('MY_WISHLIST')),
                 trailing: Container(
                   padding: const EdgeInsets.all(10.0),
                   decoration: new BoxDecoration(
@@ -79,7 +84,8 @@ class _AppDrawerState extends State<AppDrawer> {
               ListTile(
                 leading: Icon(Icons.shopping_cart,
                     color: Theme.of(context).accentColor),
-                title: Text('My Cart'),
+                title: Text(AppLocalizations.of(context)
+        .translate('MY_CART')),
                 trailing: Container(
                   padding: const EdgeInsets.all(10.0),
                   decoration: new BoxDecoration(
@@ -96,7 +102,8 @@ class _AppDrawerState extends State<AppDrawer> {
               ),
               ListTile(
                 leading: Icon(Icons.lock, color: Theme.of(context).accentColor),
-                title: Text('Login'),
+                title: Text(AppLocalizations.of(context)
+        .translate('LOGIN')),
                 onTap: () {
                   Navigator.pop(context);
                   Navigator.pushNamed(context, '/auth');
@@ -106,7 +113,8 @@ class _AppDrawerState extends State<AppDrawer> {
               ListTile(
                 leading:
                     Icon(Icons.settings, color: Theme.of(context).accentColor),
-                title: Text('Settings'),
+                title: Text(AppLocalizations.of(context)
+        .translate('SETTINGS')),
                 onTap: () {
                   Navigator.pop(context);
                   Navigator.pushNamed(context, '/settings');
@@ -115,7 +123,8 @@ class _AppDrawerState extends State<AppDrawer> {
               ListTile(
                 leading: Icon(Icons.exit_to_app,
                     color: Theme.of(context).accentColor),
-                title: Text('Logout'),
+                title: Text(AppLocalizations.of(context)
+        .translate('LOGOUT')),
                 onTap: () async {
                   await auth.logout();
                 },

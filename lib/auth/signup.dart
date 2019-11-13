@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_scaffold/models/user.dart';
 import 'package:flutter_scaffold/blocks/auth_block.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_scaffold/localizations.dart';
 
 class SignUp extends StatefulWidget {
   @override
@@ -116,7 +117,8 @@ class _SignUpState extends State<SignUp> {
                           textColor: Colors.white,
                           child: auth.loading && auth.loadingType == 'register' ? CircularProgressIndicator(
                             valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                          ) : Text('Sign Up'),
+                          ) : Text(AppLocalizations.of(context)
+                                .translate("CREATE_ACCOUNT")),
                           onPressed: () {
                             if (_formKey.currentState.validate() && !auth.loading) {
                               _formKey.currentState.save();

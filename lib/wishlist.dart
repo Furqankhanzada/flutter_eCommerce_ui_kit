@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
+import 'package:flutter_scaffold/localizations.dart';
 
 class WishList extends StatefulWidget {
   @override
@@ -26,7 +27,8 @@ class _WishlistState extends State<WishList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Wishlist'),
+        title: Text(AppLocalizations.of(context)
+            .translate('MY_WISHLIST')),
       ),
       body: ListView.builder(
         itemCount: products.length,

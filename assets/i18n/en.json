@@ -1,3 +1,17 @@
 {
-  "NEW_ARRIVALS": "New Arrivals"
+  "NEW_ARRIVALS": "New Arrivals",
+  "SHOP_BY_CATEGORY": "Shop By Category",
+  "HOME": "Home",
+  "SHOP": "Shop",
+  "CATEGORIES": "Categories",
+  "MY_WISHLIST": "My Wishlist",
+  "MY_CART": "My Cart",
+  "LOGIN": "Login",
+  "SETTINGS": "Settings",
+  "LOGOUT": "Logout",
+  "CART": "Cart",
+  "PRODUCT_DETAILS": "Product Detail",
+  "DESCRIPTION": "Description",
+  "CREATE_ACCOUNT": "Create Account",
+  "SIGN_UP": "Sign Up"
 }

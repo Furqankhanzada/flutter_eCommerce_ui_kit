@@ -45,6 +45,7 @@ class _HomeState extends State<Home> {
         Provider.of<CategoriesBlock>(context);
     final categories = categoriesBlock.categories;
     List<dynamic> newArrivals = productBlock.newArrivals;
+    print(Localizations.localeOf(context));
     return Scaffold(
       drawer: Drawer(
         child: AppDrawer(),
@@ -186,7 +187,7 @@ class _HomeState extends State<Home> {
                               },
                             );
                           }).toList() : newArrivals.map((i) {
-                            i["thumbnail"] = imgList[newArrivals.indexOf(i)];
+//                            i["thumbnail"] = imgList[newArrivals.indexOf(i)];
                             print(i["thumbnail"]);
                             return Builder(
                               builder: (BuildContext context) {
@@ -224,6 +225,7 @@ class _HomeState extends State<Home> {
                                           ListTile(
                                             title: Text(
                                               i['name'],
+                                                overflow: TextOverflow.ellipsis,
                                               style: TextStyle(fontSize: 14),
                                             ),
                                             subtitle: Text('\$200',
@@ -280,7 +282,8 @@ class _HomeState extends State<Home> {
                           Padding(
                             padding: EdgeInsets.only(
                                 top: 8.0, left: 8.0, right: 8.0),
-                            child: Text('Shop By Category',
+                            child: Text(AppLocalizations.of(context)
+                                .translate('SHOP_BY_CATEGORY'),
                                 style: TextStyle(
                                     color: Theme.of(context).accentColor,
                                     fontSize: 18,

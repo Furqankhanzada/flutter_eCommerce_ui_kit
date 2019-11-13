@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
+import 'package:flutter_scaffold/localizations.dart';
 
 class Settings extends StatefulWidget {
   @override
@@ -13,7 +14,8 @@ class _SettingsState extends State<Settings> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Settings'),
+          title: Text(AppLocalizations.of(context)
+              .translate('SETTINGS')),
         ),
         body: SafeArea(
               child: Column(
