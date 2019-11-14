@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter_scaffold/blocks/auth_block.dart';
 import 'signin.dart';
 import 'signup.dart';
+import 'package:flutter_scaffold/localizations.dart';
 
 class Auth extends StatelessWidget {
   final List<Widget> tabs = [
@@ -14,7 +15,9 @@ class Auth extends StatelessWidget {
     final AuthBlock authBlock = Provider.of<AuthBlock>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text(authBlock.currentIndex == 0 ? 'Sign In' : 'Create Account'),
+        title: Text(authBlock.currentIndex == 0 ? AppLocalizations.of(context)
+            .translate('SIGN_IN') : AppLocalizations.of(context)
+            .translate('CREATE_ACCOUNT')),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[

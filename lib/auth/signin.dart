@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_scaffold/blocks/auth_block.dart';
 import 'package:flutter_scaffold/models/user.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_scaffold/localizations.dart';
 
 class SignIn extends StatefulWidget {
   @override
@@ -39,7 +40,8 @@ class _SignInState extends State<SignIn> {
                       },
                       decoration: InputDecoration(
                         hintText: 'Enter Username Or Email',
-                        labelText: 'Email',
+                        labelText: AppLocalizations.of(context)
+                            .translate('EMAIL'),
                       ),
                     ),
                   ),
@@ -57,7 +59,8 @@ class _SignInState extends State<SignIn> {
                     },
                     decoration: InputDecoration(
                       hintText: 'Enter Password',
-                      labelText: 'Password',
+                      labelText: AppLocalizations.of(context)
+                          .translate('PASSWORD'),
                     ),
                     obscureText: true,
                   ),
@@ -74,7 +77,8 @@ class _SignInState extends State<SignIn> {
                             textColor: Colors.white,
                             child: auth.loading && auth.loadingType == 'login' ? CircularProgressIndicator(
                               valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                            ) : Text('Sign In'),
+                            ) : Text(AppLocalizations.of(context)
+                                .translate('SIGN_IN')),
                             onPressed: () {
                               // Validate form
                               if (_formKey.currentState.validate() && !auth.loading) {

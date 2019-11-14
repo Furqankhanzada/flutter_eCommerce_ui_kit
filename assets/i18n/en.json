@@ -13,5 +13,10 @@
   "PRODUCT_DETAILS": "Product Detail",
   "DESCRIPTION": "Description",
   "CREATE_ACCOUNT": "Create Account",
-  "SIGN_UP": "Sign Up"
+  "SIGN_UP": "Sign Up",
+  "USERNAME": "Username",
+  "EMAIL": "Email",
+  "PASSWORD": "Password",
+  "CONFIRM_PASSWORD": "Confirm Password",
+  "SIGN_UP": "Sign In"
 }

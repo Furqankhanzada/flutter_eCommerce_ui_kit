@@ -40,7 +40,8 @@ class _SignUpState extends State<SignUp> {
                       },
                       decoration: InputDecoration(
                         hintText: 'Enter Username',
-                        labelText: 'Username',
+                        labelText: AppLocalizations.of(context)
+                            .translate('USERNAME'),
                       ),
                     ),
                   ),
@@ -60,7 +61,8 @@ class _SignUpState extends State<SignUp> {
                       },
                       decoration: InputDecoration(
                         hintText: 'Enter Email',
-                        labelText: 'Email',
+                        labelText: AppLocalizations.of(context)
+                            .translate('EMAIL'),
                       ),
                     ),
                   ),
@@ -83,7 +85,8 @@ class _SignUpState extends State<SignUp> {
                         },
                         decoration: InputDecoration(
                           hintText: 'Enter Password',
-                          labelText: 'Password',
+                          labelText: AppLocalizations.of(context)
+                              .translate('PASSWORD'),
                         ),
                         obscureText: true),
                   ),
@@ -101,7 +104,8 @@ class _SignUpState extends State<SignUp> {
                     },
                     decoration: InputDecoration(
                       hintText: 'Enter Same Password',
-                      labelText: 'Confirm Password',
+                      labelText: AppLocalizations.of(context)
+                          .translate('CONFIRM_PASSWORD'),
                     ),
                     obscureText: true,
                   ),

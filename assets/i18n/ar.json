@@ -13,5 +13,10 @@
   "PRODUCT_DETAILS": "تفاصيل المنتج",
   "DESCRIPTION": "الوصف",
   "CREATE_ACCOUNT": "إنشاء حساب",
-  "SIGN_UP": "سجل"
+  "SIGN_UP": "سجل",
+  "USERNAME": "اسم المستخدم",
+  "EMAIL": "البريد الإلكتروني",
+  "PASSWORD": "كلمه السر",
+  "CONFIRM_PASSWORD": "تأكيد كلمة المرور",
+  "SIGN_IN": "تسجيل الدخول"
 }
