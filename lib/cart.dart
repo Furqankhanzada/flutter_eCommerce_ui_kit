@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 import 'package:flutter_scaffold/localizations.dart';
+import 'package:flutter_scaffold/blocks/cart.dart';
+import 'package:provider/provider.dart';
 
 class CartList extends StatefulWidget {
   @override
@@ -19,6 +21,10 @@ class _CartListState extends State<CartList> {
 
   @override
   Widget build(BuildContext context) {
+    final CartBlock cartBlock = Provider.of<CartBlock>(context);
+    List<dynamic> cartItems = cartBlock.cartItems;
+//    final totalAmount = cartItems.reduce((a, b) => int.parse(a["sale_price"]) + int.parse(b["sale_price"]));
+//    print("total===============$totalAmount");
     return Scaffold(
         appBar: AppBar(
           title: Text(AppLocalizations.of(context)
@@ -29,14 +35,14 @@ class _CartListState extends State<CartList> {
             Padding(
               padding: const EdgeInsets.only(top: 12.0, bottom: 12.0),
               child: Container(
-                  child: Text(products.length.toString() + " ITEMS IN YOUR CART", textDirection: TextDirection.ltr, style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold))
+                  child: Text(cartItems.length.toString() + " ITEMS IN YOUR CART", textDirection: TextDirection.ltr, style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold))
               ),
             ),
             Flexible(
               child: ListView.builder(
-                  itemCount: products.length,
+                  itemCount: cartItems.length,
                   itemBuilder: (context, index) {
-                    final item = products[index];
+                    final item = cartItems[index];
                     return Dismissible(
                       // Each Dismissible must contain a Key. Keys allow Flutter to
                       // uniquely identify widgets.
@@ -53,10 +59,9 @@ class _CartListState extends State<CartList> {
                           Scaffold.of(context)
                               .showSnackBar(SnackBar(content: Text(item['name'] + " added to carts"), duration: Duration(seconds: 1)));
                         }
+
                         // Remove the item from the data source.
-                        setState(() {
-                          products.removeAt(index);
-                        });
+                        cartBlock.addToCart(item);
                       },
                       // Show a red background as the item is swiped away.
                       background: Container(
@@ -108,7 +113,7 @@ class _CartListState extends State<CartList> {
                                     ),
                                     child: CachedNetworkImage(
                                       fit: BoxFit.cover,
-                                      imageUrl: item['image'],
+                                      imageUrl: item['thumbnail'],
                                       placeholder: (context, url) => Center(
                                           child: CircularProgressIndicator()
                                       ),

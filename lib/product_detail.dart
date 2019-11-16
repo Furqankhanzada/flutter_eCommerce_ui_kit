@@ -2,15 +2,21 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 import 'package:flutter_scaffold/localizations.dart';
+import 'package:flutter_scaffold/blocks/cart.dart';
+import 'package:provider/provider.dart';
 
 class Products extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final CartBlock cartBlock = Provider.of<CartBlock>(context);
     Map<String, dynamic> args = ModalRoute.of(context).settings.arguments;
+    List<dynamic> addedToCart = cartBlock.cartItems.where((item) => item["id"] == args["id"]).toList();
+    final cartLength = addedToCart.length;
+    print("===length== $cartLength");
     return Scaffold(
       appBar: AppBar(
         title: Text(AppLocalizations.of(context)
-            .translate('SETTINGS')),
+            .translate('PRODUCT_DETAILS')),
       ),
       body: SafeArea(
         top: false,
@@ -117,13 +123,27 @@ class Products extends StatelessWidget {
                         Container(
                             alignment: Alignment(-1.0, -1.0),
                             child: Padding(
-                              padding: const EdgeInsets.only(bottom: 10.0),
+                              padding: const EdgeInsets.only(bottom: 30.0),
                               child: Text(
                                 args['description'],
                                 style: TextStyle(
                                     color: Colors.black, fontSize: 16),
                               ),
-                            ))
+                            )
+                        ),
+                        ConstrainedBox(
+                          constraints: const BoxConstraints(minWidth: double.infinity),
+                          child: new RaisedButton(
+                              color: Theme.of(context).primaryColor,
+                            onPressed: () {
+                              cartBlock.addToCart(args);
+                            },
+                            child: Text(cartLength == 0 ? "ADD TO CART" : 'REMOVE FROM CART',
+                                style: TextStyle(color: Colors.white)
+                            ),
+                          ),
+                        )
+
                       ],
                     ),
                   ],

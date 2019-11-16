@@ -4,8 +4,8 @@ import 'package:http/http.dart' as http;
 
 class ProductService {
   getProducts() async {
-    final response = await http.get('$BASE_URL/wc-apis/v1/products?lang=ar');
-    print(jsonDecode(response.body));
+    final response = await http.get('$BASE_URL/wc-apis/v1/products?lang=en');
+    print("product re===" + response.body);
     if (response.statusCode == 200) {
       // If the call to the server was successful, parse the JSON.
       // return User.fromJson(json.decode(response.body));
@@ -18,7 +18,7 @@ class ProductService {
   }
 
   getNewArrivals() async {
-    final response = await http.get('$BASE_URL/wc-apis/v1/newarrivals?lang=ar');
+    final response = await http.get('$BASE_URL/wc-apis/v1/newarrivals?lang=en');
     print(jsonDecode(response.body));
     if (response.statusCode == 200) {
       // If the call to the server was successful, parse the JSON.

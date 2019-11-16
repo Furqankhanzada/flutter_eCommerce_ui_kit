@@ -4,6 +4,7 @@ import 'package:flutter_scaffold/auth/auth.dart';
 import 'package:flutter_scaffold/blocks/auth_block.dart';
 import 'package:flutter_scaffold/blocks/categories_block.dart';
 import 'package:flutter_scaffold/blocks/products_block.dart';
+import 'package:flutter_scaffold/blocks/cart.dart';
 import 'package:flutter_scaffold/cart.dart';
 import 'package:flutter_scaffold/categorise.dart';
 import 'package:flutter_scaffold/home/home.dart';
@@ -16,13 +17,14 @@ import 'package:provider/provider.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  final Locale locale = Locale('ar');
+  final Locale locale = Locale('en');
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider<AuthBlock>.value(value: AuthBlock()),
       ChangeNotifierProvider<CategoriesBlock>.value(value: CategoriesBlock()),
-      ChangeNotifierProvider<ProductsBlock>.value(value: ProductsBlock())
-    ],
+      ChangeNotifierProvider<ProductsBlock>.value(value: ProductsBlock()),
+  ChangeNotifierProvider<CartBlock>.value(value: CartBlock()),
+  ],
     child: MaterialApp(
       localizationsDelegates: [
         AppLocalizations.delegate,

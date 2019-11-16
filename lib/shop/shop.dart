@@ -81,7 +81,7 @@ class _ShopState extends State<Shop> {
   void initState() {
     super.initState();
     print("initStateRunning");
-    Future.delayed(const Duration(milliseconds: 500), () {
+    Future.delayed(const Duration(milliseconds: 1000), () {
 // Here you can write your code
       final ProductsBlock productBlock = Provider.of<ProductsBlock>(context);
       productBlock.getProducts();
@@ -276,7 +276,9 @@ class _ShopState extends State<Shop> {
                                         builder: (BuildContext context) {
                                           return InkWell(
                                             onTap: () {
-                                              print('Card tapped.');
+                                              Navigator.pushNamed(
+                                                  context, '/products',
+                                                  arguments: product);
                                             },
                                             child: Column(
                                               crossAxisAlignment:
@@ -541,7 +543,9 @@ class _ShopState extends State<Shop> {
                                     clipBehavior: Clip.antiAlias,
                                     child: InkWell(
                                       onTap: () {
-                                        print('Card tapped.');
+                                        Navigator.pushNamed(
+                                            context, '/products',
+                                            arguments: products[index]);
                                       },
                                       child: Column(
                                         crossAxisAlignment:
@@ -572,6 +576,7 @@ class _ShopState extends State<Shop> {
                                             child: ListTile(
                                               title: Text(
                                                 products[index]['name'],
+                                                overflow: TextOverflow.ellipsis,
                                                 style: TextStyle(
                                                     fontWeight: FontWeight.bold,
                                                     fontSize: 16),
