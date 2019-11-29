@@ -18,5 +18,14 @@
   "EMAIL": "Email",
   "PASSWORD": "Password",
   "CONFIRM_PASSWORD": "Confirm Password",
-  "SIGN_UP": "Sign In"
+  "SIGN_IN": "Sign In",
+  "CHECKOUT": "Checkout",
+  "FIRST_NAME": "First Name",
+  "LAST_NAME": "Last Name",
+  "COUNTRY": "Country",
+  "STATE": "State",
+  "CITY": "City",
+  "PHONE_NUMBER": "Phone Number",
+  "STREET_ADDRESS": "Street Address",
+  "POSTAL_CODE": "Postal Code"
 }

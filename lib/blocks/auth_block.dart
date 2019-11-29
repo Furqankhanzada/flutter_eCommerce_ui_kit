@@ -45,10 +45,10 @@ class AuthBlock extends ChangeNotifier {
     notifyListeners();
   }
 
-  login(UserCredential userCredential) async {
+  login(UserCredential userCredential, BuildContext context) async {
     loading = true;
     loadingType = 'login';
-    await _authService.login(userCredential);
+    await _authService.login(userCredential, context);
     setUser();
     loading = false;
   }

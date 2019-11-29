@@ -5,17 +5,19 @@ import 'package:flutter_scaffold/models/user.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:flutter/material.dart';
 
 class AuthService {
   final storage = FlutterSecureStorage();
   // Create storage
-  Future<Map> login(UserCredential userCredential) async {
+  Future<Map> login(UserCredential userCredential, BuildContext context) async {
     final response = await http.post('$BASE_URL/jwt-auth/v1/token', body: {
       'username': userCredential.usernameOrEmail,
       'password': userCredential.password
     });
 
     if (response.statusCode == 200) {
+      Navigator.pushNamed(context, "/");
       // If the call to the server was successful, parse the JSON.
       // return User.fromJson(json.decode(response.body));
       setUser(response.body);

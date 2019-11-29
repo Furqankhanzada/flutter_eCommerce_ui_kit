@@ -5,6 +5,8 @@ import 'package:flutter_scaffold/blocks/auth_block.dart';
 import 'package:flutter_scaffold/blocks/categories_block.dart';
 import 'package:flutter_scaffold/blocks/products_block.dart';
 import 'package:flutter_scaffold/blocks/cart.dart';
+import 'package:flutter_scaffold/blocks/payment_methods.dart';
+import 'package:flutter_scaffold/blocks/order_details.dart';
 import 'package:flutter_scaffold/cart.dart';
 import 'package:flutter_scaffold/categorise.dart';
 import 'package:flutter_scaffold/home/home.dart';
@@ -12,7 +14,10 @@ import 'package:flutter_scaffold/localizations.dart';
 import 'package:flutter_scaffold/product_detail.dart';
 import 'package:flutter_scaffold/settings.dart';
 import 'package:flutter_scaffold/shop/shop.dart';
+import 'package:flutter_scaffold/checkout.dart';
+import 'package:flutter_scaffold/payment.dart';
 import 'package:flutter_scaffold/wishlist.dart';
+import 'package:flutter_scaffold/confirm_checkout.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -24,6 +29,8 @@ void main() {
       ChangeNotifierProvider<CategoriesBlock>.value(value: CategoriesBlock()),
       ChangeNotifierProvider<ProductsBlock>.value(value: ProductsBlock()),
   ChangeNotifierProvider<CartBlock>.value(value: CartBlock()),
+  ChangeNotifierProvider<PaymentBlock>.value(value: PaymentBlock()),
+  ChangeNotifierProvider<OrderBlock>.value(value: OrderBlock())
   ],
     child: MaterialApp(
       localizationsDelegates: [
@@ -47,8 +54,11 @@ void main() {
         '/wishlist': (BuildContext context) => WishList(),
         '/cart': (BuildContext context) => CartList(),
         '/settings': (BuildContext context) => Settings(),
-        '/products': (BuildContext context) => Products()
-      },
+        '/products': (BuildContext context) => Products(),
+        '/checkout': (BuildContext context) => Checkout(),
+        '/payment': (BuildContext context) => Payment(),
+        '/confirm': (BuildContext context) => ConfirmCheckout()
+  },
     ),
   ));
 }

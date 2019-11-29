@@ -4,13 +4,14 @@ import 'package:smooth_star_rating/smooth_star_rating.dart';
 import 'package:flutter_scaffold/localizations.dart';
 import 'package:flutter_scaffold/blocks/cart.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_scaffold/blocks/order_details.dart';
 
-class CartList extends StatefulWidget {
+class ConfirmCheckout extends StatefulWidget {
   @override
-  _CartListState createState() => _CartListState();
+  _ConfirmCheckoutState createState() => _ConfirmCheckoutState();
 }
 
-class _CartListState extends State<CartList> {
+class _ConfirmCheckoutState extends State<ConfirmCheckout> {
   final List<Map<dynamic, dynamic>> products = [
     {
       'name': 'IPhone',
@@ -39,34 +40,19 @@ class _CartListState extends State<CartList> {
   Widget build(BuildContext context) {
     final CartBlock cartBlock = Provider.of<CartBlock>(context);
     List<dynamic> cartItems = cartBlock.cartItems;
-    double total = 0;
-    cartItems.forEach((element) => {
-          if (element['sale_price'] is double){
-            total = total + double.parse(element["sale_price"])
-          }
-          else{
-            total = total + int.parse(element["sale_price"])
-          }
-        });
-    print("test ===== $total");
-
+    var total = 0;
+    cartItems
+        .forEach((element) => total = total + int.parse(element["sale_price"]));
+    final OrderBlock orderBlock = Provider.of<OrderBlock>(context);
+    final order = orderBlock.orderGetter;
 //    final totalAmount = cartItems.reduce((value, element) =>  0 + element.sale_price);
 //    print("total===============$totalAmount");
     return Scaffold(
         appBar: AppBar(
-          title: Text(AppLocalizations.of(context).translate('CART')),
+          title: Text('Checkout'),
         ),
         body: Column(
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(top: 12.0, bottom: 12.0),
-              child: Container(
-                  child: Text(
-                      cartItems.length.toString() + " ITEMS IN YOUR CART",
-                      textDirection: TextDirection.ltr,
-                      style: TextStyle(
-                          color: Colors.black, fontWeight: FontWeight.bold))),
-            ),
             Flexible(
               child: ListView.builder(
                   itemCount: cartItems.length,
@@ -185,9 +171,37 @@ class _CartListState extends State<CartList> {
                 child: Padding(
               padding: const EdgeInsets.only(left: 20.0, right: 20),
               child: Column(
+                crossAxisAlignment:
+                CrossAxisAlignment.start,
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.only(bottom: 30.0),
+                    padding: const EdgeInsets.only(bottom: 5.0),
+                    child: Text(
+                      "SHIPPING ADDRESS",
+                      textAlign: TextAlign.left,
+                      style: TextStyle(fontSize: 16, color: Colors.grey),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 10.0),
+                    child: Text(order.address,
+                        style: TextStyle(fontSize: 14)),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 5.0),
+                    child: Text(
+                      "PAYMENT METHOD",
+                      textAlign: TextAlign.left,
+                      style: TextStyle(fontSize: 16, color: Colors.grey),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 10.0),
+                    child: Text("Cash on delivery",
+                        style: TextStyle(fontSize: 14)),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 10.0),
                     child: Row(
                       children: <Widget>[
                         Expanded(
@@ -198,18 +212,6 @@ class _CartListState extends State<CartList> {
                         Text("\$$total",
                             style: TextStyle(
                                 fontSize: 20, fontWeight: FontWeight.bold)),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 15.0),
-                    child: Row(
-                      children: <Widget>[
-                        Expanded(
-                            child: Text("Subtotal",
-                                style: TextStyle(fontSize: 14))),
-                        Text("\$36.00",
-                            style: TextStyle(fontSize: 14, color: Colors.grey)),
                       ],
                     ),
                   ),
@@ -236,13 +238,11 @@ class _CartListState extends State<CartList> {
                 minWidth: double.infinity,
                 height: 40.0,
                 child: RaisedButton(
-                  onPressed: total > 0
-                      ? () {
-                          Navigator.pushNamed(context, '/checkout');
-                        }
-                      : null,
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/checkout');
+                  },
                   child: Text(
-                    "CHECKOUT",
+                    "PLACE ORDER",
                     style: TextStyle(color: Colors.white, fontSize: 16),
                   ),
                 ),

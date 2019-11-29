@@ -18,6 +18,9 @@ class CartBlock extends ChangeNotifier {
     final response = await _cartService.getCategories();
     cartItems = response;
   }
+  emptyCart() async {
+    _cartItems = [];
+  }
   addToCart(cartItem) async {
     List<dynamic> isItemAdded = cartItems.where((item) => item["id"] == cartItem["id"]).toList();
     if(isItemAdded.length == 0){

@@ -79,13 +79,13 @@ class _SignInState extends State<SignIn> {
                               valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                             ) : Text(AppLocalizations.of(context)
                                 .translate('SIGN_IN')),
-                            onPressed: () {
+                            onPressed: (){
                               // Validate form
                               if (_formKey.currentState.validate() && !auth.loading) {
                                 // Update values
                                 _formKey.currentState.save();
                                 // Hit Api
-                                auth.login(userCredential);
+                                auth.login(userCredential, context);
                               }
                             },
                           );
