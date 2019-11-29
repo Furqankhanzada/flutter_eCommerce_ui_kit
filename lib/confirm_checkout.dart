@@ -5,6 +5,7 @@ import 'package:flutter_scaffold/localizations.dart';
 import 'package:flutter_scaffold/blocks/cart.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_scaffold/blocks/order_details.dart';
+import 'package:flutter_scaffold/blocks/auth_block.dart';
 
 class ConfirmCheckout extends StatefulWidget {
   @override
@@ -38,6 +39,7 @@ class _ConfirmCheckoutState extends State<ConfirmCheckout> {
 
   @override
   Widget build(BuildContext context) {
+    AuthBlock auth = Provider.of<AuthBlock>(context);
     final CartBlock cartBlock = Provider.of<CartBlock>(context);
     List<dynamic> cartItems = cartBlock.cartItems;
     var total = 0;
@@ -45,6 +47,7 @@ class _ConfirmCheckoutState extends State<ConfirmCheckout> {
         .forEach((element) => total = total + int.parse(element["sale_price"]));
     final OrderBlock orderBlock = Provider.of<OrderBlock>(context);
     final order = orderBlock.orderGetter;
+    final isLoggedIn = auth.isLoggedIn;
 //    final totalAmount = cartItems.reduce((value, element) =>  0 + element.sale_price);
 //    print("total===============$totalAmount");
     return Scaffold(
@@ -239,7 +242,11 @@ class _ConfirmCheckoutState extends State<ConfirmCheckout> {
                 height: 40.0,
                 child: RaisedButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/checkout');
+                    if(!isLoggedIn){
+                      Navigator.pushNamed(context, '/auth');
+                    } else {
+                        orderBlock.placeOrder();
+                    }
                   },
                   child: Text(
                     "PLACE ORDER",
