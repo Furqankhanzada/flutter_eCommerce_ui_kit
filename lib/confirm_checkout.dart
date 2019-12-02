@@ -48,9 +48,8 @@ class _ConfirmCheckoutState extends State<ConfirmCheckout> {
     final OrderBlock orderBlock = Provider.of<OrderBlock>(context);
     final order = orderBlock.orderGetter;
     final isLoggedIn = auth.isLoggedIn;
-//    final totalAmount = cartItems.reduce((value, element) =>  0 + element.sale_price);
-//    print("total===============$totalAmount");
     return Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           title: Text('Checkout'),
         ),
@@ -123,46 +122,46 @@ class _ConfirmCheckoutState extends State<ConfirmCheckout> {
                               padding: const EdgeInsets.only(
                                   top: 10.0, bottom: 10.0),
                               child: ListTile(
-                                trailing: Text('\$ ${item['price']}'),
-                                leading: ClipRRect(
-                                  borderRadius: BorderRadius.circular(5.0),
-                                  child: Container(
-                                    decoration:
-                                        BoxDecoration(color: Colors.blue),
-                                    child: CachedNetworkImage(
-                                      fit: BoxFit.cover,
-                                      imageUrl: item['thumbnail'],
-                                      placeholder: (context, url) => Center(
-                                          child: CircularProgressIndicator()),
-                                      errorWidget: (context, url, error) =>
-                                          new Icon(Icons.error),
+                                  trailing: Text('\$ ${item['price']}'),
+                                  leading: ClipRRect(
+                                    borderRadius: BorderRadius.circular(5.0),
+                                    child: Container(
+                                      decoration:
+                                          BoxDecoration(color: Colors.blue),
+                                      child: CachedNetworkImage(
+                                        fit: BoxFit.cover,
+                                        imageUrl: item['thumbnail'],
+                                        placeholder: (context, url) => Center(
+                                            child: CircularProgressIndicator()),
+                                        errorWidget: (context, url, error) =>
+                                            new Icon(Icons.error),
+                                      ),
                                     ),
                                   ),
-                                ),
-                                title: Text(
-                                  item['name'],
-                                  style: TextStyle(fontSize: 14),
-                                ),
-                                subtitle: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Row(
-                                      children: <Widget>[
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              top: 2.0, bottom: 1),
-                                          child: Text('in stock',
-                                              style: TextStyle(
-                                                color: Theme.of(context)
-                                                    .accentColor,
-                                                fontWeight: FontWeight.w700,
-                                              )),
-                                        )
-                                      ],
-                                    )
-                                  ],
-                                ),
-                              ),
+                                  title: Text(
+                                    item['name'],
+                                    style: TextStyle(fontSize: 14),
+                                  ),
+                                  subtitle: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Row(
+                                        children: <Widget>[
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                top: 2.0, bottom: 1),
+                                            child: Text('in stock',
+                                                style: TextStyle(
+                                                  color: Theme.of(context)
+                                                      .accentColor,
+                                                  fontWeight: FontWeight.w700,
+                                                )),
+                                          )
+                                        ],
+                                      ),
+                                    ],
+                                  )),
                             ),
                           ],
                         ),
@@ -174,8 +173,7 @@ class _ConfirmCheckoutState extends State<ConfirmCheckout> {
                 child: Padding(
               padding: const EdgeInsets.only(left: 20.0, right: 20),
               child: Column(
-                crossAxisAlignment:
-                CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.only(bottom: 5.0),
@@ -187,8 +185,7 @@ class _ConfirmCheckoutState extends State<ConfirmCheckout> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 10.0),
-                    child: Text(order.address,
-                        style: TextStyle(fontSize: 14)),
+                    child: Text(order.address, style: TextStyle(fontSize: 14)),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 5.0),
@@ -241,11 +238,15 @@ class _ConfirmCheckoutState extends State<ConfirmCheckout> {
                 minWidth: double.infinity,
                 height: 40.0,
                 child: RaisedButton(
-                  onPressed: () {
-                    if(!isLoggedIn){
+                  onPressed: () async {
+                    if (!isLoggedIn) {
                       Navigator.pushNamed(context, '/auth');
                     } else {
-                        orderBlock.placeOrder();
+                      final response = await orderBlock.placeOrder(cartItems);
+                      if (response == 200) {
+                        cartBlock.emptyCart();
+                        Navigator.pushNamed(context, '/');
+                      }
                     }
                   },
                   child: Text(

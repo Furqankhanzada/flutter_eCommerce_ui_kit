@@ -14,9 +14,6 @@ class Home extends StatefulWidget {
   _HomeState createState() => _HomeState();
 }
 
-
-
-
 class _HomeState extends State<Home> {
   final List<String> imgList = [
     'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
@@ -101,181 +98,223 @@ class _HomeState extends State<Home> {
                         height: 240.0,
                         child: ListView(
                           scrollDirection: Axis.horizontal,
-                          children: newArrivals.length == 0 ? [1,2,3,4].map((i) {
+                          children: newArrivals.length == 0
+                              ? [1, 2, 3, 4].map((i) {
 //                            i["thumbnail"] = imgList[newArrivals.indexOf(i)];
 //                            print(i["thumbnail"]);
-                            return Builder(
-                              builder: (BuildContext context) {
-                                return Container(
-                                  width: 140.0,
-                                  child: Card(
-                                    clipBehavior: Clip.antiAlias,
-                                    child: InkWell(
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: <Widget>[
-                                          Shimmer.fromColors(
-                                            baseColor: Colors.grey[300],
-                                            highlightColor: Colors.grey[100],
-                                            enabled: true,
+                                  return Builder(
+                                    builder: (BuildContext context) {
+                                      return Container(
+                                        width: 140.0,
+                                        child: Card(
+                                          clipBehavior: Clip.antiAlias,
+                                          child: InkWell(
                                             child: Column(
-                                              children: [0]
-                                                  .map((_) => Padding(
-                                                padding: const EdgeInsets.only(bottom: 8.0),
-                                                child: Row(
-                                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                                  children: [
-                                                    Container(
-                                                      width: 138.0,
-                                                      height: 150,
-                                                      color: Colors.white,
-                                                    ),
-                                                  ],
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: <Widget>[
+                                                Shimmer.fromColors(
+                                                  baseColor: Colors.grey[300],
+                                                  highlightColor:
+                                                      Colors.grey[100],
+                                                  enabled: true,
+                                                  child: Column(
+                                                    children: [0]
+                                                        .map((_) => Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                          .only(
+                                                                      bottom:
+                                                                          8.0),
+                                                              child: Row(
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
+                                                                children: [
+                                                                  Container(
+                                                                    width:
+                                                                        138.0,
+                                                                    height: 150,
+                                                                    color: Colors
+                                                                        .white,
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ))
+                                                        .toList(),
+                                                  ),
                                                 ),
-                                              ))
-                                                  .toList(),
+                                                Shimmer.fromColors(
+                                                  baseColor: Colors.grey[300],
+                                                  highlightColor:
+                                                      Colors.grey[100],
+                                                  enabled: true,
+                                                  child: Column(
+                                                    children: [0]
+                                                        .map((_) => Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                          .only(
+                                                                      left: 5.0,
+                                                                      right:
+                                                                          5.0),
+                                                              child: Row(
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
+                                                                children: [
+                                                                  Container(
+                                                                    width:
+                                                                        135.0,
+                                                                    height: 10,
+                                                                    color: Colors
+                                                                        .white,
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ))
+                                                        .toList(),
+                                                  ),
+                                                ),
+                                                Shimmer.fromColors(
+                                                  baseColor: Colors.grey[300],
+                                                  highlightColor:
+                                                      Colors.grey[100],
+                                                  enabled: true,
+                                                  child: Column(
+                                                    children: [0]
+                                                        .map((_) => Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                          .only(
+                                                                      top: 10.0,
+                                                                      left:
+                                                                          5.0),
+                                                              child: Row(
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
+                                                                children: [
+                                                                  Container(
+                                                                    width: 50.0,
+                                                                    height: 10,
+                                                                    color: Colors
+                                                                        .white,
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ))
+                                                        .toList(),
+                                                  ),
+                                                )
+                                              ],
                                             ),
                                           ),
-                                          Shimmer.fromColors(
-                                            baseColor: Colors.grey[300],
-                                            highlightColor: Colors.grey[100],
-                                            enabled: true,
-                                            child: Column(
-                                              children: [0]
-                                                  .map((_) => Padding(
-                                                padding: const EdgeInsets.only( left: 5.0, right: 5.0),
-                                                child: Row(
-                                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                                  children: [
-                                                    Container(
-                                                      width: 135.0,
-                                                      height: 10,
-                                                      color: Colors.white,
-                                                    ),
-                                                  ],
-                                                ),
-                                              ))
-                                                  .toList(),
-                                            ),
-                                          ),
-                                          Shimmer.fromColors(
-                                            baseColor: Colors.grey[300],
-                                            highlightColor: Colors.grey[100],
-                                            enabled: true,
-                                            child: Column(
-                                              children: [0]
-                                                  .map((_) => Padding(
-                                                padding: const EdgeInsets.only( top: 10.0,left: 5.0),
-                                                child: Row(
-                                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                                  children: [
-                                                    Container(
-                                                      width: 50.0,
-                                                      height: 10,
-                                                      color: Colors.white,
-                                                    ),
-                                                  ],
-                                                ),
-                                              ))
-                                                  .toList(),
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                );
-                              },
-                            );
-                          }).toList() : newArrivals.map((i) {
+                                        ),
+                                      );
+                                    },
+                                  );
+                                }).toList()
+                              : newArrivals.map((i) {
 //                            i["thumbnail"] = imgList[newArrivals.indexOf(i)];
-                            print(i["thumbnail"]);
-                            return Builder(
-                              builder: (BuildContext context) {
-                                return Container(
-                                  width: 140.0,
-                                  child: Card(
-                                    clipBehavior: Clip.antiAlias,
-                                    child: InkWell(
-                                      onTap: () {
-                                        Navigator.pushNamed(
-                                            context, '/products',
-                                            arguments: i);
-                                      },
-                                      child: Column(
-                                        crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                        children: <Widget>[
-                                          SizedBox(
-                                            height: 160,
-                                            child: Hero(
-                                              tag: i["thumbnail"],
-                                              child: CachedNetworkImage(
-                                                fit: BoxFit.cover,
-                                                imageUrl: i["thumbnail"],
-                                                placeholder: (context, url) =>
-                                                    Center(
-                                                        child:
-                                                        CircularProgressIndicator()),
-                                                errorWidget:
-                                                    (context, url, error) =>
-                                                new Icon(Icons.error),
-                                              ),
+                                  print(i["thumbnail"]);
+                                  return Builder(
+                                    builder: (BuildContext context) {
+                                      return Container(
+                                        width: 140.0,
+                                        child: Card(
+                                          clipBehavior: Clip.antiAlias,
+                                          child: InkWell(
+                                            onTap: () {
+                                              Navigator.pushNamed(
+                                                  context, '/products',
+                                                  arguments: i);
+                                            },
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: <Widget>[
+                                                SizedBox(
+                                                  height: 160,
+                                                  child: Hero(
+                                                    tag: i["thumbnail"],
+                                                    child: CachedNetworkImage(
+                                                      fit: BoxFit.cover,
+                                                      imageUrl: i["thumbnail"],
+                                                      placeholder: (context,
+                                                              url) =>
+                                                          Center(
+                                                              child:
+                                                                  CircularProgressIndicator()),
+                                                      errorWidget: (context,
+                                                              url, error) =>
+                                                          new Icon(Icons.error),
+                                                    ),
+                                                  ),
+                                                ),
+                                                ListTile(
+                                                  title: Text(
+                                                    i['name'],
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    style:
+                                                        TextStyle(fontSize: 14),
+                                                  ),
+                                                  subtitle: Text('\$200',
+                                                      style: TextStyle(
+                                                          color:
+                                                              Theme.of(context)
+                                                                  .accentColor,
+                                                          fontWeight:
+                                                              FontWeight.w700)),
+                                                )
+                                              ],
                                             ),
                                           ),
-                                          ListTile(
-                                            title: Text(
-                                              i['name'],
-                                                overflow: TextOverflow.ellipsis,
-                                              style: TextStyle(fontSize: 14),
-                                            ),
-                                            subtitle: Text('\$200',
-                                                style: TextStyle(
-                                                    color: Theme.of(context)
-                                                        .accentColor,
-                                                    fontWeight:
-                                                    FontWeight.w700)),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                );
-                              },
-                            );
-                          }).toList(),
+                                        ),
+                                      );
+                                    },
+                                  );
+                                }).toList(),
                         ),
                       ),
                       Container(
                         child: Padding(
                           padding:
                               EdgeInsets.only(top: 6.0, left: 8.0, right: 8.0),
-                          child: newArrivals.length == 0 ? Shimmer.fromColors(
-                            baseColor: Colors.grey[300],
-                            highlightColor: Colors.grey[100],
-                            enabled: true,
-                            child: Column(
-                              children: [0]
-                                  .map((_) => Padding(
-                                padding: const EdgeInsets.only(bottom: 8.0),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      width: MediaQuery.of(context).size.width,
-                                      height: 150,
-                                      color: Colors.white,
-                                    ),
-                                  ],
+                          child: newArrivals.length == 0
+                              ? Shimmer.fromColors(
+                                  baseColor: Colors.grey[300],
+                                  highlightColor: Colors.grey[100],
+                                  enabled: true,
+                                  child: Column(
+                                    children: [0]
+                                        .map((_) => Padding(
+                                              padding: const EdgeInsets.only(
+                                                  bottom: 8.0),
+                                              child: Row(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Container(
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                            .size
+                                                            .width,
+                                                    height: 150,
+                                                    color: Colors.white,
+                                                  ),
+                                                ],
+                                              ),
+                                            ))
+                                        .toList(),
+                                  ),
+                                )
+                              : Image(
+                                  fit: BoxFit.cover,
+                                  image:
+                                      AssetImage('assets/images/banner-1.png'),
                                 ),
-                              ))
-                                  .toList(),
-                            ),
-                          ) : Image(
-                            fit: BoxFit.cover,
-                            image: AssetImage('assets/images/banner-1.png'),
-                          ),
                         ),
                       ),
                       Row(
@@ -284,8 +323,9 @@ class _HomeState extends State<Home> {
                           Padding(
                             padding: EdgeInsets.only(
                                 top: 8.0, left: 8.0, right: 8.0),
-                            child: Text(AppLocalizations.of(context)
-                                .translate('SHOP_BY_CATEGORY'),
+                            child: Text(
+                                AppLocalizations.of(context)
+                                    .translate('SHOP_BY_CATEGORY'),
                                 style: TextStyle(
                                     color: Theme.of(context).accentColor,
                                     fontSize: 18,
@@ -306,146 +346,176 @@ class _HomeState extends State<Home> {
                       ),
                       Container(
                         child: GridView.count(
-                          shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
-                          crossAxisCount: 2,
-                          padding: EdgeInsets.only(
-                              top: 8, left: 6, right: 6, bottom: 12),
-                          children: categories.length == 0 ? [1,2].map((i) {
-                            return Builder(
-                              builder: (BuildContext context) {
-                                return Container(
-                                  width: 140.0,
-                                  child: Card(
-                                    clipBehavior: Clip.antiAlias,
-                                    child: InkWell(
-                                      child: Column(
-                                        crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                        children: <Widget>[
-                                          Shimmer.fromColors(
-                                            baseColor: Colors.grey[300],
-                                            highlightColor: Colors.grey[100],
-                                            enabled: true,
-                                            child: Column(
-                                              children: [0]
-                                                  .map((_) => Row(
-                                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                                  children: [
-                                                    Container(
-                                                      width: MediaQuery.of(context).size.width,
-                                                      height: (MediaQuery.of(context).size.width /
-                                                          2) -
-                                                          70,
-                                                      color: Colors.white,
+                            shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
+                            crossAxisCount: 2,
+                            padding: EdgeInsets.only(
+                                top: 8, left: 6, right: 6, bottom: 12),
+                            children: categories.length == 0
+                                ? [1, 2].map((i) {
+                                    return Builder(
+                                      builder: (BuildContext context) {
+                                        return Container(
+                                          width: 140.0,
+                                          child: Card(
+                                            clipBehavior: Clip.antiAlias,
+                                            child: InkWell(
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: <Widget>[
+                                                  Shimmer.fromColors(
+                                                    baseColor: Colors.grey[300],
+                                                    highlightColor:
+                                                        Colors.grey[100],
+                                                    enabled: true,
+                                                    child: Column(
+                                                      children: [0]
+                                                          .map((_) => Row(
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .start,
+                                                                children: [
+                                                                  Container(
+                                                                    width: MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width,
+                                                                    height: (MediaQuery.of(context).size.width /
+                                                                            2) -
+                                                                        70,
+                                                                    color: Colors
+                                                                        .white,
+                                                                  ),
+                                                                ],
+                                                              ))
+                                                          .toList(),
                                                     ),
-                                                  ],
-                                              )).toList(),
+                                                  ),
+                                                  Shimmer.fromColors(
+                                                    baseColor: Colors.grey[300],
+                                                    highlightColor:
+                                                        Colors.grey[100],
+                                                    enabled: true,
+                                                    child: Column(
+                                                      children: [0]
+                                                          .map((_) => Padding(
+                                                                padding:
+                                                                    const EdgeInsets
+                                                                            .only(
+                                                                        left:
+                                                                            5.0,
+                                                                        top:
+                                                                            10.0),
+                                                                child: Row(
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
+                                                                  children: [
+                                                                    Container(
+                                                                      width:
+                                                                          50.0,
+                                                                      height:
+                                                                          10,
+                                                                      color: Colors
+                                                                          .white,
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                              ))
+                                                          .toList(),
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
                                             ),
                                           ),
-
-                                          Shimmer.fromColors(
-                                            baseColor: Colors.grey[300],
-                                            highlightColor: Colors.grey[100],
-                                            enabled: true,
-                                            child: Column(
-                                              children: [0]
-                                                  .map((_) => Padding(
-                                                padding: const EdgeInsets.only(left: 5.0, top: 10.0),
-                                                child: Row(
-                                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                                  children: [
-                                                    Container(
-                                                      width: 50.0,
-                                                      height: 10,
-                                                      color: Colors.white,
-                                                    ),
-                                                  ],
+                                        );
+                                      },
+                                    );
+                                  }).toList()
+                                : List.generate(categories.length, (index) {
+                                    return Container(
+                                      child: Card(
+                                        clipBehavior: Clip.antiAlias,
+                                        child: InkWell(
+                                          onTap: () {
+                                            print('Card tapped.');
+                                          },
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: <Widget>[
+                                              SizedBox(
+                                                height: (MediaQuery.of(context)
+                                                            .size
+                                                            .width /
+                                                        2) -
+                                                    70,
+                                                width: double.infinity,
+                                                child: CachedNetworkImage(
+                                                  fit: BoxFit.cover,
+                                                  imageUrl: imgList[index],
+                                                  placeholder: (context, url) =>
+                                                      Center(
+                                                          child:
+                                                              CircularProgressIndicator()),
+                                                  errorWidget:
+                                                      (context, url, error) =>
+                                                          new Icon(Icons.error),
                                                 ),
+                                              ),
+                                              ListTile(
+                                                  title: Text(
+                                                categories[index]['name'],
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.w700,
+                                                    fontSize: 16),
                                               ))
-                                                  .toList(),
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                );
-                              },
-                            );
-                          }).toList() : List.generate(categories.length, (index) {
-                            return Container(
-                              child: Card(
-                                clipBehavior: Clip.antiAlias,
-                                child: InkWell(
-                                  onTap: () {
-                                    print('Card tapped.');
-                                  },
-                                  child: Column(
-                                    crossAxisAlignment:
-                                    CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      SizedBox(
-                                        height:
-                                        (MediaQuery.of(context).size.width /
-                                            2) -
-                                            70,
-                                        width: double.infinity,
-                                        child: CachedNetworkImage(
-                                          fit: BoxFit.cover,
-                                          imageUrl: imgList[index],
-                                          placeholder: (context, url) => Center(
-                                              child:
-                                              CircularProgressIndicator()),
-                                          errorWidget: (context, url, error) =>
-                                          new Icon(Icons.error),
+                                            ],
+                                          ),
                                         ),
                                       ),
-                                      ListTile(
-                                          title: Text(
-                                            categories[index]['name'],
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w700,
-                                                fontSize: 16),
-                                          ))
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            );
-                          })
-                        ),
+                                    );
+                                  })),
                       ),
                       Container(
                         child: Padding(
                           padding: EdgeInsets.only(
                               top: 6.0, left: 8.0, right: 8.0, bottom: 10),
-                          child: newArrivals.length == 0 ? Shimmer.fromColors(
-                            baseColor: Colors.grey[300],
-                            highlightColor: Colors.grey[100],
-                            enabled: true,
-                            child: Column(
-                              children: [0]
-                                  .map((_) => Padding(
-                                padding: const EdgeInsets.only(bottom: 8.0),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      width: MediaQuery.of(context).size.width,
-                                      height: 150,
-                                      color: Colors.white,
-                                    ),
-                                  ],
+                          child: newArrivals.length == 0
+                              ? Shimmer.fromColors(
+                                  baseColor: Colors.grey[300],
+                                  highlightColor: Colors.grey[100],
+                                  enabled: true,
+                                  child: Column(
+                                    children: [0]
+                                        .map((_) => Padding(
+                                              padding: const EdgeInsets.only(
+                                                  bottom: 8.0),
+                                              child: Row(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Container(
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                            .size
+                                                            .width,
+                                                    height: 150,
+                                                    color: Colors.white,
+                                                  ),
+                                                ],
+                                              ),
+                                            ))
+                                        .toList(),
+                                  ),
+                                )
+                              : Image(
+                                  fit: BoxFit.cover,
+                                  image:
+                                      AssetImage('assets/images/banner-2.png'),
                                 ),
-                              ))
-                                  .toList(),
-                            ),
-                          ) :
-                          Image(
-                            fit: BoxFit.cover,
-                            image: AssetImage('assets/images/banner-2.png'),
-                          ),
                         ),
                       )
                     ],
