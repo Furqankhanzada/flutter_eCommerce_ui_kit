@@ -5,6 +5,7 @@ import 'package:flutter_scaffold/blocks/products_block.dart';
 import 'package:flutter_scaffold/localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:html_unescape/html_unescape.dart';
 
 import 'drawer.dart';
 import 'slider.dart';
@@ -42,7 +43,8 @@ class _HomeState extends State<Home> {
         Provider.of<CategoriesBlock>(context);
     final categories = categoriesBlock.categories;
     List<dynamic> newArrivals = productBlock.newArrivals;
-    print(Localizations.localeOf(context));
+    var unescape = new HtmlUnescape();
+    var currency = unescape.convert(productBlock.currency);
     return Scaffold(
       drawer: Drawer(
         child: AppDrawer(),
@@ -260,7 +262,8 @@ class _HomeState extends State<Home> {
                                                     style:
                                                         TextStyle(fontSize: 14),
                                                   ),
-                                                  subtitle: Text('\$200',
+                                                  subtitle: Text(
+                                                      "$currency 200",
                                                       style: TextStyle(
                                                           color:
                                                               Theme.of(context)

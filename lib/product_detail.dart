@@ -4,15 +4,19 @@ import 'package:smooth_star_rating/smooth_star_rating.dart';
 import 'package:flutter_scaffold/localizations.dart';
 import 'package:flutter_scaffold/blocks/cart.dart';
 import 'package:provider/provider.dart';
+import 'package:html_unescape/html_unescape.dart';
+import 'package:flutter_scaffold/blocks/products_block.dart';
 
 class Products extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final CartBlock cartBlock = Provider.of<CartBlock>(context);
+    final ProductsBlock productBlock = Provider.of<ProductsBlock>(context);
     Map<String, dynamic> args = ModalRoute.of(context).settings.arguments;
     List<dynamic> addedToCart = cartBlock.cartItems.where((item) => item["id"] == args["id"]).toList();
     final cartLength = addedToCart.length;
-    print("===length== $cartLength");
+    var unescape = new HtmlUnescape();
+    var currency = unescape.convert(productBlock.currency);
     return Scaffold(
       appBar: AppBar(
         title: Text(AppLocalizations.of(context)
@@ -66,7 +70,7 @@ class Products extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.only(right: 10.0),
                                 child: Text(
-                                  '\$' + args["price"],
+                                  '$currency ' + args["price"],
                                   style: TextStyle(
                                     color: Theme.of(context).primaryColor,
                                     fontSize: 20,
@@ -74,7 +78,7 @@ class Products extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              Text('\$' + args['regular_price'],
+                              Text('$currency ' + args['regular_price'],
                                   style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 16,

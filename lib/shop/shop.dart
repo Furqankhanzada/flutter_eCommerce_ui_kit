@@ -5,7 +5,7 @@ import 'package:flutter_scaffold/blocks/products_block.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:flutter_scaffold/localizations.dart';
-
+import 'package:html_unescape/html_unescape.dart';
 import 'search.dart';
 
 class Shop extends StatefulWidget {
@@ -97,8 +97,9 @@ class _ShopState extends State<Shop> {
     Future<Null> _refresh() {
       productBlock.getProducts();
     }
-
     List<dynamic> products = productBlock.products;
+    var unescape = new HtmlUnescape();
+    var currency = unescape.convert(productBlock.currency);
     print("------products $products");
     return DefaultTabController(
       length: 2,
@@ -341,7 +342,7 @@ class _ShopState extends State<Shop> {
                                                                       bottom:
                                                                           1),
                                                               child: Text(
-                                                                  '\$' +
+                                                                  '$currency ' +
                                                                       product[
                                                                           'price'],
                                                                   style:
@@ -360,7 +361,7 @@ class _ShopState extends State<Shop> {
                                                                           .only(
                                                                       left:
                                                                           6.0),
-                                                              child: Text('(\$)' + product['regular_price'],
+                                                              child: Text('($currency)' + product['regular_price'],
                                                                   style: TextStyle(
                                                                       fontWeight:
                                                                           FontWeight
@@ -594,9 +595,9 @@ class _ShopState extends State<Shop> {
                                                                 top: 2.0,
                                                                 bottom: 1),
                                                         child: Text(
-                                                            '\$' +
+                                                            '$currency' +
                                                                 products[index][
-                                                                    'regular_price'],
+                                                                    'price'],
                                                             style: TextStyle(
                                                               color: Theme.of(
                                                                       context)
@@ -611,7 +612,8 @@ class _ShopState extends State<Shop> {
                                                             const EdgeInsets
                                                                     .only(
                                                                 left: 6.0),
-                                                        child: Text('(\$400)',
+                                                        child: Text(products[index][
+                                                                    'regular_price'],
                                                             style: TextStyle(
                                                                 fontWeight:
                                                                     FontWeight
