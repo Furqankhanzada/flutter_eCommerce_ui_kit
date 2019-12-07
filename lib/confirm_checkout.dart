@@ -6,6 +6,7 @@ import 'package:flutter_scaffold/blocks/cart.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_scaffold/blocks/order_details.dart';
 import 'package:flutter_scaffold/blocks/auth_block.dart';
+import 'dart:convert';
 
 class ConfirmCheckout extends StatefulWidget {
   @override
@@ -13,31 +14,15 @@ class ConfirmCheckout extends StatefulWidget {
 }
 
 class _ConfirmCheckoutState extends State<ConfirmCheckout> {
-  final List<Map<dynamic, dynamic>> products = [
-    {
-      'name': 'IPhone',
-      'rating': 3.0,
-      'image':
-          'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
-      'price': '200'
-    },
-    {
-      'name': 'IPhone X 2',
-      'rating': 3.0,
-      'image':
-          'https://images.unsplash.com/photo-1522205408450-add114ad53fe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=368f45b0888aeb0b7b08e3a1084d3ede&auto=format&fit=crop&w=1950&q=80',
-      'price': '200'
-    },
-    {
-      'name': 'IPhone 11',
-      'rating': 4.0,
-      'image':
-          'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=94a1e718d89ca60a6337a6008341ca50&auto=format&fit=crop&w=1950&q=80',
-      'price': '200'
-    },
-  ];
-
+  bool loading;
   @override
+  void initState() {
+    super.initState();
+    setState(() {
+      loading = false;
+    });
+  }
+
   Widget build(BuildContext context) {
     AuthBlock auth = Provider.of<AuthBlock>(context);
     final CartBlock cartBlock = Provider.of<CartBlock>(context);
@@ -47,7 +32,32 @@ class _ConfirmCheckoutState extends State<ConfirmCheckout> {
         .forEach((element) => total = total + int.parse(element["sale_price"]));
     final OrderBlock orderBlock = Provider.of<OrderBlock>(context);
     final order = orderBlock.orderGetter;
+    List<dynamic> bankDetails = orderBlock.bankDetailsGetter;
+    final paymentMethod = orderBlock.paymentGetter;
     final isLoggedIn = auth.isLoggedIn;
+    print("adasdasdasdasd $bankDetails");
+    void placeOrder() async {
+      if (!isLoggedIn) {
+        Navigator.pushNamed(context, '/auth');
+      } else {
+        setState(() {
+          loading = true;
+        });
+        final response = await orderBlock.placeOrder(cartItems);
+        if (response == 200) {
+          setState(() {
+            loading = false;
+          });
+          cartBlock.emptyCart();
+          Navigator.pushNamed(context, '/');
+        } else {
+          setState(() {
+            loading = false;
+          });
+        }
+      }
+    }
+
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
@@ -197,8 +207,180 @@ class _ConfirmCheckoutState extends State<ConfirmCheckout> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 10.0),
-                    child: Text("Cash on delivery",
-                        style: TextStyle(fontSize: 14)),
+                    child: paymentMethod == 'Direct bank transfer'
+                        ? Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Text(paymentMethod,
+                                  style: TextStyle(fontSize: 14)),
+                              InkWell(
+                                child: Text('View Details',
+                                    style: TextStyle(
+                                      color: Theme.of(context).accentColor,
+                                      fontWeight: FontWeight.w700,
+                                    )),
+                                onTap: () {
+                                  showModalBottomSheet(
+                                      context: context,
+                                      builder: (context) {
+                                        return Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children:
+                                                bankDetails.map((account) {
+                                              return Builder(
+                                                builder:
+                                                    (BuildContext context) {
+                                                  return account['account_name'] !=
+                                                              '' &&
+                                                          account['account_number'] !=
+                                                              ''
+                                                      ? Padding(
+                                                          padding:
+                                                              EdgeInsets.only(
+                                                                  left: 10,
+                                                                  right: 10, top: 10),
+                                                          child: Container(
+                                                            child: Column(
+                                                              children: <
+                                                                  Widget>[
+                                                                   Padding(
+                                                                    padding: const EdgeInsets
+                                                                            .all(10.0),
+                                                                    child: Text('Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order will not be shipped until the funds have cleared in our account.', textAlign: TextAlign.justify)),                                                                Padding(
+                                                                    padding: const EdgeInsets
+                                                                            .all(10.0),
+                                                                    child: Row(
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .spaceBetween,
+                                                                      children: <
+                                                                          Widget>[
+                                                                        Text(
+                                                                            'ACCOUNT NAME',
+                                                                            style:
+                                                                                TextStyle(
+                                                                              color: Theme.of(context).primaryColor,
+                                                                              fontSize: 16,
+                                                                              fontWeight: FontWeight.w600,
+                                                                            )),
+                                                                        Text(
+                                                                            account[
+                                                                                'account_name'],
+                                                                            style:
+                                                                                TextStyle(
+                                                                              color: Colors.black,
+                                                                              fontSize: 16,
+                                                                            ))
+                                                                      ],
+                                                                    )),
+                                                               Padding(
+                                                                    padding: const EdgeInsets
+                                                                            .all(10.0),
+                                                                    child: Row(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .spaceBetween,
+                                                                  children: <
+                                                                      Widget>[
+                                                                    Text(
+                                                                        'ACCOUNT NUMBER',
+                                                                        style:
+                                                                            TextStyle(
+                                                                          color:
+                                                                              Theme.of(context).primaryColor,
+                                                                          fontSize:
+                                                                              16,
+                                                                          fontWeight:
+                                                                              FontWeight.w600,
+                                                                        )),
+                                                                    Text(
+                                                                        account[
+                                                                            'account_number'],
+                                                                        style:
+                                                                            TextStyle(
+                                                                          color:
+                                                                              Colors.black,
+                                                                          fontSize:
+                                                                              16,
+                                                                        ))
+                                                                  ],
+                                                                )),
+                                                               Padding(
+                                                                    padding: const EdgeInsets
+                                                                            .all(10.0),
+                                                                    child: Row(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .spaceBetween,
+                                                                  children: <
+                                                                      Widget>[
+                                                                    Text(
+                                                                        'BANK NAME',
+                                                                        style:
+                                                                            TextStyle(
+                                                                          color:
+                                                                              Theme.of(context).primaryColor,
+                                                                          fontSize:
+                                                                              16,
+                                                                          fontWeight:
+                                                                              FontWeight.w600,
+                                                                        )),
+                                                                    Text(
+                                                                        account[
+                                                                            'bank_name'],
+                                                                        style:
+                                                                            TextStyle(
+                                                                          color:
+                                                                              Colors.black,
+                                                                          fontSize:
+                                                                              16,
+                                                                        ))
+                                                                  ],
+                                                                )),
+                                                               Padding(
+                                                                    padding: const EdgeInsets
+                                                                            .all(10.0),
+                                                                    child: Row(
+                                                                  mainAxisAlignment:
+                                                                      MainAxisAlignment
+                                                                          .spaceBetween,
+                                                                  children: <
+                                                                      Widget>[
+                                                                    Text('IBAN',
+                                                                        style:
+                                                                            TextStyle(
+                                                                          color:
+                                                                              Theme.of(context).primaryColor,
+                                                                          fontSize:
+                                                                              16,
+                                                                          fontWeight:
+                                                                              FontWeight.w600,
+                                                                        )),
+                                                                    Text(
+                                                                        account[
+                                                                            'iban'],
+                                                                        style:
+                                                                            TextStyle(
+                                                                          color:
+                                                                              Colors.black,
+                                                                          fontSize:
+                                                                              16,
+                                                                        ))
+                                                                  ],
+                                                                ))
+                                                              ],
+                                                            ),
+                                                          ))
+                                                      : Divider();
+                                                },
+                                              );
+                                            }).toList());
+                                      });
+                                },
+                              )
+                            ],
+                          )
+                        : Text(paymentMethod, style: TextStyle(fontSize: 14)),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 10.0),
@@ -238,17 +420,7 @@ class _ConfirmCheckoutState extends State<ConfirmCheckout> {
                 minWidth: double.infinity,
                 height: 40.0,
                 child: RaisedButton(
-                  onPressed: () async {
-                    if (!isLoggedIn) {
-                      Navigator.pushNamed(context, '/auth');
-                    } else {
-                      final response = await orderBlock.placeOrder(cartItems);
-                      if (response == 200) {
-                        cartBlock.emptyCart();
-                        Navigator.pushNamed(context, '/');
-                      }
-                    }
-                  },
+                  onPressed: loading == false ? placeOrder : null,
                   child: Text(
                     "PLACE ORDER",
                     style: TextStyle(color: Colors.white, fontSize: 16),

@@ -7,10 +7,26 @@ import 'package:fluttertoast/fluttertoast.dart';
 class OrderBlock extends ChangeNotifier {
   OrderService _orderService = OrderService();
   // Index
+
   var _order;
+  List<dynamic> _bankDetails = [];
+  var _payment;
+
   get orderGetter => _order;
   set orderSetter(order) {
     _order = order;
+    notifyListeners();
+  }
+
+  get bankDetailsGetter => _bankDetails;
+  set bankDetailsSetter(bankDetails) {
+    _bankDetails = bankDetails;
+    notifyListeners();
+  }
+
+  get paymentGetter => _payment;
+  set paymentSetter(payment) {
+    _payment = payment;
     notifyListeners();
   }
 
@@ -18,8 +34,22 @@ class OrderBlock extends ChangeNotifier {
     _order['cart'] = cart;
   }
 
+
+  set setBankDetails(bankDetails) {
+    _order['account_details'] = bankDetails;
+  }
+
   setOrderDetails(order) async {
     orderSetter = order;
+  }
+
+  setPaymentMethod(payment) async {
+    paymentSetter = payment['title'];
+    if (payment['title'] == 'Direct bank transfer') {
+      bankDetailsSetter = payment['account_details'];
+    } else {
+      bankDetailsSetter = [];
+    }
   }
 
   placeOrder(cart) async {
@@ -30,8 +60,7 @@ class OrderBlock extends ChangeNotifier {
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.CENTER,
           timeInSecForIos: 1,
-          fontSize: 16.0
-      );
+          fontSize: 16.0);
       return Future.delayed(const Duration(milliseconds: 500), () {
         return response;
       });

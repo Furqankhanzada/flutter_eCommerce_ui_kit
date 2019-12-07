@@ -29,8 +29,7 @@ class _HomeState extends State<Home> {
     super.initState();
     Future.delayed(const Duration(milliseconds: 500), () {
       // Here you can write your code
-      final CategoriesBlock categoryBlock =
-          Provider.of<CategoriesBlock>(context);
+      final CategoriesBlock categoryBlock = Provider.of<CategoriesBlock>(context);
       final ProductsBlock productBlock = Provider.of<ProductsBlock>(context);
       categoryBlock.getCategories();
       productBlock.getNewArrivals();
@@ -219,7 +218,6 @@ class _HomeState extends State<Home> {
                                 }).toList()
                               : newArrivals.map((i) {
 //                            i["thumbnail"] = imgList[newArrivals.indexOf(i)];
-                                  print(i["thumbnail"]);
                                   return Builder(
                                     builder: (BuildContext context) {
                                       return Container(

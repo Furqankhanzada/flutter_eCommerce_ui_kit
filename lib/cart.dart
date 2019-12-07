@@ -41,17 +41,13 @@ class _CartListState extends State<CartList> {
     List<dynamic> cartItems = cartBlock.cartItems;
     double total = 0;
     cartItems.forEach((element) => {
-          if (element['sale_price'] is double){
-            total = total + double.parse(element["sale_price"])
-          }
-          else{
-            total = total + int.parse(element["sale_price"])
-          }
-        });
-    print("test ===== $total");
-
-//    final totalAmount = cartItems.reduce((value, element) =>  0 + element.sale_price);
-//    print("total===============$totalAmount");
+      if(element['sale_price'] is double) {
+        total = total + double.parse(element["sale_price"])
+      }
+      else{
+        total = total + int.parse(element["sale_price"])
+      }
+    });
     return Scaffold(
         appBar: AppBar(
           title: Text(AppLocalizations.of(context).translate('CART')),
@@ -134,47 +130,46 @@ class _CartListState extends State<CartList> {
                               padding: const EdgeInsets.only(
                                   top: 10.0, bottom: 10.0),
                               child: ListTile(
-                                trailing: Text('\$ ${item['price']}'),
-                                leading: ClipRRect(
-                                  borderRadius: BorderRadius.circular(5.0),
-                                  child: Container(
-                                    decoration:
-                                        BoxDecoration(color: Colors.blue),
-                                    child: CachedNetworkImage(
-                                      fit: BoxFit.cover,
-                                      imageUrl: item['thumbnail'],
-                                      placeholder: (context, url) => Center(
-                                          child: CircularProgressIndicator()),
-                                      errorWidget: (context, url, error) =>
-                                          new Icon(Icons.error),
+                                  trailing: Text('\$ ${item['price']}'),
+                                  leading: ClipRRect(
+                                    borderRadius: BorderRadius.circular(5.0),
+                                    child: Container(
+                                      decoration:
+                                          BoxDecoration(color: Colors.blue),
+                                      child: CachedNetworkImage(
+                                        fit: BoxFit.cover,
+                                        imageUrl: item['thumbnail'],
+                                        placeholder: (context, url) => Center(
+                                            child: CircularProgressIndicator()),
+                                        errorWidget: (context, url, error) =>
+                                            new Icon(Icons.error),
+                                      ),
                                     ),
                                   ),
-                                ),
-                                title: Text(
-                                  item['name'],
-                                  style: TextStyle(fontSize: 14),
-                                ),
-                                subtitle: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Row(
-                                      children: <Widget>[
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              top: 2.0, bottom: 1),
-                                          child: Text('in stock',
-                                              style: TextStyle(
-                                                color: Theme.of(context)
-                                                    .accentColor,
-                                                fontWeight: FontWeight.w700,
-                                              )),
-                                        )
-                                      ],
-                                    ),
-                                  ],
-                                )
-                                
-                              ),
+                                  title: Text(
+                                    item['name'],
+                                    style: TextStyle(fontSize: 14),
+                                  ),
+                                  subtitle: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Row(
+                                        children: <Widget>[
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                top: 2.0, bottom: 1),
+                                            child: Text('in stock',
+                                                style: TextStyle(
+                                                  color: Theme.of(context)
+                                                      .accentColor,
+                                                  fontWeight: FontWeight.w700,
+                                                )),
+                                          )
+                                        ],
+                                      ),
+                                    ],
+                                  )),
                             ),
                           ],
                         ),
@@ -231,7 +226,7 @@ class _CartListState extends State<CartList> {
             )),
             Padding(
               padding: const EdgeInsets.only(
-                  left: 20.0, right: 20, top: 50, bottom: 10),
+              left: 20.0, right: 20, top: 50, bottom: 10),
               child: ButtonTheme(
                 buttonColor: Theme.of(context).primaryColor,
                 minWidth: double.infinity,

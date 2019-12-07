@@ -80,7 +80,6 @@ class _ShopState extends State<Shop> {
   @override
   void initState() {
     super.initState();
-    print("initStateRunning");
     Future.delayed(const Duration(milliseconds: 1000), () {
 // Here you can write your code
       final ProductsBlock productBlock = Provider.of<ProductsBlock>(context);
@@ -100,7 +99,6 @@ class _ShopState extends State<Shop> {
     List<dynamic> products = productBlock.products;
     var unescape = new HtmlUnescape();
     var currency = unescape.convert(productBlock.currency);
-    print("------products $products");
     return DefaultTabController(
       length: 2,
       child: Scaffold(

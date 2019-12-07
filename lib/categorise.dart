@@ -25,7 +25,6 @@ class _CategoriseState extends State<Categorise> {
   Widget build(BuildContext context) {
     final CategoriesBlock categoriesBlock = Provider.of<CategoriesBlock>(context);
     final categories = categoriesBlock.categories;
-    print("$categories");
     return Scaffold(
       appBar: AppBar(
         title: Text(AppLocalizations.of(context)
@@ -105,7 +104,6 @@ class _CategoriseState extends State<Categorise> {
                   },
                 );
               }).toList() : List.generate(categories.length, (index) {
-                print(categories[index]['name']);
                 return Container(
                   child: Card(
                     clipBehavior: Clip.antiAlias,

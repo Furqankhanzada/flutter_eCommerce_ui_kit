@@ -14,7 +14,6 @@ class _AppDrawerState extends State<AppDrawer> {
   Widget build(BuildContext context) {
     AuthBlock auth = Provider.of<AuthBlock>(context);
     final isLoggedIn = auth.isLoggedIn;
-    print("isLoggedIn $isLoggedIn");
     return Column(
       children: <Widget>[
         if (auth.isLoggedIn)

@@ -71,7 +71,7 @@ class _CheckoutState extends State<Checkout> {
                           right: 20, left: 20, bottom: 80),
                       child: Column(children: [
                         TextFormField(
-                          keyboardType: TextInputType.emailAddress,
+                          keyboardType: TextInputType.text,
                           validator: (value) {
                             if (value.isEmpty) {
                               return 'Please Enter First Name';
@@ -80,7 +80,6 @@ class _CheckoutState extends State<Checkout> {
                           },
                           onSaved: (value) {
                             setState(() {
-                              print(value);
                               order.firstname = value;
                             });
                           },
@@ -91,6 +90,7 @@ class _CheckoutState extends State<Checkout> {
                           ),
                         ),
                         TextFormField(
+                          keyboardType: TextInputType.text,                          
                           validator: (value) {
                             if (value.isEmpty) {
                               return 'Please Enter Last Name';
@@ -107,7 +107,6 @@ class _CheckoutState extends State<Checkout> {
                             labelText: AppLocalizations.of(context)
                                 .translate('LAST_NAME'),
                           ),
-                          obscureText: true,
                         ),
                         TextFormField(
                           keyboardType: TextInputType.emailAddress,
@@ -129,6 +128,7 @@ class _CheckoutState extends State<Checkout> {
                           ),
                         ),
                         TextFormField(
+                          keyboardType: TextInputType.text,
                           validator: (value) {
                             if (value.isEmpty) {
                               return 'Please Enter Username';
@@ -145,7 +145,6 @@ class _CheckoutState extends State<Checkout> {
                             labelText: AppLocalizations.of(context)
                                 .translate('USERNAME'),
                           ),
-                          obscureText: true,
                         ),
                         DropdownButton<String>(
                           isExpanded: true,
@@ -182,7 +181,7 @@ class _CheckoutState extends State<Checkout> {
                           },
                         ),
                         TextFormField(
-                          keyboardType: TextInputType.emailAddress,
+                          keyboardType: TextInputType.text,
                           validator: (value) {
                             if (value.isEmpty) {
                               return 'Please Enter City Name';
@@ -201,6 +200,7 @@ class _CheckoutState extends State<Checkout> {
                           ),
                         ),
                         TextFormField(
+                          keyboardType: TextInputType.number,
                           validator: (value) {
                             if (value.isEmpty) {
                               return 'Please Enter Phone Number';
@@ -220,7 +220,7 @@ class _CheckoutState extends State<Checkout> {
                           obscureText: true,
                         ),
                         TextFormField(
-                          keyboardType: TextInputType.emailAddress,
+                          keyboardType: TextInputType.text,
                           validator: (value) {
                             if (value.isEmpty) {
                               return 'Please Enter Street Address';
@@ -239,6 +239,7 @@ class _CheckoutState extends State<Checkout> {
                           ),
                         ),
                         TextFormField(
+                          keyboardType: TextInputType.number,
                           validator: (value) {
                             if (value.isEmpty) {
                               return 'Please Enter Postal Code';
@@ -254,8 +255,7 @@ class _CheckoutState extends State<Checkout> {
                             hintText: 'Enter Postal Code',
                             labelText: AppLocalizations.of(context)
                                 .translate('POSTAL_CODE'),
-                          ),
-                          obscureText: true,
+                          )
                         ),
                       ]),
                     ))),

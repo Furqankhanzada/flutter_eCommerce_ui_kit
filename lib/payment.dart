@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:flutter_scaffold/localizations.dart';
 import 'package:flutter_scaffold/models/user.dart';
+import 'package:flutter_scaffold/blocks/order_details.dart';
 
 class Payment extends StatefulWidget {
   @override
@@ -34,8 +35,8 @@ class _PaymentState extends State<Payment> {
   }
   Widget build(BuildContext context) {
     final PaymentBlock paymentBlock = Provider.of<PaymentBlock>(context);
+    final OrderBlock orderBlock = Provider.of<OrderBlock>(context);
     List<dynamic> paymentMethods = paymentBlock.payment;
-    print("====pay $paymentMethods");
     return Scaffold(
         appBar: AppBar(
           title: Text("Payment Methods"),
@@ -48,7 +49,6 @@ class _PaymentState extends State<Payment> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
             children: paymentMethods.length > 0 ? paymentMethods.map((payment) {
-              print("aaaa $payment");
 //                            i["thumbnail"] = imgList[newArrivals.indexOf(i)];
 //                            print(i["thumbnail"]);
               return Builder(
@@ -65,6 +65,7 @@ class _PaymentState extends State<Payment> {
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(color: Colors.white)),
                             onPressed: () {
+                              orderBlock.setPaymentMethod(payment);
                               Navigator.pushNamed(context, '/confirm');
                             }),
                       ),
