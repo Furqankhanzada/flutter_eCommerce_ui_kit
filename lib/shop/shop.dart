@@ -34,7 +34,7 @@ class _ShopState extends State<Shop> {
             IconButton(
               icon: Icon(Icons.search, color: Colors.white),
               onPressed: () {
-                scaffoldKey.currentState
+                scaffoldKey.currentState!
                     .showBottomSheet((context) => ShopSearch());
               },
             )
@@ -131,7 +131,7 @@ class _ShopState extends State<Shop> {
                                                     children: <Widget>[
                                                       SmoothStarRating(
                                                           allowHalfRating: false,
-                                                          onRatingChanged: (v) {
+                                                          onRated: (v) {
                                                             product['rating'] = v;
                                                             setState(() {});
                                                           },
@@ -229,7 +229,7 @@ class _ShopState extends State<Shop> {
                                                     children: <Widget>[
                                                       SmoothStarRating(
                                                           allowHalfRating: false,
-                                                          onRatingChanged: (v) {
+                                                          onRated: (v) {
                                                             products[index]['rating'] = v;
                                                             setState(() {});
                                                           },

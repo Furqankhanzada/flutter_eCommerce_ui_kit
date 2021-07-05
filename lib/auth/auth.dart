@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_scaffold/blocks/auth_block.dart';
+import 'package:flutter_ecommerce_ui_kit/blocks/auth_block.dart';
 import 'signin.dart';
 import 'signup.dart';
 

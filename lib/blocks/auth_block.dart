@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_scaffold/models/user.dart';
-import 'package:flutter_scaffold/services/auth_service.dart';
+import 'package:flutter_ecommerce_ui_kit/models/user.dart';
+import 'package:flutter_ecommerce_ui_kit/services/auth_service.dart';
 
 class AuthBlock extends ChangeNotifier {
   AuthBlock() {
@@ -17,7 +17,7 @@ class AuthBlock extends ChangeNotifier {
 
   // Loading
   bool _loading = false;
-  String _loadingType;
+  late String _loadingType;
   bool get loading => _loading;
   String get loadingType => _loadingType;
   set loading(bool loadingState) {

@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_scaffold/localizations_delegate.dart';
+import 'package:flutter_ecommerce_ui_kit/localizations_delegate.dart';
 
 class AppLocalizations {
   final Locale locale;
@@ -11,7 +11,7 @@ class AppLocalizations {
 
   // Helper method to keep the code in the widgets concise
   // Localizations are accessed using an InheritedWidget "of" syntax
-  static AppLocalizations of(BuildContext context) {
+  static AppLocalizations? of(BuildContext context) {
     return Localizations.of<AppLocalizations>(context, AppLocalizations);
   }
 
@@ -19,7 +19,7 @@ class AppLocalizations {
   static const LocalizationsDelegate<AppLocalizations> delegate =
       AppLocalizationsDelegate();
 
-  Map<String, String> _localizedStrings;
+  late Map<String, String> _localizedStrings;
 
   Future<bool> load() async {
     // Load the language JSON file from the "lang" folder
@@ -35,7 +35,7 @@ class AppLocalizations {
   }
 
   // This method will be called from every widget which needs a localized text
-  String translate(String key) {
+  String? translate(String key) {
     return _localizedStrings[key];
   }
 }
