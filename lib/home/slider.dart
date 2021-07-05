@@ -27,10 +27,12 @@ class _HomeSliderState extends State<HomeSlider> {
         children: <Widget>[
           Center(
             child: CarouselSlider(
-              autoPlay: true,
-              pauseAutoPlayOnTouch: Duration(seconds: 10),
-              height: 350.0,
-              viewportFraction: 1.0,
+              options: CarouselOptions(
+                autoPlay: true,
+                height: 350,
+                pauseAutoPlayOnTouch: true,
+                viewportFraction: 1.0
+              ),
               items: imgList.map((i) {
                 return Builder(
                   builder: (BuildContext context) {

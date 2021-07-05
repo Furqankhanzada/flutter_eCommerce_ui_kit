@@ -7,7 +7,6 @@ class ShopSearch extends StatefulWidget {
 
 class _ShopSearchState extends State<ShopSearch> {
   String dropdownValue = 'One';
-  @override
   RangeValues _values = RangeValues(0.0, 500.0);
   Widget build(BuildContext context) {
     return Container(
@@ -51,9 +50,9 @@ class _ShopSearchState extends State<ShopSearch> {
                         height: 1,
                         color: Colors.grey[300],
                       ),
-                      onChanged: (String newValue) {
+                      onChanged: (String? newValue) {
                         setState(() {
-                          dropdownValue = newValue;
+                          dropdownValue = newValue!;
                         });
                       },
                       items: <String>['One', 'Two', 'Free', 'Four']
@@ -139,7 +138,7 @@ class _ShopSearchState extends State<ShopSearch> {
                         buttonColor: Theme.of(context).primaryColor,
                         minWidth: double.infinity,
                         height: 40.0,
-                        child: RaisedButton(
+                        child: ElevatedButton(
                           onPressed: () {},
                           child: Text(
                             "Apply Filters",

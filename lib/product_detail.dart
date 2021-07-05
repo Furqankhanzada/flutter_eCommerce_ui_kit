@@ -1,12 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
-import 'package:smooth_star_rating/smooth_star_rating.dart';
 
 class Products extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final args = ModalRoute.of(context).settings.arguments;
+    final imageUrl = ModalRoute.of(context)!.settings.arguments;
     return Scaffold(
       appBar: AppBar(
         title: Text('Product Detail'),
@@ -22,10 +21,10 @@ class Products extends StatelessWidget {
                 width: double.infinity,
                   height: 260,
                   child: Hero(
-                    tag: args,
+                    tag: imageUrl!,
                     child: CachedNetworkImage(
                       fit: BoxFit.cover,
-                      imageUrl: args,
+                      imageUrl: imageUrl.toString(),
                       placeholder: (context, url) =>
                           Center(child: CircularProgressIndicator()),
                       errorWidget: (context, url, error) => new Icon(Icons.error),
@@ -78,10 +77,7 @@ class Products extends StatelessWidget {
                               children: <Widget>[
                                 SmoothStarRating(
                                     allowHalfRating: false,
-                                    onRatingChanged: (v) {
-                                    },
                                     starCount: 5,
-//                                rating: product['rating'],
                                     size: 20.0,
                                     color: Colors.amber,
                                     borderColor: Colors.amber,

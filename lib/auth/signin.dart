@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_scaffold/blocks/auth_block.dart';
-import 'package:flutter_scaffold/models/user.dart';
+import 'package:flutter_ecommerce_ui_kit/blocks/auth_block.dart';
+import 'package:flutter_ecommerce_ui_kit/models/user.dart';
 import 'package:provider/provider.dart';
 
 class SignIn extends StatefulWidget {
@@ -10,7 +10,7 @@ class SignIn extends StatefulWidget {
 
 class _SignInState extends State<SignIn> {
   final _formKey = GlobalKey<FormState>();
-  final UserCredential userCredential = UserCredential();
+  final UserCredential userCredential = UserCredential(usernameOrEmail: '', password: '');
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -27,14 +27,14 @@ class _SignInState extends State<SignIn> {
                     child: TextFormField(
                       keyboardType: TextInputType.emailAddress,
                       validator: (value) {
-                        if (value.isEmpty) {
+                        if (value!.isEmpty) {
                           return 'Please Enter Email or Username';
                         }
                         return null;
                       },
                       onSaved: (value) {
                         setState(() {
-                          userCredential.usernameOrEmail = value;
+                          userCredential.usernameOrEmail = value!;
                         });
                       },
                       decoration: InputDecoration(
@@ -45,14 +45,14 @@ class _SignInState extends State<SignIn> {
                   ),
                   TextFormField(
                     validator: (value) {
-                      if (value.isEmpty) {
+                      if (value!.isEmpty) {
                         return 'Please Enter Password';
                       }
                       return null;
                     },
                     onSaved: (value) {
                       setState(() {
-                        userCredential.password = value;
+                        userCredential.password = value!;
                       });
                     },
                     decoration: InputDecoration(
@@ -68,7 +68,7 @@ class _SignInState extends State<SignIn> {
                       height: 50,
                       child: Consumer<AuthBlock>(
                         builder:
-                            (BuildContext context, AuthBlock auth, Widget child) {
+                            (BuildContext context, AuthBlock auth, Widget? child) {
                           return RaisedButton(
                             color: Theme.of(context).primaryColor,
                             textColor: Colors.white,
@@ -77,9 +77,9 @@ class _SignInState extends State<SignIn> {
                             ) : Text('Sign In'),
                             onPressed: () {
                               // Validate form
-                              if (_formKey.currentState.validate() && !auth.loading) {
+                              if (_formKey.currentState!.validate() && !auth.loading) {
                                 // Update values
-                                _formKey.currentState.save();
+                                _formKey.currentState!.save();
                                 // Hit Api
                                 auth.login(userCredential);
                               }

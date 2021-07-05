@@ -2,7 +2,7 @@ class User {
   String username;
   String email;
   String password;
-  User({this.username, this.email, this.password});
+  User({required this.username, required this.email, required this.password});
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
       username: json['username'],
@@ -15,5 +15,5 @@ class User {
 class UserCredential {
   String usernameOrEmail;
   String password;
-  UserCredential({this.usernameOrEmail, this.password});
+  UserCredential({required this.usernameOrEmail, required this.password});
 }
