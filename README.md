@@ -39,4 +39,4 @@ If you find any problems, please [open an issue](https://github.com/Furqankhanza
 
 ## License
 
-[MIT License](LICENSE)
+[MIT License](LICENSE.txt)
