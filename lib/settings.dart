@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:smooth_star_rating/smooth_star_rating.dart';
 import 'package:flutter_scaffold/localizations.dart';
 
 class Settings extends StatefulWidget {
@@ -52,7 +51,7 @@ class _SettingsState extends State<Settings> {
                           color: Theme.of(context).accentColor,
                           border: Border(
                             bottom: BorderSide( //                   <--- left side
-                              color: Colors.grey[300],
+                              color: Colors.grey.shade300,
                               width: 1.0,
                             )
                           ),

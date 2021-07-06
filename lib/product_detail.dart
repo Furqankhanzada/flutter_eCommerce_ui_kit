@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:smooth_star_rating/smooth_star_rating.dart';
+import 'package:flutter_rating_stars/flutter_rating_stars.dart';
 import 'package:flutter_scaffold/localizations.dart';
 import 'package:flutter_scaffold/blocks/cart.dart';
 import 'package:provider/provider.dart';
@@ -87,15 +87,12 @@ class Products extends StatelessWidget {
                           ),
                           Row(
                             children: <Widget>[
-                              SmoothStarRating(
-                                  allowHalfRating: false,
-                                  onRatingChanged: (v) {},
-                                  starCount: 5,
-                                  rating: args['review_count'].toDouble(),
-                                  size: 20.0,
-                                  color: Colors.amber,
-                                  borderColor: Colors.amber,
-                                  spacing: -0.8),
+                              RatingStars(
+                                value: args['review_count'].toDouble(),
+                                starSize: 16,
+                                valueLabelColor: Colors.amber,
+                                starColor: Colors.amber,
+                              ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 10.0),
                                 child: Text('(0.00)',

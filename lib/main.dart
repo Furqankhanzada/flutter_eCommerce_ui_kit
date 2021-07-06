@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_scaffold/auth/auth.dart';
-import 'package:flutter_scaffold/blocks/auth_block.dart';
-import 'package:flutter_scaffold/blocks/categories_block.dart';
-import 'package:flutter_scaffold/blocks/products_block.dart';
-import 'package:flutter_scaffold/blocks/cart.dart';
-import 'package:flutter_scaffold/blocks/payment_methods.dart';
-import 'package:flutter_scaffold/blocks/order_details.dart';
-import 'package:flutter_scaffold/cart.dart';
-import 'package:flutter_scaffold/categorise.dart';
-import 'package:flutter_scaffold/home/home.dart';
-import 'package:flutter_scaffold/localizations.dart';
-import 'package:flutter_scaffold/product_detail.dart';
-import 'package:flutter_scaffold/settings.dart';
-import 'package:flutter_scaffold/shop/shop.dart';
-import 'package:flutter_scaffold/checkout.dart';
-import 'package:flutter_scaffold/payment.dart';
-import 'package:flutter_scaffold/wishlist.dart';
-import 'package:flutter_scaffold/confirm_checkout.dart';
+import 'package:flutter_ecommerce_ui_kit/auth/auth.dart';
+import 'package:flutter_ecommerce_ui_kit/blocks/auth_block.dart';
+import 'package:flutter_ecommerce_ui_kit/blocks/categories_block.dart';
+import 'package:flutter_ecommerce_ui_kit/blocks/products_block.dart';
+import 'package:flutter_ecommerce_ui_kit/blocks/cart.dart';
+import 'package:flutter_ecommerce_ui_kit/blocks/payment_methods.dart';
+import 'package:flutter_ecommerce_ui_kit/blocks/order_details.dart';
+import 'package:flutter_ecommerce_ui_kit/cart.dart';
+import 'package:flutter_ecommerce_ui_kit/categorise.dart';
+import 'package:flutter_ecommerce_ui_kit/home/home.dart';
+import 'package:flutter_ecommerce_ui_kit/localizations.dart';
+import 'package:flutter_ecommerce_ui_kit/product_detail.dart';
+import 'package:flutter_ecommerce_ui_kit/settings.dart';
+import 'package:flutter_ecommerce_ui_kit/shop/shop.dart';
+import 'package:flutter_ecommerce_ui_kit/checkout.dart';
+import 'package:flutter_ecommerce_ui_kit/payment.dart';
+import 'package:flutter_ecommerce_ui_kit/wishlist.dart';
+import 'package:flutter_ecommerce_ui_kit/confirm_checkout.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -36,14 +36,15 @@ void main() {
       localizationsDelegates: [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: [Locale('en'), Locale('ar')],
       locale: locale,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          primaryColor: Colors.deepOrange[500],
-          accentColor: Colors.lightBlue[900],
+          primaryColor: Colors.deepOrange.shade500,
+          accentColor: Colors.lightBlue.shade900,
           fontFamily: locale.languageCode == 'ar' ? 'Dubai' : 'Lato'),
       initialRoute: '/',
       routes: <String, WidgetBuilder>{

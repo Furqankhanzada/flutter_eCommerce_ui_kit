@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:flutter_scaffold/config.dart';
-import 'package:flutter_scaffold/models/user.dart';
+import 'package:flutter_ecommerce_ui_kit/config.dart';
+import 'package:flutter_ecommerce_ui_kit/models/user.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:fluttertoast/fluttertoast.dart';
@@ -10,8 +10,8 @@ import 'package:flutter/material.dart';
 class AuthService {
   final storage = FlutterSecureStorage();
   // Create storage
-  Future<Map> login(UserCredential userCredential, BuildContext context) async {
-    final response = await http.post('$BASE_URL/jwt-auth/v1/token', body: {
+  Future<Map> login(UserCredential userCredential) async {
+    final response = await http.post(Uri.parse('$BASE_URL/jwt-auth/v1/token'), body: {
       'username': userCredential.usernameOrEmail,
       'password': userCredential.password
     });
@@ -28,7 +28,6 @@ class AuthService {
             msg: "Invalid Credentials",
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.CENTER,
-            timeInSecForIos: 1,
             fontSize: 16.0);
       }
       // If that call was not successful, throw an error.
@@ -38,7 +37,7 @@ class AuthService {
   }
 
   Future<Map> register(User user) async {
-    final response = await http.post('$BASE_URL/wc-apis/v1/users',
+    final response = await http.post(Uri.parse('$BASE_URL/tradebakerz/wc/v1/register'),
         body: {
           'username': user.username,
           'password': user.password,
@@ -54,7 +53,7 @@ class AuthService {
             msg: 'Email already exist',
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.CENTER,
-            timeInSecForIos: 1,
+            timeInSecForIosWeb: 1,
             fontSize: 16.0);
       }
       // If that call was not successful, throw an error.
@@ -68,7 +67,7 @@ class AuthService {
   }
 
   getUser() async {
-    String user = await storage.read(key: 'user');
+    String? user = await storage.read(key: 'user');
     if (user != null) {
       return jsonDecode(user);
     }

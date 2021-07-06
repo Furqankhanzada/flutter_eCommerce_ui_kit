@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_scaffold/blocks/categories_block.dart';
-import 'package:flutter_scaffold/blocks/products_block.dart';
-import 'package:flutter_scaffold/localizations.dart';
+import 'package:flutter_ecommerce_ui_kit/blocks/categories_block.dart';
+import 'package:flutter_ecommerce_ui_kit/blocks/products_block.dart';
+import 'package:flutter_ecommerce_ui_kit/localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:html_unescape/html_unescape.dart';
@@ -87,8 +87,8 @@ class _HomeState extends State<Home> {
                         padding:
                             EdgeInsets.only(top: 14.0, left: 8.0, right: 8.0),
                         child: Text(
-                            AppLocalizations.of(context)
-                                .translate('NEW_ARRIVALS'),
+                            AppLocalizations.of(context)!
+                                .translate('NEW_ARRIVALS') ?? '',
                             style: TextStyle(
                                 color: Theme.of(context).accentColor,
                                 fontSize: 18,
@@ -335,8 +335,10 @@ class _HomeState extends State<Home> {
                           Padding(
                             padding: const EdgeInsets.only(
                                 right: 8.0, top: 8.0, left: 8.0),
-                            child: RaisedButton(
-                                color: Theme.of(context).primaryColor,
+                            child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    primary: Theme.of(context).primaryColor
+                                ),
                                 child: Text('View All',
                                     style: TextStyle(color: Colors.white)),
                                 onPressed: () {

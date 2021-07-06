@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:smooth_star_rating/smooth_star_rating.dart';
+import 'package:flutter_rating_stars/flutter_rating_stars.dart';
+
 import 'package:flutter_scaffold/blocks/products_block.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
@@ -108,7 +109,7 @@ class _ShopState extends State<Shop> {
             IconButton(
               icon: Icon(Icons.search, color: Colors.white),
               onPressed: () {
-                scaffoldKey.currentState
+                scaffoldKey.currentState!
                     .showBottomSheet((context) => ShopSearch());
               },
             )
@@ -660,6 +661,11 @@ class _ShopState extends State<Shop> {
                                                                 color: Theme.of(
                                                                         context)
                                                                     .primaryColor)),
+                                                      RatingStars(
+                                                        value: products[index]['rating'],
+                                                        starSize: 16,
+                                                        valueLabelColor: Colors.amber,
+                                                        starColor: Colors.amber,
                                                       )
                                                     ],
                                                   )

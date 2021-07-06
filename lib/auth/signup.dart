@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_scaffold/models/user.dart';
-import 'package:flutter_scaffold/blocks/auth_block.dart';
+import 'package:flutter_ecommerce_ui_kit/models/user.dart';
+import 'package:flutter_ecommerce_ui_kit/blocks/auth_block.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_scaffold/localizations.dart';
 
@@ -11,8 +11,8 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   final _formKey = GlobalKey<FormState>();
-  final User user = User();
-  String confirmPassword;
+  final User user = User(password: '', username: '', email: '');
+  late String confirmPassword;
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -28,14 +28,14 @@ class _SignUpState extends State<SignUp> {
                     padding: const EdgeInsets.only(bottom: 12.0),
                     child: TextFormField(
                       validator: (value) {
-                        if (value.isEmpty) {
+                        if (value!.isEmpty) {
                           return 'Please Enter Username';
                         }
                         return null;
                       },
                       onSaved: (value) {
                         setState(() {
-                          user.username = value;
+                          user.username = value!;
                         });
                       },
                       decoration: InputDecoration(
@@ -49,14 +49,14 @@ class _SignUpState extends State<SignUp> {
                     padding: const EdgeInsets.only(bottom: 12.0),
                     child: TextFormField(
                       validator: (value) {
-                        if (value.isEmpty) {
+                        if (value!.isEmpty) {
                           return 'Please Enter Email Address';
                         }
                         return null;
                       },
                       onSaved: (value) {
                         setState(() {
-                          user.email = value;
+                          user.email = value!;
                         });
                       },
                       decoration: InputDecoration(
@@ -70,14 +70,14 @@ class _SignUpState extends State<SignUp> {
                     padding: const EdgeInsets.only(bottom: 12.0),
                     child: TextFormField(
                         validator: (value) {
-                          if (value.isEmpty) {
+                          if (value!.isEmpty) {
                             return 'Please Enter Password';
                           }
                           return null;
                         },
                         onSaved: (value) {
                           setState(() {
-                            user.password = value;
+                            user.password = value!;
                           });
                         },
                         onChanged: (text) {
@@ -92,7 +92,7 @@ class _SignUpState extends State<SignUp> {
                   ),
                   TextFormField(
                     validator: (value) {
-                      if (value.isEmpty) {
+                      if (value!.isEmpty) {
                         return 'Please Enter Confirm Password';
                       } else if (user.password != confirmPassword) {
                         return 'Password fields dont match';
@@ -115,7 +115,7 @@ class _SignUpState extends State<SignUp> {
                       width: double.infinity,
                       height: 50,
                       child: Consumer<AuthBlock>(builder:
-                          (BuildContext context, AuthBlock auth, Widget child) {
+                          (BuildContext context, AuthBlock auth, Widget? child) {
                         return RaisedButton(
                           color: Theme.of(context).primaryColor,
                           textColor: Colors.white,
@@ -124,8 +124,8 @@ class _SignUpState extends State<SignUp> {
                           ) : Text(AppLocalizations.of(context)
                                 .translate("CREATE_ACCOUNT")),
                           onPressed: () {
-                            if (_formKey.currentState.validate() && !auth.loading) {
-                              _formKey.currentState.save();
+                            if (_formKey.currentState!.validate() && !auth.loading) {
+                              _formKey.currentState!.save();
                               // If the form is valid, display a snackbar. In the real world,
                               // you'd often call a server or save the information in a database.
                               auth.register(user);
