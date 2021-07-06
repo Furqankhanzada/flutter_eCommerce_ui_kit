@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:smooth_star_rating/smooth_star_rating.dart';
+import 'package:flutter_rating_stars/flutter_rating_stars.dart';
 
 import 'search.dart';
 
@@ -129,25 +129,11 @@ class _ShopState extends State<Shop> {
                                                   ),
                                                   Row(
                                                     children: <Widget>[
-                                                      SmoothStarRating(
-                                                          allowHalfRating: false,
-                                                          onRated: (v) {
-                                                            product['rating'] = v;
-                                                            setState(() {});
-                                                          },
-                                                          starCount: 5,
-                                                          rating: product['rating'],
-                                                          size: 16.0,
-                                                          color: Colors.amber,
-                                                          borderColor: Colors.amber,
-                                                          spacing:0.0
-                                                      ),
-                                                      Padding(
-                                                        padding: const EdgeInsets.only(left: 6.0),
-                                                        child: Text('(4)', style: TextStyle(
-                                                            fontWeight: FontWeight.w300,
-                                                            color: Theme.of(context).primaryColor
-                                                        )),
+                                                      RatingStars(
+                                                        value: product['rating'],
+                                                        starSize: 16,
+                                                        valueLabelColor: Colors.amber,
+                                                        starColor: Colors.amber,
                                                       )
                                                     ],
                                                   )
@@ -227,25 +213,11 @@ class _ShopState extends State<Shop> {
                                                   ),
                                                   Row(
                                                     children: <Widget>[
-                                                      SmoothStarRating(
-                                                          allowHalfRating: false,
-                                                          onRated: (v) {
-                                                            products[index]['rating'] = v;
-                                                            setState(() {});
-                                                          },
-                                                          starCount: 5,
-                                                          rating: products[index]['rating'],
-                                                          size: 16.0,
-                                                          color: Colors.amber,
-                                                          borderColor: Colors.amber,
-                                                          spacing:0.0
-                                                      ),
-                                                      Padding(
-                                                        padding: const EdgeInsets.only(left: 6.0),
-                                                        child: Text('(4)', style: TextStyle(
-                                                            fontWeight: FontWeight.w300,
-                                                            color: Theme.of(context).primaryColor
-                                                        )),
+                                                      RatingStars(
+                                                        value: products[index]['rating'],
+                                                        starSize: 16,
+                                                        valueLabelColor: Colors.amber,
+                                                        starColor: Colors.amber,
                                                       )
                                                     ],
                                                   )
