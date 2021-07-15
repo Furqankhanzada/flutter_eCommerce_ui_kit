@@ -41,11 +41,11 @@ class _WishlistState extends State<WishList> {
             onDismissed: (direction) {
               if(direction == DismissDirection.endToStart) {
                 // Then show a snackbar.
-                Scaffold.of(context)
+                ScaffoldMessenger.of(context)
                     .showSnackBar(SnackBar(content: Text(item['name'] + " dismissed"), duration: Duration(seconds: 1)));
               } else {
                 // Then show a snackbar.
-                Scaffold.of(context)
+                ScaffoldMessenger.of(context)
                     .showSnackBar(SnackBar(content: Text(item['name'] + " added to carts"), duration: Duration(seconds: 1)));
               }
               // Remove the item from the data source.

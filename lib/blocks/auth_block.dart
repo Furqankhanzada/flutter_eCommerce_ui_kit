@@ -41,6 +41,7 @@ class AuthBlock extends ChangeNotifier {
   Map get user => _user;
   setUser() async {
     _user = await _authService.getUser();
+    // ignore: unnecessary_null_comparison
     isLoggedIn = _user == null ? false : true;
     notifyListeners();
   }

@@ -20,11 +20,11 @@ class Auth extends StatelessWidget {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.lock_open),
-            title: Text('Sign In'),
+            label: 'Sign In',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.people_outline),
-            title: Text('Create Account'),
+            label: 'Create Account',
           ),
         ],
         currentIndex: authBlock.currentIndex,
