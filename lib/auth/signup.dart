@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter_ecommerce_ui_kit/models/user.dart';
 import 'package:flutter_ecommerce_ui_kit/blocks/auth_block.dart';
-import 'package:provider/provider.dart';
-import 'package:flutter_scaffold/localizations.dart';
+import 'package:flutter_ecommerce_ui_kit/localizations.dart';
 
 class SignUp extends StatefulWidget {
   @override
@@ -40,7 +40,7 @@ class _SignUpState extends State<SignUp> {
                       },
                       decoration: InputDecoration(
                         hintText: 'Enter Username',
-                        labelText: AppLocalizations.of(context)
+                        labelText: AppLocalizations.of(context)!
                             .translate('USERNAME'),
                       ),
                     ),
@@ -61,7 +61,7 @@ class _SignUpState extends State<SignUp> {
                       },
                       decoration: InputDecoration(
                         hintText: 'Enter Email',
-                        labelText: AppLocalizations.of(context)
+                        labelText: AppLocalizations.of(context)!
                             .translate('EMAIL'),
                       ),
                     ),
@@ -85,7 +85,7 @@ class _SignUpState extends State<SignUp> {
                         },
                         decoration: InputDecoration(
                           hintText: 'Enter Password',
-                          labelText: AppLocalizations.of(context)
+                          labelText: AppLocalizations.of(context)!
                               .translate('PASSWORD'),
                         ),
                         obscureText: true),
@@ -104,7 +104,7 @@ class _SignUpState extends State<SignUp> {
                     },
                     decoration: InputDecoration(
                       hintText: 'Enter Same Password',
-                      labelText: AppLocalizations.of(context)
+                      labelText: AppLocalizations.of(context)!
                           .translate('CONFIRM_PASSWORD'),
                     ),
                     obscureText: true,
@@ -121,7 +121,7 @@ class _SignUpState extends State<SignUp> {
                           textColor: Colors.white,
                           child: auth.loading && auth.loadingType == 'register' ? CircularProgressIndicator(
                             valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                          ) : Text(AppLocalizations.of(context)
+                          ) : Text(AppLocalizations.of(context)!
                                 .translate("CREATE_ACCOUNT")),
                           onPressed: () {
                             if (_formKey.currentState!.validate() && !auth.loading) {

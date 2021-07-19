@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter_ecommerce_ui_kit/blocks/auth_block.dart';
 import 'package:flutter_ecommerce_ui_kit/models/user.dart';
-import 'package:provider/provider.dart';
-import 'package:flutter_scaffold/localizations.dart';
+import 'package:flutter_ecommerce_ui_kit/localizations.dart';
 
 class SignIn extends StatefulWidget {
   @override
@@ -40,7 +40,7 @@ class _SignInState extends State<SignIn> {
                       },
                       decoration: InputDecoration(
                         hintText: 'Enter Username Or Email',
-                        labelText: AppLocalizations.of(context)
+                        labelText: AppLocalizations.of(context)!
                             .translate('EMAIL'),
                       ),
                     ),
@@ -59,7 +59,7 @@ class _SignInState extends State<SignIn> {
                     },
                     decoration: InputDecoration(
                       hintText: 'Enter Password',
-                      labelText: AppLocalizations.of(context)
+                      labelText: AppLocalizations.of(context)!
                           .translate('PASSWORD'),
                     ),
                     obscureText: true,
@@ -77,7 +77,7 @@ class _SignInState extends State<SignIn> {
                             textColor: Colors.white,
                             child: auth.loading && auth.loadingType == 'login' ? CircularProgressIndicator(
                               valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                            ) : Text(AppLocalizations.of(context)
+                            ) : Text(AppLocalizations.of(context)!
                                 .translate('SIGN_IN')),
                             onPressed: (){
                               // Validate form

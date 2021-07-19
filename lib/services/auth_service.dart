@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 class AuthService {
   final storage = FlutterSecureStorage();
   // Create storage
-  Future<Map> login(UserCredential userCredential) async {
+  Future<Map> login(UserCredential userCredential, BuildContext context) async {
     final response = await http.post(Uri.parse('$BASE_URL/jwt-auth/v1/token'), body: {
       'username': userCredential.usernameOrEmail,
       'password': userCredential.password

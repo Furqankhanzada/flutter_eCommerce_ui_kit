@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_scaffold/services/categories_service.dart';
+import 'package:flutter_ecommerce_ui_kit/services/categories_service.dart';
 
 class CategoriesBlock extends ChangeNotifier {
+  CategoriesBlock() {
+    getCategories();
+  }
   CategoryService _categoryService = CategoryService();
   // Index
   List<dynamic> _categories = [];

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_scaffold/services/products_services.dart';
+import 'package:flutter_ecommerce_ui_kit/services/products_services.dart';
 
 class ProductsBlock extends ChangeNotifier {
+  ProductsBlock() {
+    getNewArrivals();
+  }
   ProductService _productService = ProductService();
   // Index
   List<dynamic> _products = [];

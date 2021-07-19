@@ -10,7 +10,7 @@ class Order {
   String address;
   String postalCode;
 
-  Order({this.firstname, this.lastname, this.email, this.username, this.country, this.state, this.city, this.phone, this.address, this.postalCode});
+  Order({required this.firstname, required this.lastname, required this.email, required this.username, required this.country, required this.state, required this.city, required this.phone, required this.address, required this.postalCode});
   factory Order.fromJson(Map<String, dynamic> json) {
     return Order(
         firstname: json['firstname'],

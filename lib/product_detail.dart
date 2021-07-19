@@ -1,25 +1,25 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_stars/flutter_rating_stars.dart';
-import 'package:flutter_scaffold/localizations.dart';
-import 'package:flutter_scaffold/blocks/cart.dart';
+import 'package:flutter_ecommerce_ui_kit/localizations.dart';
+import 'package:flutter_ecommerce_ui_kit/blocks/cart.dart';
 import 'package:provider/provider.dart';
 import 'package:html_unescape/html_unescape.dart';
-import 'package:flutter_scaffold/blocks/products_block.dart';
+import 'package:flutter_ecommerce_ui_kit/blocks/products_block.dart';
 
 class Products extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final CartBlock cartBlock = Provider.of<CartBlock>(context);
     final ProductsBlock productBlock = Provider.of<ProductsBlock>(context);
-    Map<String, dynamic> args = ModalRoute.of(context).settings.arguments;
-    List<dynamic> addedToCart = cartBlock.cartItems.where((item) => item["id"] == args["id"]).toList();
+    final args = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
+    List<dynamic> addedToCart = cartBlock.cartItems.where((item) => item['id'] == args['id']).toList();
     final cartLength = addedToCart.length;
     var unescape = new HtmlUnescape();
     var currency = unescape.convert(productBlock.currency);
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context)
+        title: Text(AppLocalizations.of(context)!
             .translate('PRODUCT_DETAILS')),
       ),
       body: SafeArea(
@@ -70,7 +70,7 @@ class Products extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.only(right: 10.0),
                                 child: Text(
-                                  '$currency ' + args["price"],
+                                  '$currency ' + args['price'],
                                   style: TextStyle(
                                     color: Theme.of(context).primaryColor,
                                     fontSize: 20,
@@ -113,7 +113,7 @@ class Products extends StatelessWidget {
                             child: Padding(
                               padding: const EdgeInsets.only(bottom: 10.0),
                               child: Text(
-                                AppLocalizations.of(context)
+                                AppLocalizations.of(context)!
                                     .translate('DESCRIPTION'),
                                 style: TextStyle(
                                     color: Colors.black,
@@ -139,7 +139,7 @@ class Products extends StatelessWidget {
                             onPressed: () {
                               cartBlock.addToCart(args);
                             },
-                            child: Text(cartLength == 0 ? "ADD TO CART" : 'REMOVE FROM CART',
+                            child: Text(cartLength == 0 ? 'ADD TO CART' : 'REMOVE FROM CART',
                                 style: TextStyle(color: Colors.white)
                             ),
                           ),

@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_scaffold/blocks/order_details.dart';
-import 'package:flutter_scaffold/localizations.dart';
-import 'package:flutter_scaffold/models/order.dart';
 import 'package:provider/provider.dart';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
-import 'package:flutter_scaffold/config.dart';
-import 'package:flutter_scaffold/blocks/cart.dart';
+import 'package:flutter_ecommerce_ui_kit/blocks/order_details.dart';
+import 'package:flutter_ecommerce_ui_kit/localizations.dart';
+import 'package:flutter_ecommerce_ui_kit/models/order.dart';
+import 'package:flutter_ecommerce_ui_kit/blocks/cart.dart';
 
 class Checkout extends StatefulWidget {
   @override
@@ -23,7 +20,7 @@ class _CheckoutState extends State<Checkout> {
     'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80'
   ];
   final _formKey = GlobalKey<FormState>();
-  final Order order = Order();
+  final Order order = Order(country: '', lastname: '', firstname: '', phone: '', postalCode: '', username: '', state: '', address: '', email: '', city: '');
   void initState() {
     super.initState();
     Future.delayed(const Duration(milliseconds: 500), () {
@@ -56,7 +53,7 @@ class _CheckoutState extends State<Checkout> {
     }
     return Scaffold(
         appBar: AppBar(
-          title: Text(AppLocalizations.of(context).translate('CHECKOUT')),
+          title: Text(AppLocalizations.of(context)!.translate('CHECKOUT')),
         ),
         body: SafeArea(
           top: false,
@@ -73,76 +70,76 @@ class _CheckoutState extends State<Checkout> {
                         TextFormField(
                           keyboardType: TextInputType.text,
                           validator: (value) {
-                            if (value.isEmpty) {
+                            if (value!.isEmpty) {
                               return 'Please Enter First Name';
                             }
                             return null;
                           },
                           onSaved: (value) {
                             setState(() {
-                              order.firstname = value;
+                              order.firstname = value!;
                             });
                           },
                           decoration: InputDecoration(
                             hintText: 'Enter First Name',
-                            labelText: AppLocalizations.of(context)
+                            labelText: AppLocalizations.of(context)!
                                 .translate('FIRST_NAME'),
                           ),
                         ),
                         TextFormField(
                           keyboardType: TextInputType.text,                          
                           validator: (value) {
-                            if (value.isEmpty) {
+                            if (value!.isEmpty) {
                               return 'Please Enter Last Name';
                             }
                             return null;
                           },
                           onSaved: (value) {
                             setState(() {
-                              order.lastname = value;
+                              order.lastname = value!;
                             });
                           },
                           decoration: InputDecoration(
                             hintText: 'Enter Last Name',
-                            labelText: AppLocalizations.of(context)
+                            labelText: AppLocalizations.of(context)!
                                 .translate('LAST_NAME'),
                           ),
                         ),
                         TextFormField(
                           keyboardType: TextInputType.emailAddress,
                           validator: (value) {
-                            if (value.isEmpty) {
+                            if (value!.isEmpty) {
                               return 'Please Enter Email';
                             }
                             return null;
                           },
                           onSaved: (value) {
                             setState(() {
-                              order.email = value;
+                              order.email = value!;
                             });
                           },
                           decoration: InputDecoration(
                             hintText: 'Enter Email',
                             labelText:
-                                AppLocalizations.of(context).translate('EMAIL'),
+                                AppLocalizations.of(context)!.translate('EMAIL'),
                           ),
                         ),
                         TextFormField(
                           keyboardType: TextInputType.text,
                           validator: (value) {
-                            if (value.isEmpty) {
+                            if (value!.isEmpty) {
                               return 'Please Enter Username';
                             }
                             return null;
                           },
                           onSaved: (value) {
                             setState(() {
-                              order.username = value;
+                              order.username = value!;
                             });
                           },
                           decoration: InputDecoration(
                             hintText: 'Enter Username',
-                            labelText: AppLocalizations.of(context)
+                            labelText: AppLocalizations.of(context)!
                                 .translate('USERNAME'),
                           ),
                         ),
@@ -158,8 +155,8 @@ class _CheckoutState extends State<Checkout> {
                           }).toList(),
                           onChanged: (country) {
                             setState(() {
-                              order.country = country;
-                              order.state = null;
+                              order.country = country!;
+                              order.state = '';
                             });
                             cartBlock.getState(country);
                           },
@@ -176,45 +173,45 @@ class _CheckoutState extends State<Checkout> {
                           }).toList(),
                           onChanged: (state) {
                             setState(() {
-                              order.state = state;
+                              order.state = state!;
                             });
                           },
                         ),
                         TextFormField(
                           keyboardType: TextInputType.text,
                           validator: (value) {
-                            if (value.isEmpty) {
+                            if (value!.isEmpty) {
                               return 'Please Enter City Name';
                             }
                             return null;
                           },
                           onSaved: (value) {
                             setState(() {
-                              order.city = value;
+                              order.city = value!;
                             });
                           },
                           decoration: InputDecoration(
                             hintText: 'Enter City Name',
                             labelText:
-                                AppLocalizations.of(context).translate('CITY'),
+                                AppLocalizations.of(context)!.translate('CITY'),
                           ),
                         ),
                         TextFormField(
                           keyboardType: TextInputType.number,
                           validator: (value) {
-                            if (value.isEmpty) {
+                            if (value!.isEmpty) {
                               return 'Please Enter Phone Number';
                             }
                             return null;
                           },
                           onSaved: (value) {
                             setState(() {
-                              order.phone = value;
+                              order.phone = value!;
                             });
                           },
                           decoration: InputDecoration(
                             hintText: 'Enter Phone Number',
-                            labelText: AppLocalizations.of(context)
+                            labelText: AppLocalizations.of(context)!
                                 .translate('PHONE_NUMBER'),
                           ),
                           obscureText: true,
@@ -222,38 +219,38 @@ class _CheckoutState extends State<Checkout> {
                         TextFormField(
                           keyboardType: TextInputType.text,
                           validator: (value) {
-                            if (value.isEmpty) {
+                            if (value!.isEmpty) {
                               return 'Please Enter Street Address';
                             }
                             return null;
                           },
                           onSaved: (value) {
                             setState(() {
-                              order.address = value;
+                              order.address = value!;
                             });
                           },
                           decoration: InputDecoration(
                             hintText: 'Enter Street Address',
-                            labelText: AppLocalizations.of(context)
+                            labelText: AppLocalizations.of(context)!
                                 .translate('STREET_ADDRESS'),
                           ),
                         ),
                         TextFormField(
                           keyboardType: TextInputType.number,
                           validator: (value) {
-                            if (value.isEmpty) {
+                            if (value!.isEmpty) {
                               return 'Please Enter Postal Code';
                             }
                             return null;
                           },
                           onSaved: (value) {
                             setState(() {
-                              order.postalCode = value;
+                              order.postalCode = value!;
                             });
                           },
                           decoration: InputDecoration(
                             hintText: 'Enter Postal Code',
-                            labelText: AppLocalizations.of(context)
+                            labelText: AppLocalizations.of(context)!
                                 .translate('POSTAL_CODE'),
                           )
                         ),
@@ -283,8 +280,8 @@ class _CheckoutState extends State<Checkout> {
                             child: Text('Proceed',
                                 style: TextStyle(color: Colors.white)),
                             onPressed: () {
-                              if (_formKey.currentState.validate()) {
-                                _formKey.currentState.save();
+                              if (_formKey.currentState!.validate()) {
+                                _formKey.currentState!.save();
                                 orderBlock.setOrderDetails(order);
                                 Navigator.pushNamed(context, '/payment');
 

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter_scaffold/blocks/payment_methods.dart';
+import 'package:flutter_ecommerce_ui_kit/blocks/payment_methods.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:flutter_scaffold/localizations.dart';
-import 'package:flutter_scaffold/models/user.dart';
-import 'package:flutter_scaffold/blocks/order_details.dart';
+import 'package:flutter_ecommerce_ui_kit/localizations.dart';
+import 'package:flutter_ecommerce_ui_kit/models/user.dart';
+import 'package:flutter_ecommerce_ui_kit/blocks/order_details.dart';
 
 class Payment extends StatefulWidget {
   @override
@@ -22,7 +22,7 @@ class _PaymentState extends State<Payment> {
     'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80'
   ];
   final _formKey = GlobalKey<FormState>();
-  final UserCredential userCredential = UserCredential();
+  final UserCredential userCredential = UserCredential(usernameOrEmail: '', password: '');
 
   @override
   void initState() {

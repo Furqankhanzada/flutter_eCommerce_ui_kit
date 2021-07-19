@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:smooth_star_rating/smooth_star_rating.dart';
-import 'package:flutter_scaffold/localizations.dart';
-import 'package:flutter_scaffold/blocks/cart.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_scaffold/blocks/order_details.dart';
-import 'package:flutter_scaffold/blocks/auth_block.dart';
-import 'dart:convert';
+import 'package:flutter_ecommerce_ui_kit/blocks/cart.dart';
+import 'package:flutter_ecommerce_ui_kit/blocks/order_details.dart';
+import 'package:flutter_ecommerce_ui_kit/blocks/auth_block.dart';
 
 class ConfirmCheckout extends StatefulWidget {
   @override
@@ -14,7 +11,7 @@ class ConfirmCheckout extends StatefulWidget {
 }
 
 class _ConfirmCheckoutState extends State<ConfirmCheckout> {
-  bool loading;
+  late bool loading;
   @override
   void initState() {
     super.initState();

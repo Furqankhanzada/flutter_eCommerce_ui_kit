@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_scaffold/services/cart_service.dart';
+import 'package:flutter_ecommerce_ui_kit/services/cart_service.dart';
 
 class CartBlock extends ChangeNotifier {
   CartService _cartService = CartService();

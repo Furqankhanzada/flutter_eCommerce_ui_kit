@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter_scaffold/blocks/categories_block.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:flutter_scaffold/localizations.dart';
+import 'package:flutter_ecommerce_ui_kit/blocks/categories_block.dart';
+import 'package:flutter_ecommerce_ui_kit/localizations.dart';
 
 class Categorise extends StatefulWidget {
   @override
@@ -27,7 +27,7 @@ class _CategoriseState extends State<Categorise> {
     final categories = categoriesBlock.categories;
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context)
+        title: Text(AppLocalizations.of(context)!
             .translate('CATEGORIES')),
       ),
       body: SafeArea(
@@ -39,8 +39,6 @@ class _CategoriseState extends State<Categorise> {
               shrinkWrap: true,
               padding: EdgeInsets.only(top: 8, left: 6, right: 6, bottom: 8),
               children: categories.length == 0 ? [1,2,3].map((i) {
-//                            i["thumbnail"] = imgList[newArrivals.indexOf(i)];
-//                            print(i["thumbnail"]);
                 return Builder(
                   builder: (BuildContext context) {
                     return Container(
@@ -53,8 +51,8 @@ class _CategoriseState extends State<Categorise> {
                             CrossAxisAlignment.start,
                             children: <Widget>[
                               Shimmer.fromColors(
-                                baseColor: Colors.grey[300],
-                                highlightColor: Colors.grey[100],
+                                baseColor: Colors.grey.shade300,
+                                highlightColor: Colors.grey.shade100,
                                 enabled: true,
                                 child: Column(
                                   children: [0]
@@ -75,8 +73,8 @@ class _CategoriseState extends State<Categorise> {
                                 ),
                               ),
                               Shimmer.fromColors(
-                                baseColor: Colors.grey[300],
-                                highlightColor: Colors.grey[100],
+                                baseColor: Colors.grey.shade300,
+                                highlightColor: Colors.grey.shade100,
                                 enabled: true,
                                 child: Column(
                                   children: [0]

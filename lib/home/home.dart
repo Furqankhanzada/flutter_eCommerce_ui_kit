@@ -1,11 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce_ui_kit/blocks/categories_block.dart';
-import 'package:flutter_ecommerce_ui_kit/blocks/products_block.dart';
-import 'package:flutter_ecommerce_ui_kit/localizations.dart';
+import 'package:flutter_ecommerce_ui_kit/home/new_arrivals/new_arrivals.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:html_unescape/html_unescape.dart';
+import 'package:flutter_ecommerce_ui_kit/blocks/categories_block.dart';
+import 'package:flutter_ecommerce_ui_kit/localizations.dart';
 
 import 'drawer.dart';
 import 'slider.dart';
@@ -27,23 +26,12 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(milliseconds: 500), () {
-      // Here you can write your code
-      final CategoriesBlock categoryBlock = Provider.of<CategoriesBlock>(context);
-      final ProductsBlock productBlock = Provider.of<ProductsBlock>(context);
-      categoryBlock.getCategories();
-      productBlock.getNewArrivals();
-    });
   }
 
   Widget build(BuildContext context) {
-    final ProductsBlock productBlock = Provider.of<ProductsBlock>(context);
     final CategoriesBlock categoriesBlock =
         Provider.of<CategoriesBlock>(context);
     final categories = categoriesBlock.categories;
-    List<dynamic> newArrivals = productBlock.newArrivals;
-    var unescape = new HtmlUnescape();
-    var currency = unescape.convert(productBlock.currency);
     return Scaffold(
       drawer: Drawer(
         child: AppDrawer(),
@@ -83,235 +71,12 @@ class _HomeState extends State<Home> {
                   (context, index) => Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Padding(
-                        padding:
-                            EdgeInsets.only(top: 14.0, left: 8.0, right: 8.0),
-                        child: Text(
-                            AppLocalizations.of(context)!
-                                .translate('NEW_ARRIVALS') ?? '',
-                            style: TextStyle(
-                                color: Theme.of(context).accentColor,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w700)),
-                      ),
-                      Container(
-                        margin: EdgeInsets.symmetric(vertical: 8.0),
-                        height: 240.0,
-                        child: ListView(
-                          scrollDirection: Axis.horizontal,
-                          children: newArrivals.length == 0
-                              ? [1, 2, 3, 4].map((i) {
-//                            i["thumbnail"] = imgList[newArrivals.indexOf(i)];
-//                            print(i["thumbnail"]);
-                                  return Builder(
-                                    builder: (BuildContext context) {
-                                      return Container(
-                                        width: 140.0,
-                                        child: Card(
-                                          clipBehavior: Clip.antiAlias,
-                                          child: InkWell(
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: <Widget>[
-                                                Shimmer.fromColors(
-                                                  baseColor: Colors.grey[300],
-                                                  highlightColor:
-                                                      Colors.grey[100],
-                                                  enabled: true,
-                                                  child: Column(
-                                                    children: [0]
-                                                        .map((_) => Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                          .only(
-                                                                      bottom:
-                                                                          8.0),
-                                                              child: Row(
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .start,
-                                                                children: [
-                                                                  Container(
-                                                                    width:
-                                                                        138.0,
-                                                                    height: 150,
-                                                                    color: Colors
-                                                                        .white,
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            ))
-                                                        .toList(),
-                                                  ),
-                                                ),
-                                                Shimmer.fromColors(
-                                                  baseColor: Colors.grey[300],
-                                                  highlightColor:
-                                                      Colors.grey[100],
-                                                  enabled: true,
-                                                  child: Column(
-                                                    children: [0]
-                                                        .map((_) => Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                          .only(
-                                                                      left: 5.0,
-                                                                      right:
-                                                                          5.0),
-                                                              child: Row(
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .start,
-                                                                children: [
-                                                                  Container(
-                                                                    width:
-                                                                        135.0,
-                                                                    height: 10,
-                                                                    color: Colors
-                                                                        .white,
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            ))
-                                                        .toList(),
-                                                  ),
-                                                ),
-                                                Shimmer.fromColors(
-                                                  baseColor: Colors.grey[300],
-                                                  highlightColor:
-                                                      Colors.grey[100],
-                                                  enabled: true,
-                                                  child: Column(
-                                                    children: [0]
-                                                        .map((_) => Padding(
-                                                              padding:
-                                                                  const EdgeInsets
-                                                                          .only(
-                                                                      top: 10.0,
-                                                                      left:
-                                                                          5.0),
-                                                              child: Row(
-                                                                crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .start,
-                                                                children: [
-                                                                  Container(
-                                                                    width: 50.0,
-                                                                    height: 10,
-                                                                    color: Colors
-                                                                        .white,
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            ))
-                                                        .toList(),
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                  );
-                                }).toList()
-                              : newArrivals.map((i) {
-//                            i["thumbnail"] = imgList[newArrivals.indexOf(i)];
-                                  return Builder(
-                                    builder: (BuildContext context) {
-                                      return Container(
-                                        width: 140.0,
-                                        child: Card(
-                                          clipBehavior: Clip.antiAlias,
-                                          child: InkWell(
-                                            onTap: () {
-                                              Navigator.pushNamed(
-                                                  context, '/products',
-                                                  arguments: i);
-                                            },
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: <Widget>[
-                                                SizedBox(
-                                                  height: 160,
-                                                  child: Hero(
-                                                    tag: i["thumbnail"],
-                                                    child: CachedNetworkImage(
-                                                      fit: BoxFit.cover,
-                                                      imageUrl: i["thumbnail"],
-                                                      placeholder: (context,
-                                                              url) =>
-                                                          Center(
-                                                              child:
-                                                                  CircularProgressIndicator()),
-                                                      errorWidget: (context,
-                                                              url, error) =>
-                                                          new Icon(Icons.error),
-                                                    ),
-                                                  ),
-                                                ),
-                                                ListTile(
-                                                  title: Text(
-                                                    i['name'],
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                    style:
-                                                        TextStyle(fontSize: 14),
-                                                  ),
-                                                  subtitle: Text(
-                                                      "$currency 200",
-                                                      style: TextStyle(
-                                                          color:
-                                                              Theme.of(context)
-                                                                  .accentColor,
-                                                          fontWeight:
-                                                              FontWeight.w700)),
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                  );
-                                }).toList(),
-                        ),
-                      ),
+                      NewArrivals(),
                       Container(
                         child: Padding(
                           padding:
                               EdgeInsets.only(top: 6.0, left: 8.0, right: 8.0),
-                          child: newArrivals.length == 0
-                              ? Shimmer.fromColors(
-                                  baseColor: Colors.grey[300],
-                                  highlightColor: Colors.grey[100],
-                                  enabled: true,
-                                  child: Column(
-                                    children: [0]
-                                        .map((_) => Padding(
-                                              padding: const EdgeInsets.only(
-                                                  bottom: 8.0),
-                                              child: Row(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Container(
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                            .size
-                                                            .width,
-                                                    height: 150,
-                                                    color: Colors.white,
-                                                  ),
-                                                ],
-                                              ),
-                                            ))
-                                        .toList(),
-                                  ),
-                                )
-                              : Image(
+                          child: Image(
                                   fit: BoxFit.cover,
                                   image:
                                       AssetImage('assets/images/banner-1.png'),
@@ -325,7 +90,7 @@ class _HomeState extends State<Home> {
                             padding: EdgeInsets.only(
                                 top: 8.0, left: 8.0, right: 8.0),
                             child: Text(
-                                AppLocalizations.of(context)
+                                AppLocalizations.of(context)!
                                     .translate('SHOP_BY_CATEGORY'),
                                 style: TextStyle(
                                     color: Theme.of(context).accentColor,
@@ -337,8 +102,7 @@ class _HomeState extends State<Home> {
                                 right: 8.0, top: 8.0, left: 8.0),
                             child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                    primary: Theme.of(context).primaryColor
-                                ),
+                                    primary: Theme.of(context).primaryColor),
                                 child: Text('View All',
                                     style: TextStyle(color: Colors.white)),
                                 onPressed: () {
@@ -364,13 +128,11 @@ class _HomeState extends State<Home> {
                                             clipBehavior: Clip.antiAlias,
                                             child: InkWell(
                                               child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
+                                                crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: <Widget>[
                                                   Shimmer.fromColors(
-                                                    baseColor: Colors.grey[300],
-                                                    highlightColor:
-                                                        Colors.grey[100],
+                                                    baseColor: Colors.grey.shade300,
+                                                    highlightColor: Colors.grey.shade100,
                                                     enabled: true,
                                                     child: Column(
                                                       children: [0]
@@ -380,10 +142,6 @@ class _HomeState extends State<Home> {
                                                                         .start,
                                                                 children: [
                                                                   Container(
-                                                                    width: MediaQuery.of(
-                                                                            context)
-                                                                        .size
-                                                                        .width,
                                                                     height: (MediaQuery.of(context).size.width /
                                                                             2) -
                                                                         70,
@@ -396,9 +154,10 @@ class _HomeState extends State<Home> {
                                                     ),
                                                   ),
                                                   Shimmer.fromColors(
-                                                    baseColor: Colors.grey[300],
+                                                    baseColor:
+                                                        Colors.grey.shade300,
                                                     highlightColor:
-                                                        Colors.grey[100],
+                                                        Colors.grey.shade100,
                                                     enabled: true,
                                                     child: Column(
                                                       children: [0]
@@ -437,7 +196,7 @@ class _HomeState extends State<Home> {
                                       },
                                     );
                                   }).toList()
-                                : List.generate(categories.length, (index) {
+                                : List.generate(categories.length - 1, (index) {
                                     return Container(
                                       child: Card(
                                         clipBehavior: Clip.antiAlias,
@@ -486,35 +245,7 @@ class _HomeState extends State<Home> {
                         child: Padding(
                           padding: EdgeInsets.only(
                               top: 6.0, left: 8.0, right: 8.0, bottom: 10),
-                          child: newArrivals.length == 0
-                              ? Shimmer.fromColors(
-                                  baseColor: Colors.grey[300],
-                                  highlightColor: Colors.grey[100],
-                                  enabled: true,
-                                  child: Column(
-                                    children: [0]
-                                        .map((_) => Padding(
-                                              padding: const EdgeInsets.only(
-                                                  bottom: 8.0),
-                                              child: Row(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Container(
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                            .size
-                                                            .width,
-                                                    height: 150,
-                                                    color: Colors.white,
-                                                  ),
-                                                ],
-                                              ),
-                                            ))
-                                        .toList(),
-                                  ),
-                                )
-                              : Image(
+                          child: Image(
                                   fit: BoxFit.cover,
                                   image:
                                       AssetImage('assets/images/banner-2.png'),

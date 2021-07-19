@@ -9,7 +9,7 @@ class Category {
   int parent;
   int count;
   String filter;
-  Category({this.term_id, this.name, this.slug, this.term_group, this.term_taxonomy_id, this.taxonomy, this.description, this.parent, this.count, this.filter});
+  Category({required this.term_id, required this.name, required this.slug, required this.term_group, required this.term_taxonomy_id, required this.taxonomy, required this.description, required this.parent, required this.count, required this.filter});
   factory Category.fromJson(Map<String, dynamic> json) {
     return Category(
     term_id: json['term_id'],
@@ -29,5 +29,5 @@ class Category {
 class UserCredential {
   String usernameOrEmail;
   String password;
-  UserCredential({this.usernameOrEmail, this.password});
+  UserCredential({required this.usernameOrEmail, required this.password});
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter_scaffold/localizations.dart';
-import 'package:flutter_scaffold/blocks/cart.dart';
+import 'package:flutter_ecommerce_ui_kit/localizations.dart';
+import 'package:flutter_ecommerce_ui_kit/blocks/cart.dart';
 import 'package:provider/provider.dart';
 
 class CartList extends StatefulWidget {
@@ -49,7 +49,7 @@ class _CartListState extends State<CartList> {
     });
     return Scaffold(
         appBar: AppBar(
-          title: Text(AppLocalizations.of(context).translate('CART')),
+          title: Text(AppLocalizations.of(context)!.translate('CART')),
         ),
         body: Column(
           children: <Widget>[

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter_scaffold/localizations.dart';
+import 'package:flutter_ecommerce_ui_kit/localizations.dart';
 
 class Settings extends StatefulWidget {
   @override
@@ -13,7 +13,7 @@ class _SettingsState extends State<Settings> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(AppLocalizations.of(context)
+          title: Text(AppLocalizations.of(context)!
               .translate('SETTINGS')),
         ),
         body: SafeArea(
