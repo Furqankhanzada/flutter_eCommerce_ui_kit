@@ -72,9 +72,13 @@ class _SignInState extends State<SignIn> {
                       child: Consumer<AuthBlock>(
                         builder:
                             (BuildContext context, AuthBlock auth, Widget? child) {
-                          return RaisedButton(
-                            color: Theme.of(context).primaryColor,
-                            textColor: Colors.white,
+                          return ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              primary: Theme.of(context).primaryColor,
+                            textStyle: TextStyle(
+                              color: Colors.white
+                            ),
+                            ),
                             child: auth.loading && auth.loadingType == 'login' ? CircularProgressIndicator(
                               valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                             ) : Text(AppLocalizations.of(context)!

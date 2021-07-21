@@ -32,104 +32,55 @@ class _AppDrawerState extends State<AppDrawer> {
           child: ListView(
             shrinkWrap: true,
             children: <Widget>[
-              ListTile(
-                leading: Icon(Icons.home, color: Theme.of(context).accentColor),
-                title: Text(AppLocalizations.of(context)!.translate('HOME')),
-                onTap: () {
-                  Navigator.pop(context);
-                },
-              ),
-              ListTile(
-                leading: Icon(Icons.shopping_basket,
-                    color: Theme.of(context).accentColor),
-                title: Text(AppLocalizations.of(context)!.translate('SHOP')),
-                trailing: Text('New',
-                    style: TextStyle(color: Theme.of(context).primaryColor)),
-                onTap: () {
-                  Navigator.pop(context);
-                  Navigator.pushNamed(context, '/shop');
-                },
-              ),
-              ListTile(
-                leading:
-                    Icon(Icons.category, color: Theme.of(context).accentColor),
-                title:
-                    Text(AppLocalizations.of(context)!.translate('CATEGORIES')),
-                onTap: () {
-                  Navigator.pop(context);
-                  Navigator.pushNamed(context, '/categorise');
-                },
-              ),
-              ListTile(
-                leading:
-                    Icon(Icons.favorite, color: Theme.of(context).accentColor),
-                title:
-                    Text(AppLocalizations.of(context)!.translate('MY_WISHLIST')),
-                trailing: Container(
-                  padding: const EdgeInsets.all(10.0),
-                  decoration: new BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Theme.of(context).primaryColor,
-                  ),
-                  child: Text('4',
-                      style: TextStyle(color: Colors.white, fontSize: 10.0)),
-                ),
-                onTap: () {
-                  Navigator.pop(context);
-                  Navigator.pushNamed(context, '/wishlist');
-                },
-              ),
-              ListTile(
-                leading: Icon(Icons.shopping_cart,
-                    color: Theme.of(context).accentColor),
-                title: Text(AppLocalizations.of(context)!.translate('MY_CART')),
-                trailing: Container(
-                  padding: const EdgeInsets.all(10.0),
-                  decoration: new BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Theme.of(context).primaryColor,
-                  ),
-                  child: Text('2',
-                      style: TextStyle(color: Colors.white, fontSize: 10.0)),
-                ),
-                onTap: () {
-                  Navigator.pop(context);
-                  Navigator.pushNamed(context, '/cart');
-                },
-              ),
-              if(!auth.isLoggedIn) ListTile(
-                      leading: Icon(Icons.lock,
-                          color: Theme.of(context).accentColor),
-                      title:
-                          Text(AppLocalizations.of(context)!.translate('LOGIN')),
-                      onTap: () {
-                        Navigator.pop(context);
-                        Navigator.pushNamed(context, '/auth');
-                      },
-                    ),
+              ReuseableDrawerListTile(title: 'HOME',icon: Icons.home,onTab:()=>Navigator.pop(context), ),
+              ReuseableDrawerListTile(title: 'SHOP', icon: Icons.shopping_basket, onTab: ()=>  Navigator.popAndPushNamed(context, '/shop'),trailing: Text('New',style: TextStyle(color: Theme.of(context).primaryColor)),),
+              ReuseableDrawerListTile(title: 'CATEGORIES', icon: Icons.category, onTab: ()=>Navigator.popAndPushNamed(context, '/categorise'), ),
+              ReuseableDrawerListTile(title: 'MY_WISHLIST', icon: Icons.favorite, onTab: ()=>Navigator.popAndPushNamed(context, '/wishlist'), trailing: trailingContainer(context: context,qty: 4),),
+              ReuseableDrawerListTile(title: 'MY_CART', icon: Icons.shopping_cart, onTab: ()=> Navigator.popAndPushNamed(context, '/cart'), trailing: trailingContainer(context: context,qty: 3)),
+              if(!auth.isLoggedIn) 
+              ReuseableDrawerListTile(title: 'LOGIN', icon: Icons.lock, onTab: ()=>Navigator.popAndPushNamed(context, '/auth')),
               Divider(),
-              if(auth.isLoggedIn) ListTile(
-                leading:
-                    Icon(Icons.settings, color: Theme.of(context).accentColor),
-                title: Text(AppLocalizations.of(context)!.translate('SETTINGS')),
-                onTap: () {
-                  Navigator.pop(context);
-                  Navigator.pushNamed(context, '/settings');
-                },
-              ),
-              if(auth.isLoggedIn) ListTile(
-                leading: Icon(Icons.exit_to_app,
-                    color: Theme.of(context).accentColor),
-                title: Text(AppLocalizations.of(context)!.translate('LOGOUT')),
-                onTap: () async {
-                  await auth.logout();
-//                  await cartBlock.emptyCart();
-                },
-              )
+              if(auth.isLoggedIn) 
+              ReuseableDrawerListTile(title: 'SETTINGS', icon: Icons.settings, onTab: ()=> Navigator.popAndPushNamed(context, '/settings') ),
+              if(auth.isLoggedIn) 
+              ReuseableDrawerListTile(title: 'LOGOUT', icon: Icons.exit_to_app, onTab: ()async{
+                 await auth.logout();
+                 //                  await cartBlock.emptyCart();
+              }),
             ],
           ),
         )
       ],
+    );
+  }
+
+  Container trailingContainer({required BuildContext context,required int qty}) {
+    return Container(
+                padding: const EdgeInsets.all(10.0),
+                decoration: new BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Theme.of(context).primaryColor,
+                ),
+                child: Text(qty.toString(),
+                    style: TextStyle(color: Colors.white, fontSize: 10.0)),
+              );
+  }
+}
+
+class ReuseableDrawerListTile extends StatelessWidget {
+final String title;
+final IconData icon;
+final Widget ? trailing ;
+final Function onTab;
+ReuseableDrawerListTile({required this.title, required this.icon, required this.onTab, this.trailing});
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: Icon(icon, color: Theme.of(context).accentColor),
+      trailing: trailing,
+      title: Text(AppLocalizations.of(context)!.translate(title)),
+      onTap:()=> onTab(),
+     
     );
   }
 }

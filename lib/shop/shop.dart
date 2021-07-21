@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:flutter_ecommerce_ui_kit/blocks/products_block.dart';
 import 'package:provider/provider.dart';
-import 'package:shimmer/shimmer.dart';
 import 'package:flutter_ecommerce_ui_kit/localizations.dart';
 import 'package:html_unescape/html_unescape.dart';
 import 'search.dart';

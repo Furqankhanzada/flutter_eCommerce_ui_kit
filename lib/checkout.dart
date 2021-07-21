@@ -275,10 +275,14 @@ class _CheckoutState extends State<Checkout> {
                       Padding(
                         padding: const EdgeInsets.only(
                             right: 20.0, top: 8.0, left: 8.0),
-                        child: RaisedButton(
-                            color: Theme.of(context).primaryColor,
-                            child: Text('Proceed',
-                                style: TextStyle(color: Colors.white)),
+                        child:ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              primary: Theme.of(context).primaryColor,
+                            textStyle: TextStyle(
+                              color: Colors.white
+                            ),
+                            ),
+                            child: Text('Proceed'),
                             onPressed: () {
                               if (_formKey.currentState!.validate()) {
                                 _formKey.currentState!.save();
