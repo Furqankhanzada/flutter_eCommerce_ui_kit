@@ -12,6 +12,7 @@ class _SignInState extends State<SignIn> {
   final _formKey = GlobalKey<FormState>();
   final UserCredential userCredential =
       UserCredential(usernameOrEmail: '', password: '');
+
   @override
   Widget build(BuildContext context) {
     return Center(
