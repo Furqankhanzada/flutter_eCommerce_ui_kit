@@ -65,7 +65,7 @@ class _HomeState extends State<Home> {
                             AppLocalizations.of(context)!
                                 .translate('NEW_ARRIVALS') ?? '',
                             style: TextStyle(
-                                color: Theme.of(context).accentColor,
+                                color: Theme.of(context).colorScheme.secondary,
                                 fontSize: 18,
                                 fontWeight: FontWeight.w700)),
                       ),
@@ -116,7 +116,7 @@ class _HomeState extends State<Home> {
                                             subtitle: Text('\$200',
                                                 style: TextStyle(
                                                     color: Theme.of(context)
-                                                        .accentColor,
+                                                        .colorScheme.secondary,
                                                     fontWeight:
                                                         FontWeight.w700)),
                                           )
@@ -148,7 +148,7 @@ class _HomeState extends State<Home> {
                                 top: 8.0, left: 8.0, right: 8.0),
                             child: Text('Shop By Category',
                                 style: TextStyle(
-                                    color: Theme.of(context).accentColor,
+                                    color: Theme.of(context).colorScheme.secondary,
                                     fontSize: 18,
                                     fontWeight: FontWeight.w700)),
                           ),

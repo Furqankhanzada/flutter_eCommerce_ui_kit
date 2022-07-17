@@ -32,7 +32,7 @@ class _AppDrawerState extends State<AppDrawer> {
             shrinkWrap: true,
             children: <Widget>[
               ListTile(
-                leading: Icon(Icons.home, color: Theme.of(context).accentColor),
+                leading: Icon(Icons.home, color: Theme.of(context).colorScheme.secondary),
                 title: Text('Home'),
                 onTap: () {
                   Navigator.pop(context);
@@ -40,7 +40,7 @@ class _AppDrawerState extends State<AppDrawer> {
               ),
               ListTile(
                 leading: Icon(Icons.shopping_basket,
-                    color: Theme.of(context).accentColor),
+                    color: Theme.of(context).colorScheme.secondary),
                 title: Text('Shop'),
                 trailing: Text('New',
                     style: TextStyle(color: Theme.of(context).primaryColor)),
@@ -51,7 +51,7 @@ class _AppDrawerState extends State<AppDrawer> {
               ),
               ListTile(
                 leading:
-                    Icon(Icons.category, color: Theme.of(context).accentColor),
+                    Icon(Icons.category, color: Theme.of(context).colorScheme.secondary),
                 title: Text('Categorise'),
                 onTap: () {
                   Navigator.pop(context);
@@ -60,7 +60,7 @@ class _AppDrawerState extends State<AppDrawer> {
               ),
               ListTile(
                 leading:
-                    Icon(Icons.favorite, color: Theme.of(context).accentColor),
+                    Icon(Icons.favorite, color: Theme.of(context).colorScheme.secondary),
                 title: Text('My Wishlist'),
                 trailing: Container(
                   padding: const EdgeInsets.all(10.0),
@@ -78,7 +78,7 @@ class _AppDrawerState extends State<AppDrawer> {
               ),
               ListTile(
                 leading: Icon(Icons.shopping_cart,
-                    color: Theme.of(context).accentColor),
+                    color: Theme.of(context).colorScheme.secondary),
                 title: Text('My Cart'),
                 trailing: Container(
                   padding: const EdgeInsets.all(10.0),
@@ -95,7 +95,7 @@ class _AppDrawerState extends State<AppDrawer> {
                 },
               ),
               ListTile(
-                leading: Icon(Icons.lock, color: Theme.of(context).accentColor),
+                leading: Icon(Icons.lock, color: Theme.of(context).colorScheme.secondary),
                 title: Text('Login'),
                 onTap: () {
                   Navigator.pop(context);
@@ -105,7 +105,7 @@ class _AppDrawerState extends State<AppDrawer> {
               Divider(),
               ListTile(
                 leading:
-                    Icon(Icons.settings, color: Theme.of(context).accentColor),
+                    Icon(Icons.settings, color: Theme.of(context).colorScheme.secondary),
                 title: Text('Settings'),
                 onTap: () {
                   Navigator.pop(context);
@@ -114,7 +114,7 @@ class _AppDrawerState extends State<AppDrawer> {
               ),
               ListTile(
                 leading: Icon(Icons.exit_to_app,
-                    color: Theme.of(context).accentColor),
+                    color: Theme.of(context).colorScheme.secondary),
                 title: Text('Logout'),
                 onTap: () async {
                   await auth.logout();

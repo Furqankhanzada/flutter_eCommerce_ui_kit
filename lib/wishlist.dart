@@ -125,7 +125,7 @@ class _WishlistState extends State<WishList> {
                               Padding(
                                 padding: const EdgeInsets.only(top: 2.0, bottom: 1),
                                 child: Text('\$200', style: TextStyle(
-                                  color: Theme.of(context).accentColor,
+                                  color: Theme.of(context).colorScheme.secondary,
                                   fontWeight: FontWeight.w700,
                                 )),
                               ),

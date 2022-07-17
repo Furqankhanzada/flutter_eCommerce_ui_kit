@@ -66,9 +66,11 @@ class AuthService {
 
   getUser() async {
     String? user = await storage.read(key: 'user');
+    print(user);
     if (user != null) {
       return jsonDecode(user);
     }
+    return {};
   }
   logout() async {
     await storage.delete(key: 'user');
