@@ -36,12 +36,13 @@ class AuthBlock extends ChangeNotifier {
     notifyListeners();
   }
 
-  // user
+  // just in case if you want to see how logged in drawer would look like, uncomment _user and  comment _authService.getUser()
+  // Map _user = {'user_email': 'furqan.khanzada@gmail.com', 'user_display_name': 'Muhammad Furqan'};
   Map _user = {};
   Map get user => _user;
   setUser() async {
-    _user = await _authService.getUser();
-    isLoggedIn = _user == null ? false : true;
+    // _user = await _authService.getUser();
+    isLoggedIn = _user.isNotEmpty ;
     notifyListeners();
   }
 

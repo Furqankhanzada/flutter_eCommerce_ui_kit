@@ -50,7 +50,7 @@ class _ShopState extends State<Shop> {
                     Container(
                       constraints: BoxConstraints(maxHeight: 150.0),
                       child: Material(
-                        color: Theme.of(context).accentColor,
+                        color: Theme.of(context).colorScheme.secondary,
                         child: TabBar(
                           indicatorColor: Colors.blue,
                           tabs: [
@@ -112,7 +112,7 @@ class _ShopState extends State<Shop> {
                                                       Padding(
                                                         padding: const EdgeInsets.only(top: 2.0, bottom: 1),
                                                         child: Text('\$200', style: TextStyle(
-                                                          color: Theme.of(context).accentColor,
+                                                          color: Theme.of(context).colorScheme.secondary,
                                                           fontWeight: FontWeight.w700,
                                                         )),
                                                       ),
@@ -196,7 +196,7 @@ class _ShopState extends State<Shop> {
                                                       Padding(
                                                         padding: const EdgeInsets.only(top: 2.0, bottom: 1),
                                                         child: Text('\$200', style: TextStyle(
-                                                          color: Theme.of(context).accentColor,
+                                                          color: Theme.of(context).colorScheme.secondary,
                                                           fontWeight: FontWeight.w700,
                                                         )),
                                                       ),

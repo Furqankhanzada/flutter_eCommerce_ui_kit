@@ -69,6 +69,7 @@ class AuthService {
     if (user != null) {
       return jsonDecode(user);
     }
+    return {};
   }
   logout() async {
     await storage.delete(key: 'user');

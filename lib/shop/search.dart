@@ -105,7 +105,7 @@ class _ShopSearchState extends State<ShopSearch> {
                           width: 120,
                           height: 45.0,
                           alignment: Alignment.center,
-                          decoration: BoxDecoration(color: Theme.of(context).accentColor),
+                          decoration: BoxDecoration(color: Theme.of(context).colorScheme.secondary),
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text('\$ ${_values.start.round()}', style: TextStyle(color: Colors.white)),
@@ -116,7 +116,7 @@ class _ShopSearchState extends State<ShopSearch> {
                           width: 120,
                           height: 45.0,
                           alignment: Alignment.center,
-                          decoration: BoxDecoration(color: Theme.of(context).accentColor),
+                          decoration: BoxDecoration(color: Theme.of(context).colorScheme.secondary),
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text('\$ ${_values.end.round()}', style: TextStyle(color: Colors.white)),

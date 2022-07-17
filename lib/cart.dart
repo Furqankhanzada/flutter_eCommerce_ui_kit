@@ -43,11 +43,11 @@ class _CartListState extends State<CartList> {
                       onDismissed: (direction) {
                         if(direction == DismissDirection.endToStart) {
                           // Then show a snackbar.
-                          Scaffold.of(context)
+                          ScaffoldMessenger.of(context)
                               .showSnackBar(SnackBar(content: Text(item['name'] + " dismissed"), duration: Duration(seconds: 1)));
                         } else {
                           // Then show a snackbar.
-                          Scaffold.of(context)
+                          ScaffoldMessenger.of(context)
                               .showSnackBar(SnackBar(content: Text(item['name'] + " added to carts"), duration: Duration(seconds: 1)));
                         }
                         // Remove the item from the data source.
@@ -127,7 +127,7 @@ class _CartListState extends State<CartList> {
                                         Padding(
                                           padding: const EdgeInsets.only(top: 2.0, bottom: 1),
                                           child: Text('in stock', style: TextStyle(
-                                            color: Theme.of(context).accentColor,
+                                            color: Theme.of(context).colorScheme.secondary,
                                             fontWeight: FontWeight.w700,
                                           )),
                                         )
@@ -202,7 +202,7 @@ class _CartListState extends State<CartList> {
                 buttonColor: Theme.of(context).primaryColor,
                 minWidth: double.infinity,
                 height: 40.0,
-                child: RaisedButton(
+                child: ElevatedButton(
                   onPressed: () {},
                   child: Text(
                     "CHECKOUT",

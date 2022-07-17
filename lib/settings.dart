@@ -45,7 +45,7 @@ class _SettingsState extends State<Settings> {
                         margin: EdgeInsets.only(bottom: 0),
                         width: double.infinity,
                         decoration: BoxDecoration(
-                          color: Theme.of(context).accentColor,
+                          color: Theme.of(context).colorScheme.secondary,
                           border: Border(
                             bottom: BorderSide( //                   <--- left side
                               color: Colors.grey.shade300,
@@ -69,58 +69,58 @@ class _SettingsState extends State<Settings> {
                       children: <Widget>[
                         Card(
                           child: ListTile(
-                            leading: Icon(Icons.edit, color: Theme.of(context).accentColor, size: 28,),
+                            leading: Icon(Icons.edit, color: Theme.of(context).colorScheme.secondary, size: 28,),
                             title: Text('Profile', style: TextStyle(color: Colors.black, fontSize: 17)),
-                            trailing: Icon(Icons.keyboard_arrow_right, color: Theme.of(context).accentColor),
+                            trailing: Icon(Icons.keyboard_arrow_right, color: Theme.of(context).colorScheme.secondary),
                           ),
                         ),
                         Card(
                           child: ListTile(
-                            leading: Icon(Icons.notifications, color: Theme.of(context).accentColor, size: 28,),
+                            leading: Icon(Icons.notifications, color: Theme.of(context).colorScheme.secondary, size: 28,),
                             title: Text('Notifications', style: TextStyle(color: Colors.black, fontSize: 17)),
-                            trailing: Icon(Icons.keyboard_arrow_right, color: Theme.of(context).accentColor),
+                            trailing: Icon(Icons.keyboard_arrow_right, color: Theme.of(context).colorScheme.secondary),
                           ),
                         ),
                         Card(
                           child: ListTile(
-                            leading: Icon(Icons.panorama, color: Theme.of(context).accentColor, size: 28,),
+                            leading: Icon(Icons.panorama, color: Theme.of(context).colorScheme.secondary, size: 28,),
                             title: Text('Progress', style: TextStyle(color: Colors.black, fontSize: 17)),
-                            trailing: Icon(Icons.keyboard_arrow_right, color: Theme.of(context).accentColor),
+                            trailing: Icon(Icons.keyboard_arrow_right, color: Theme.of(context).colorScheme.secondary),
                           ),
                         ),
                         Card(
                           child: ListTile(
-                            leading: Icon(Icons.favorite, color: Theme.of(context).accentColor, size: 28,),
+                            leading: Icon(Icons.favorite, color: Theme.of(context).colorScheme.secondary, size: 28,),
                             title: Text('Favorite', style: TextStyle(color: Colors.black, fontSize: 17)),
-                            trailing: Icon(Icons.keyboard_arrow_right, color: Theme.of(context).accentColor),
+                            trailing: Icon(Icons.keyboard_arrow_right, color: Theme.of(context).colorScheme.secondary),
                           ),
                         ),
                         Card(
                           child: ListTile(
-                            leading: Icon(Icons.feedback, color: Theme.of(context).accentColor, size: 28,),
+                            leading: Icon(Icons.feedback, color: Theme.of(context).colorScheme.secondary, size: 28,),
                             title: Text('Feedback', style: TextStyle(color: Colors.black, fontSize: 17)),
-                            trailing: Icon(Icons.keyboard_arrow_right, color: Theme.of(context).accentColor),
+                            trailing: Icon(Icons.keyboard_arrow_right, color: Theme.of(context).colorScheme.secondary),
                           ),
                         ),
                         Card(
                           child:  ListTile(
-                            leading: Icon(Icons.add_photo_alternate, color: Theme.of(context).accentColor, size: 28,),
+                            leading: Icon(Icons.add_photo_alternate, color: Theme.of(context).colorScheme.secondary, size: 28,),
                             title: Text('About Us', style: TextStyle(color: Colors.black, fontSize: 17)),
-                            trailing: Icon(Icons.keyboard_arrow_right, color: Theme.of(context).accentColor),
+                            trailing: Icon(Icons.keyboard_arrow_right, color: Theme.of(context).colorScheme.secondary),
                           ),
                         ),
                         Card(
                           child: ListTile(
-                            leading: Icon(Icons.vpn_key, color: Theme.of(context).accentColor, size: 28,),
+                            leading: Icon(Icons.vpn_key, color: Theme.of(context).colorScheme.secondary, size: 28,),
                             title: Text('Change Password', style: TextStyle(color: Colors.black, fontSize: 17)),
-                            trailing: Icon(Icons.keyboard_arrow_right, color: Theme.of(context).accentColor),
+                            trailing: Icon(Icons.keyboard_arrow_right, color: Theme.of(context).colorScheme.secondary),
                           ),
                         ),
                         Card(
                           child: ListTile(
-                            leading: Icon(Icons.lock, color: Theme.of(context).accentColor, size: 28,),
+                            leading: Icon(Icons.lock, color: Theme.of(context).colorScheme.secondary, size: 28,),
                             title: Text('Logout', style: TextStyle(color: Colors.black, fontSize: 17)),
-                            trailing: Icon(Icons.keyboard_arrow_right, color: Theme.of(context).accentColor),
+                            trailing: Icon(Icons.keyboard_arrow_right, color: Theme.of(context).colorScheme.secondary),
                           ),
                         ),
                       ],

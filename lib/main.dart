@@ -28,9 +28,11 @@ void main() {
       locale: locale,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          primaryColor: Colors.deepOrange.shade500,
-          accentColor: Colors.lightBlue.shade900,
-          fontFamily: locale.languageCode == 'ar' ? 'Dubai' : 'Lato'),
+        primaryColor: Colors.deepOrange.shade500,
+        colorScheme: ColorScheme.fromSwatch()
+            .copyWith(secondary: Colors.lightBlue.shade900),
+        fontFamily: locale.languageCode == 'ar' ? 'Dubai' : 'Lato',
+      ),
       initialRoute: '/',
       routes: <String, WidgetBuilder>{
         '/': (BuildContext context) => Home(),
