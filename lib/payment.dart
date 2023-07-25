@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_ecommerce_ui_kit/blocks/payment_methods.dart';
 import 'package:provider/provider.dart';
-import 'package:shimmer/shimmer.dart';
-import 'package:flutter_ecommerce_ui_kit/localizations.dart';
 import 'package:flutter_ecommerce_ui_kit/models/user.dart';
 import 'package:flutter_ecommerce_ui_kit/blocks/order_details.dart';
 
@@ -11,7 +8,6 @@ class Payment extends StatefulWidget {
   @override
   _PaymentState createState() => _PaymentState();
 }
-
 class _PaymentState extends State<Payment> {
   final List<String> imgList = [
     'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
@@ -58,12 +54,16 @@ class _PaymentState extends State<Payment> {
                       width: 240.0,
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
-                        child: RaisedButton(
-                            color: Theme.of(context).primaryColor,
+                        child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              primary: Theme.of(context).primaryColor,
+                            textStyle: TextStyle(
+                              color: Colors.white
+                            ),
+                            ),
 
                             child: Text(payment['title'],
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(color: Colors.white)),
+                                overflow: TextOverflow.ellipsis),
                             onPressed: () {
                               orderBlock.setPaymentMethod(payment);
                               Navigator.pushNamed(context, '/confirm');

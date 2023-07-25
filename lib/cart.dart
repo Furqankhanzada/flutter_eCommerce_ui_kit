@@ -76,12 +76,12 @@ class _CartListState extends State<CartList> {
                       onDismissed: (direction) {
                         if (direction == DismissDirection.endToStart) {
                           // Then show a snackbar.
-                          Scaffold.of(context).showSnackBar(SnackBar(
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               content: Text(item['name'] + " dismissed"),
                               duration: Duration(seconds: 1)));
                         } else {
                           // Then show a snackbar.
-                          Scaffold.of(context).showSnackBar(SnackBar(
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               content: Text(item['name'] + " added to carts"),
                               duration: Duration(seconds: 1)));
                         }
@@ -230,7 +230,7 @@ class _CartListState extends State<CartList> {
                 buttonColor: Theme.of(context).primaryColor,
                 minWidth: double.infinity,
                 height: 40.0,
-                child: RaisedButton(
+                child: ElevatedButton(
                   onPressed: total > 0
                       ? () {
                           Navigator.pushNamed(context, '/checkout');

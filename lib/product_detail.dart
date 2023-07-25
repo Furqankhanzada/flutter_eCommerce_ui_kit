@@ -134,13 +134,17 @@ class Products extends StatelessWidget {
                         ),
                         ConstrainedBox(
                           constraints: const BoxConstraints(minWidth: double.infinity),
-                          child: new RaisedButton(
-                              color: Theme.of(context).primaryColor,
+                          child:ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              primary: Theme.of(context).primaryColor,
+                            textStyle: TextStyle(
+                              color: Colors.white
+                            ),
+                            ),
                             onPressed: () {
                               cartBlock.addToCart(args);
                             },
                             child: Text(cartLength == 0 ? 'ADD TO CART' : 'REMOVE FROM CART',
-                                style: TextStyle(color: Colors.white)
                             ),
                           ),
                         )
